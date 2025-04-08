@@ -13,36 +13,60 @@ import java.awt.event.ActionListener;
 
 public class FrameAccedi {
    public FrameAccedi() {
+      // Crea il frame principale
       JFrame frameAccedi = new JFrame("Accedi");
+      // Imposta il pannello principale
       JPanel panel = new JPanel();
+      // Imposta il pannello per l'accesso
       JPanel panelAccedi = new JPanel();
+      // Crea il label per il titolo
       JLabel labelAccedi = new JLabel("Accedi al tuo account");
+      // Crea il pannello per l'email e la password
       JPanel panelRegistrati = new JPanel();
+      // Crea i label per l'email
       JLabel labelEmail = new JLabel("E-mail");
+      // Crea l'area di testo per l'email
       JTextArea textAreaEmail = new JTextArea();
+      // Crea i label per la password
       JLabel labelPassword = new JLabel("Password");
+      // Crea l'area di testo per la password
       JTextArea textAreaPassword = new JTextArea();
+      // Crea il pannello per il pulsante di accesso
       JPanel panelButtonAccedi = new JPanel();
+      // Crea il pulsante di accesso
       JButton buttonAccedi = new JButton("Accedi");
+      // Crea il pannello per la registrazione se non si ha gia un account
       JPanel panelRegistratiNuovoAccount = new JPanel();
+      // Crea il label per la registrazione
       JLabel labelRegistrati = new JLabel("Non hai ancora un account?");
+      // Crea il pannello per il pulsante di registrazione
       JPanel panelButtonRegistrati = new JPanel();
+      // Crea il pulsante di registrazione
       JButton buttonRegistrati = new JButton("Registrati");
-      frameAccedi.add(panel);
-      panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-      // Aggiungi componenti ai rispettivi pannelli
+      // Aggiungi il pannello principale al frame
+      frameAccedi.add(panel);
+      // Imposta il layout del pannello principale
+      panel.setLayout(new GridLayout(4, 1));
+      // Imposta i bordi del pannello principale
+      panel.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 30, 30, 30));
+
+      // Aggiungui il pannello per l'accesso al pannello principale
       panel.add(panelAccedi);
+      panelAccedi.setLayout(new GridLayout(1, 1));
+      panelAccedi.add(labelAccedi);
       labelAccedi.setHorizontalAlignment(JLabel.CENTER);
       labelAccedi.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 24));
-      panelAccedi.add(labelAccedi);
 
+      // Aggiungi il pannello per l'email e la password al pannello principale
       panel.add(panelRegistrati);
+      panelRegistrati.setLayout(new GridLayout(4, 1));
       panelRegistrati.add(labelEmail);
       panelRegistrati.add(textAreaEmail);
       panelRegistrati.add(labelPassword);
       panelRegistrati.add(textAreaPassword);
 
+      // Aggiungi il pannello per il pulsante di accesso e registrazione al pannello principale
       panel.add(panelButtonAccedi);
       panelButtonAccedi.add(buttonAccedi);
       buttonAccedi.setHorizontalAlignment(JButton.CENTER);
@@ -60,8 +84,16 @@ public class FrameAccedi {
       buttonRegistrati.setBorderPainted(false);
       buttonRegistrati.setContentAreaFilled(false);
 
-      buttonRegistrati.addActionListener(new ActionListener() {
+      buttonAccedi.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            String email = textAreaEmail.getText();
+            String password = textAreaPassword.getText();
+            // Qui puoi aggiungere il codice per verificare le credenziali dell'utente
+         }
+      });
 
+      buttonRegistrati.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
             frameAccedi.dispose();
@@ -70,9 +102,9 @@ public class FrameAccedi {
       });
 
       // Configura layout per i pannelli
-      panel.setLayout(new GridLayout(4, 1));
-      panelAccedi.setLayout(new GridLayout(1, 1));
-      panelRegistrati.setLayout(new GridLayout(4, 1));
+      
+      
+      
       panelButtonAccedi.setLayout(new GridLayout(1, 1));
       panelRegistratiNuovoAccount.setLayout(new GridLayout(1, 2));
       panelButtonRegistrati.setLayout(new GridLayout(1, 1));
