@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FrameAccedi {
    public FrameAccedi() {
@@ -57,6 +59,15 @@ public class FrameAccedi {
       buttonRegistrati.setHorizontalAlignment(JButton.CENTER);
       buttonRegistrati.setBorderPainted(false);
       buttonRegistrati.setContentAreaFilled(false);
+
+      buttonRegistrati.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            frameAccedi.dispose();
+            new FrameRegistrazione();
+         }
+      });
 
       // Configura layout per i pannelli
       panel.setLayout(new GridLayout(4, 1));
