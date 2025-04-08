@@ -2,10 +2,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Apertura extends JFrame {
 
@@ -22,7 +21,7 @@ public class Apertura extends JFrame {
         panelImage.setBackground(Color.WHITE);
 
         try {
-            BufferedImage imageIcon = ImageIO.read(new File("C:\\Users\\User\\Downloads\\Logo.png"));
+            BufferedImage imageIcon = ImageIO.read(getClass().getResourceAsStream("/Immagini e loghi/LogoBanca.jpg/"));
 
             int larghezzaImmagine = 200;
             int altezzaImmagine = 200;
@@ -42,6 +41,8 @@ public class Apertura extends JFrame {
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            System.out.println("Immagine non trovata! Assicurati che il percorso sia corretto.");
         }
 
         panelScelta = new JPanel();
@@ -60,29 +61,26 @@ public class Apertura extends JFrame {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-
         int x = (screenSize.width - 500) / 2;
         int y = (screenSize.height - 550) / 2;
 
         setLocation(x, y);
 
-        buttonAccedi.addActionListener(new ActionListener(){
+        buttonAccedi.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e){
-
+            public void actionPerformed(ActionEvent e) {
                 dispose();
-                //new FrameAccedi();
+                new FrameAccedi();
             }
         });
 
-        buttonRegistrati.addActionListener(new ActionListener(){
+        buttonRegistrati.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e){
-
+            public void actionPerformed(ActionEvent e) {
                 dispose();
-                //new FrameRegistrazione();
+                new FrameRegistrazione();
             }
         });
 
