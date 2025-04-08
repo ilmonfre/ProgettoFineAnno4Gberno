@@ -45,18 +45,21 @@ public class FrameAccedi {
       panelButtonAccedi.add(buttonAccedi);
       buttonAccedi.setHorizontalAlignment(JButton.CENTER);
       buttonAccedi.setBackground(Color.decode("#5299D5"));
-      panelButtonAccedi.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 155, 20, 155));
+      panelButtonAccedi.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 140, 30, 140));
 
       panel.add(panelRegistratiNuovoAccount);
       panelRegistratiNuovoAccount.add(labelRegistrati);
+      labelRegistrati.setHorizontalAlignment(JLabel.RIGHT);
       panelRegistratiNuovoAccount.add(panelButtonRegistrati);
       panelRegistratiNuovoAccount.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 120, 0, 0));
       panelButtonRegistrati.add(buttonRegistrati);
+      
       buttonRegistrati.setHorizontalAlignment(JButton.CENTER);
-      panelButtonRegistrati.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
+      buttonRegistrati.setBorderPainted(false);
+      buttonRegistrati.setContentAreaFilled(false);
 
       // Configura layout per i pannelli
-      panel.setLayout(new GridLayout(5, 1));
+      panel.setLayout(new GridLayout(4, 1));
       panelAccedi.setLayout(new GridLayout(1, 1));
       panelRegistrati.setLayout(new GridLayout(4, 1));
       panelButtonAccedi.setLayout(new GridLayout(1, 1));
