@@ -98,7 +98,7 @@ public class FrameAccedi {
       // Imposta il layout del pannello per il pulsante di registrazione
       panelButtonRegistrati.setLayout(new GridLayout(1, 1));
       // Imposta i bordi del pannello per il pulsante di registrazione
-      panelRegistratiNuovoAccount.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 120, 0, 0));
+      panelRegistratiNuovoAccount.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 100, 0, 0));
       // Aggiungi il pulsante di registrazione al pannello per il pulsante di registrazione
       panelButtonRegistrati.add(buttonRegistrati);
       // Allinea il pulsante al centro
