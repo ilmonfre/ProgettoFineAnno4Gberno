@@ -53,14 +53,20 @@ public class FrameAccedi {
 
       // Aggiungui il pannello per l'accesso al pannello principale
       panel.add(panelAccedi);
+      // Imposta il layout del pannello per l'accesso
       panelAccedi.setLayout(new GridLayout(1, 1));
+      // Aggiungi il label per il titolo al pannello per l'accesso
       panelAccedi.add(labelAccedi);
+      // Allinea il label al centro
       labelAccedi.setHorizontalAlignment(JLabel.CENTER);
+      // Imposta il font del label
       labelAccedi.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 24));
 
       // Aggiungi il pannello per l'email e la password al pannello principale
       panel.add(panelRegistrati);
+      // Imposta il layout del pannello per l'email e la password
       panelRegistrati.setLayout(new GridLayout(4, 1));
+      // Aggiungi i label e le aree di testo per l'email e la password al pannello per l'email e la password
       panelRegistrati.add(labelEmail);
       panelRegistrati.add(textAreaEmail);
       panelRegistrati.add(labelPassword);
@@ -68,46 +74,61 @@ public class FrameAccedi {
 
       // Aggiungi il pannello per il pulsante di accesso e registrazione al pannello principale
       panel.add(panelButtonAccedi);
+      // Imposta il layout del pannello per il pulsante di accesso
+      panelButtonAccedi.setLayout(new GridLayout(1, 1));
+      // Aggiungi il pulsante di accesso al pannello per il pulsante di accesso
       panelButtonAccedi.add(buttonAccedi);
+      // Allinea il pulsante al centro
       buttonAccedi.setHorizontalAlignment(JButton.CENTER);
+      // Imposta il colore del pulsante
       buttonAccedi.setBackground(Color.decode("#5299D5"));
+      // Imposta i bordi del pulsante
       panelButtonAccedi.setBorder(javax.swing.BorderFactory.createEmptyBorder(30, 140, 30, 140));
 
+      // Aggiungi il pannello per la registrazione se non si ha gia un account al pannello principale
       panel.add(panelRegistratiNuovoAccount);
+      // Imposta il layout del pannello per la registrazione se non si ha gia un account
+      panelRegistratiNuovoAccount.setLayout(new GridLayout(1, 2));
+      // Aggiungi il label per la registrazione e il pulsante di registrazione al pannello per la registrazione se non si ha gia un account
       panelRegistratiNuovoAccount.add(labelRegistrati);
+      // Allinea il label a destra
       labelRegistrati.setHorizontalAlignment(JLabel.RIGHT);
+      // Aggiungi il pannello per il pulsante di registrazione al pannello per la registrazione se non si ha gia un account
       panelRegistratiNuovoAccount.add(panelButtonRegistrati);
-      panelRegistratiNuovoAccount.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 120, 0, 0));
+      // Imposta il layout del pannello per il pulsante di registrazione
+      panelButtonRegistrati.setLayout(new GridLayout(1, 1));
+      // Imposta i bordi del pannello per il pulsante di registrazione
+      panelRegistratiNuovoAccount.setBorder(javax.swing.BorderFactory.createEmptyBorder(50, 100, 0, 0));
+      // Aggiungi il pulsante di registrazione al pannello per il pulsante di registrazione
       panelButtonRegistrati.add(buttonRegistrati);
-      
+      // Allinea il pulsante al centro
       buttonRegistrati.setHorizontalAlignment(JButton.CENTER);
+      // Togli i bordi del pulsante
       buttonRegistrati.setBorderPainted(false);
+      // Togli lo sfondo del pulsante
       buttonRegistrati.setContentAreaFilled(false);
 
+      // Funzione del pulsante di accesso quando viene premuto
       buttonAccedi.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
+            // Prendi l'email e la password inseriti
             String email = textAreaEmail.getText();
             String password = textAreaPassword.getText();
             // Qui puoi aggiungere il codice per verificare le credenziali dell'utente
          }
       });
 
+      // Funzione del pulsante di registrazione quando viene premuto
       buttonRegistrati.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
+            // Chiudi il frame di accesso
             frameAccedi.dispose();
+            // Apri il frame di registrazione
             new FrameRegistrazione();
          }
       });
-
-      // Configura layout per i pannelli
-      
-      
-      
-      panelButtonAccedi.setLayout(new GridLayout(1, 1));
-      panelRegistratiNuovoAccount.setLayout(new GridLayout(1, 2));
-      panelButtonRegistrati.setLayout(new GridLayout(1, 1));
 
       // Imposta le dimensioni del frame
       frameAccedi.setSize(500, 550);
@@ -116,7 +137,8 @@ public class FrameAccedi {
       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
       int x = (screenSize.width - frameAccedi.getWidth()) / 2;
       int y = (screenSize.height - frameAccedi.getHeight()) / 2;
-      frameAccedi.setLocation(x, y); // Imposta la posizione centrata
+      // Imposta la posizione centrata
+      frameAccedi.setLocation(x, y);
 
       frameAccedi.setVisible(true);
       frameAccedi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
