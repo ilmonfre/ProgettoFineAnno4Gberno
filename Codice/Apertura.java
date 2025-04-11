@@ -21,7 +21,7 @@ public class Apertura extends JFrame {
         panelImage.setBackground(Color.WHITE);
 
         try {
-            BufferedImage imageIcon = ImageIO.read(getClass().getResourceAsStream("/Immagini e loghi/LogoBanca.jpg/"));
+            BufferedImage imageIcon = ImageIO.read(getClass().getResourceAsStream("/Immagini/LogoBanca.jpg/"));
 
             int larghezzaImmagine = 200;
             int altezzaImmagine = 200;
@@ -42,7 +42,7 @@ public class Apertura extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NullPointerException e) {
-            System.out.println("Immagine non trovata! Assicurati che il percorso sia corretto.");
+            e.printStackTrace();
         }
 
         panelScelta = new JPanel();
