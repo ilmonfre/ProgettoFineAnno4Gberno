@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.InputStream;
@@ -8,6 +10,11 @@ public class HomeFrame extends JFrame{
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore, panelAccount, panelSole, panelLuna;
     JButton buttonAccount, buttonTema;
+
+    JPanel panelCentrale, panelSoldi, panelRadar, panelEntrate, panelUscite, panelUMovimenti, panelPrimo, panelSecondo, panelTerzo;
+    JLabel labelSoldi, labelDisponibilita, labelEntrateUMese, labelUsciteUMese, labelImageEntrate, labelImageUscite, labelEntrate, labelUscite;
+    JLabel labelTipoPrimo, labelTipoSecondo, labelTipoTerzo, labelCostoPrimo, labelCostoSecondo, labelCostoTerzo, labelGiornoPrimo, labelGiornoSecondo, labelGiornoTerzo;
+    ImageIcon imageEntrate, imageUscite;
 
     JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna;
     JPanel panelMovimenti, panelRisparmi, panelPagamenti, panelBudget, panelCambioValuta;
@@ -90,6 +97,92 @@ public class HomeFrame extends JFrame{
 
 
 
+        panelCentrale = new JPanel();
+        panelCentrale.setLayout(new GridLayout(3, 2));
+        panelSoldi = new JPanel();
+
+        TitledBorder bordoDisponibilita = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Disponibilità");
+        Font fontDisponibilita = new Font("Serif", Font.ITALIC, 20);
+
+        bordoDisponibilita.setTitleFont(fontDisponibilita);
+
+        panelSoldi.setBorder(bordoDisponibilita);
+
+        labelSoldi = new JLabel();
+        //labelSoldi.setText(GestioneSoldi.getSoldi()+"  €");
+        
+        panelSoldi.add(labelSoldi);
+
+        panelRadar = new JPanel();
+        panelEntrate = new JPanel();
+        panelUscite = new JPanel();
+
+        TitledBorder bordoRadar = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Radar");
+        Font fontRadar = new Font("Serif", Font.ITALIC, 20);
+
+        bordoRadar.setTitleFont(fontRadar);
+
+        panelRadar.setBorder(bordoRadar);
+
+        TitledBorder bordoEntrate = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Entrate");
+        TitledBorder bordoUscite = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Uscite");
+
+        bordoEntrate.setTitleFont(fontRadar);
+        bordoEntrate.setTitleJustification(TitledBorder.CENTER);
+
+        bordoUscite.setTitleFont(fontRadar);
+        bordoUscite.setTitleJustification(TitledBorder.CENTER);
+
+        panelEntrate.setBorder(bordoEntrate);
+        panelUscite.setBorder(bordoUscite);
+        
+        labelEntrateUMese = new JLabel();
+        labelUsciteUMese = new JLabel();
+
+        panelEntrate.setLayout(new GridLayout(1, 2));
+        panelUscite.setLayout(new GridLayout(1, 2));
+
+        imageEntrate = new ImageIcon();
+        imageUscite = new ImageIcon();
+
+        imageEntrate = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
+        imageUscite = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
+
+        labelImageEntrate = new JLabel(imageEntrate);
+        labelImageUscite = new JLabel(imageUscite);
+
+        labelEntrate = new JLabel();
+        labelUscite = new JLabel();
+
+        //labelEntrate.setText(GestioneDenaro.getEntrateUMese());
+        //labelEntrate.setText(GestioneDenaro.getUsciteUMese());
+
+        panelEntrate.add(labelImageEntrate);
+        panelEntrate.add(labelEntrate);
+
+        panelUscite.add(labelImageUscite);
+        panelUscite.add(labelUscite);
+
+        panelRadar.setLayout(new GridLayout(1, 2));
+
+        panelRadar.add(panelEntrate);
+        panelRadar.add(panelUscite);
+
+        panelMovimenti = new JPanel();
+
+        panelPrimo = new JPanel();
+        panelSecondo = new JPanel();
+        panelTerzo = new JPanel();
+
+        
+
+        panelCentrale.add(panelSoldi);
+        panelCentrale.add(panelRadar);
+
+
+
+
+
         imageMovimenti = new ImageIcon();
         imageRisparmi = new ImageIcon();
         imagePagamenti = new ImageIcon();
@@ -127,6 +220,7 @@ public class HomeFrame extends JFrame{
         setLayout(new BorderLayout());
 
         add(panelSuperiore, BorderLayout.NORTH);
+        add(panelCentrale, BorderLayout.CENTER);
         add(menuBarAzioni, BorderLayout.SOUTH);
 
         setSize(1000, 1000);
