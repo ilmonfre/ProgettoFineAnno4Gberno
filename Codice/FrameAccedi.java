@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class FrameAccedi {
@@ -117,6 +119,32 @@ public class FrameAccedi {
             String email = textAreaEmail.getText();
             String password = textAreaPassword.getText();
             // Qui puoi aggiungere il codice per verificare le credenziali dell'utente
+            //save.csv
+            String csv = "save.csv";
+            try (BufferedReader reader = new BufferedReader(new FileReader(csv))) {
+               String line;
+
+               while ((line = reader.readLine()) != null) {
+                  String[] fields = line.split(";");
+                  boolean found = false;
+
+                  if (fields.length > 1 && fields[3].equals(email) && fields[5].equals(password)) {
+                     found = true;
+                     break;
+                  }
+                  if (found) {
+                     // Chiudi il frame di accesso
+                     frameAccedi.dispose();
+                     // Apri il frame principale
+                     new HomeFrame();
+                  } else {
+                     // Mostra un messaggio di errore se le credenziali non sono corrette
+                     //label
+                  }
+               }
+            } catch (IOException e2) {
+               e2.printStackTrace();
+            }
          }
       });
 
