@@ -4,6 +4,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.InputStream;
+import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
@@ -26,6 +27,7 @@ public class HomeFrame extends JFrame{
         panelSuperiore = new JPanel();
 
         panelSuperiore.setLayout(new GridLayout(1, 3));
+        panelSuperiore.setBackground(Color.decode("#CCFFFF"));
 
         imageAccount = new ImageIcon();
         imageSole = new ImageIcon();
@@ -71,23 +73,6 @@ public class HomeFrame extends JFrame{
             }
         });
 
-        buttonTema.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(buttonTema.getIcon().equals(imageSole)){
-
-                    //Rendere tutto scuro
-                    buttonTema.setIcon(imageLuna);
-                }else{
-
-                    //Rendere tutto chiaro
-                    buttonTema.setIcon(imageSole);
-                }
-            }
-        });
-
         panelSuperiore.add(buttonAccount);
         panelSuperiore.add(labelScrittaSuperiore);
         panelSuperiore.add(buttonTema);
@@ -97,8 +82,10 @@ public class HomeFrame extends JFrame{
 
 
         panelCentrale = new JPanel();
+        panelCentrale.setBackground(Color.decode("#CCFFFF"));
         panelCentrale.setLayout(new GridLayout(3, 2));
         panelSoldi = new JPanel();
+        panelSoldi.setBackground(Color.decode("#CCFFFF"));
 
         TitledBorder bordoDisponibilita = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Disponibilità");
         Font fontDisponibilita = new Font("Serif", Font.ITALIC, 20);
@@ -113,8 +100,11 @@ public class HomeFrame extends JFrame{
         panelSoldi.add(labelSoldi);
 
         panelRadar = new JPanel();
+        panelRadar.setBackground(Color.decode("#CCFFFF"));
         panelEntrate = new JPanel();
+        panelEntrate.setBackground(Color.decode("#CCFFFF"));
         panelUscite = new JPanel();
+        panelUscite.setBackground(Color.decode("#CCFFFF"));
 
         TitledBorder bordoRadar = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Radar");
         Font fontRadar = new Font("Serif", Font.ITALIC, 20);
@@ -168,6 +158,7 @@ public class HomeFrame extends JFrame{
         panelRadar.add(panelUscite);
 
         panelMovimenti = new JPanel();
+        panelMovimenti.setBackground(Color.decode("#CCFFFF"));
 
         panelPrimo = new JPanel();
         panelSecondo = new JPanel();
@@ -234,8 +225,10 @@ public class HomeFrame extends JFrame{
         */
 
         panelPrimo.setLayout(new BorderLayout());
+        panelPrimo.setBackground(Color.decode("#CCFFFF"));
 
         panelInternoPrimo = new JPanel();
+        panelInternoPrimo.setBackground(Color.decode("#CCFFFF"));
 
         panelInternoPrimo.setLayout(new GridLayout(1, 2));
         panelInternoPrimo.add(labelGiornoPrimo);
@@ -246,8 +239,10 @@ public class HomeFrame extends JFrame{
         panelPrimo.add(panelInternoPrimo, BorderLayout.CENTER);
         
         panelSecondo.setLayout(new BorderLayout());
+        panelSecondo.setBackground(Color.decode("#CCFFFF"));
 
         panelInternoSecondo = new JPanel();
+        panelInternoSecondo.setBackground(Color.decode("#CCFFFF"));
 
         panelInternoSecondo.setLayout(new GridLayout(1, 2));
         panelInternoSecondo.add(labelGiornoSecondo);
@@ -258,8 +253,10 @@ public class HomeFrame extends JFrame{
         panelSecondo.add(panelInternoSecondo, BorderLayout.CENTER);
 
         panelTerzo.setLayout(new BorderLayout());
+        panelTerzo.setBackground(Color.decode("#CCFFFF"));
 
         panelInternoTerzo = new JPanel();
+        panelInternoTerzo.setBackground(Color.decode("#CCFFFF"));
 
         panelInternoTerzo.setLayout(new GridLayout(1, 2));
         panelInternoTerzo.add(labelGiornoTerzo);
@@ -297,6 +294,7 @@ public class HomeFrame extends JFrame{
 
         panelBar = new JPanel();
         panelBar.setLayout(new GridLayout(1, 5));
+        panelBar.setBackground(Color.decode("#CCFFFF"));
 
         buttonMovimenti = new JButton();
         buttonPagamenti = new JButton();
@@ -401,6 +399,66 @@ public class HomeFrame extends JFrame{
         add(panelSuperiore, BorderLayout.NORTH);
         add(panelCentrale, BorderLayout.CENTER);
         add(panelBar, BorderLayout.SOUTH);
+
+        buttonTema.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                if(buttonTema.getIcon().equals(imageLuna)){
+
+                    panelSuperiore.setBackground(Color.decode("#336699"));
+                    buttonAccount.setForeground(Color.decode("#336699"));
+                    buttonTema.setForeground(Color.decode("#336699"));
+                    panelCentrale.setBackground(Color.decode("#336699"));
+                    panelSoldi.setBackground(Color.decode("#336699"));
+                    bordoDisponibilita.setTitleColor(Color.decode("#336699"));
+                    bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
+                    labelSoldi.setForeground(Color.decode("#336699"));
+
+                    panelRadar.setBackground(Color.decode("#336699"));
+                    bordoRadar.setTitleColor(Color.decode("#336699"));
+                    bordoRadar.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
+                    bordoEntrate.setTitleColor(Color.decode("#336699"));
+                    bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
+                    URL url = getClass().getResource("/Immagini/IconaFrecciaAzzurrina.png");
+                    Image imageTmp = new ImageIcon(url).getImage();
+                    imageEntrate.setImage(imageTmp);
+                    
+                    bordoUscite.setTitleColor(Color.decode("#336699"));
+                    bordoUscite.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
+                    panelEntrate.setBackground(Color.decode("#336699"));
+                    panelUscite.setBackground(Color.decode("#336699"));
+
+                    panelMovimenti.setBackground(Color.decode("#336699"));
+                    panelPrimo.setBackground(Color.decode("#336699"));
+                    panelInternoPrimo.setBackground(Color.decode("#336699"));
+                    panelSecondo.setBackground(Color.decode("#336699"));
+                    panelInternoSecondo.setBackground(Color.decode("#336699"));
+                    panelTerzo.setBackground(Color.decode("#336699"));
+                    panelInternoTerzo.setBackground(Color.decode("#336699"));
+                    panelBar.setBackground(Color.decode("#336699"));
+                    buttonTema.setIcon(imageSole);
+                }else{
+
+                    panelSuperiore.setBackground(Color.decode("#CCFFFF"));
+                    panelCentrale.setBackground(Color.decode("#CCFFFF"));
+                    panelSoldi.setBackground(Color.decode("#CCFFFF"));
+                    panelRadar.setBackground(Color.decode("#CCFFFF"));
+                    panelEntrate.setBackground(Color.decode("#CCFFFF"));
+                    panelUscite.setBackground(Color.decode("#CCFFFF"));
+                    panelMovimenti.setBackground(Color.decode("#CCFFFF"));
+                    panelPrimo.setBackground(Color.decode("#CCFFFF"));
+                    panelInternoPrimo.setBackground(Color.decode("#CCFFFF"));
+                    panelSecondo.setBackground(Color.decode("#CCFFFF"));
+                    panelInternoSecondo.setBackground(Color.decode("#CCFFFF"));
+                    panelTerzo.setBackground(Color.decode("#CCFFFF"));
+                    panelInternoTerzo.setBackground(Color.decode("#CCFFFF"));
+                    panelBar.setBackground(Color.decode("#CCFFFF"));
+                    buttonTema.setIcon(imageLuna);
+                }
+            }
+        });
 
         setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
