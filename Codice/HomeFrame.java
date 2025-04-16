@@ -8,18 +8,17 @@ import java.io.InputStream;
 public class HomeFrame extends JFrame{
 
     JLabel labelScrittaSuperiore;
-    JPanel panelSuperiore, panelAccount, panelSole, panelLuna;
+    JPanel panelSuperiore;
     JButton buttonAccount, buttonTema;
 
-    JPanel panelCentrale, panelSoldi, panelRadar, panelEntrate, panelUscite, panelUMovimenti, panelPrimo, panelSecondo, panelTerzo;
+    JPanel panelCentrale, panelSoldi, panelRadar, panelEntrate, panelUscite, panelMovimenti, panelPrimo, panelSecondo, panelTerzo, panelInternoPrimo, panelInternoSecondo, panelInternoTerzo;
     JLabel labelSoldi, labelDisponibilita, labelEntrateUMese, labelUsciteUMese, labelImageEntrate, labelImageUscite, labelEntrate, labelUscite;
-    JLabel labelTipoPrimo, labelTipoSecondo, labelTipoTerzo, labelCostoPrimo, labelCostoSecondo, labelCostoTerzo, labelGiornoPrimo, labelGiornoSecondo, labelGiornoTerzo;
+    JLabel labelTipoPrimo, labelTipoSecondo, labelTipoTerzo, labelCostoPrimo, labelCostoSecondo, labelCostoTerzo, labelGiornoPrimo, labelGiornoSecondo, labelGiornoTerzo, labelIconaPrimo, labelIconaSecondo, labelIconaTerzo;
     ImageIcon imageEntrate, imageUscite;
 
     JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna;
-    JPanel panelMovimenti, panelRisparmi, panelPagamenti, panelBudget, panelCambioValuta;
-    JMenuBar menuBarAzioni;
-    JMenu menuMovimenti, menuPagamenti, menuRisparmi, menuBudget, menuCambioValuta;
+    JPanel panelBar;
+    JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta;
     ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna;
 
     public HomeFrame(){
@@ -155,7 +154,7 @@ public class HomeFrame extends JFrame{
         labelUscite = new JLabel();
 
         //labelEntrate.setText(GestioneDenaro.getEntrateUMese());
-        //labelEntrate.setText(GestioneDenaro.getUsciteUMese());
+        //labelUscite.setText(GestioneDenaro.getUsciteUMese());
 
         panelEntrate.add(labelImageEntrate);
         panelEntrate.add(labelEntrate);
@@ -174,10 +173,117 @@ public class HomeFrame extends JFrame{
         panelSecondo = new JPanel();
         panelTerzo = new JPanel();
 
+        labelTipoPrimo = new JLabel();
+        labelTipoSecondo = new JLabel();
+        labelTipoTerzo = new JLabel();
+
+        labelCostoPrimo = new JLabel();
+        labelCostoSecondo = new JLabel();
+        labelCostoTerzo = new JLabel();
+
+        labelGiornoPrimo = new JLabel();
+        labelGiornoSecondo = new JLabel();
+        labelGiornoTerzo = new JLabel();
+
+        labelIconaPrimo = new JLabel();
+        labelIconaSecondo = new JLabel();
+        labelIconaTerzo = new JLabel();
         
+        /*
+        if(Movimenti.getTipoPrimo().toLowerCase().equals("entrata")){
+
+            labelTipoPrimo.setText("Entrata");
+            labelCostoPrimo.setText(Movimenti.getCostoPrimo());
+            Aggiungere giorno
+            labelIconaPrimo.setIcon(imageEntrate);
+        }else if(Movimenti.getTipoPrimo().toLowerCase().equals("uscita")){
+
+            labelTipoPrimo.setText("Entrata");
+            labelCostoPrimo.setText(Movimenti.getCostoPrimo());
+            Aggiungere giorno
+            labelIconaPrimo.setIcon(imageUscite);
+        }
+
+        if(Movimenti.getTipoSecondo().toLowerCase().equals("entrata")){
+
+            labelTipoSecondo.setText("Entrata");
+            labelCostoSecondo.setText(Movimenti.getCostoSecondo());
+            Aggiungere giorno
+            labelIconaSecondo.setIcon(imageEntrate);
+        }else if(Movimenti.getTipoSecondo().toLowerCase().equals("uscita")){
+
+            labelTipoSecondo.setText("Entrata");
+            labelCostoSecondo.setText(Movimenti.getCostoSecondo());
+            Aggiungere giorno
+            labelIconaSecondo.setIcon(imageUscite);
+        }
+            
+        if(Movimenti.getTipoTerzo().toLowerCase().equals("entrata")){
+
+            labelTipoTerzo.setText("Entrata");
+            labelCostoTerzo.setText(Movimenti.getCostoTerzo());
+            Aggiungere giorno
+            labelIconaTerzo.setIcon(imageEntrate);
+        }else if(Movimenti.getTipoTerzo().toLowerCase().equals("uscita")){
+
+            labelTipoTerzo.setText("Entrata");
+            labelCostoTerzo.setText(Movimenti.getCostoTerzo());
+            Aggiungere giorno
+            labelIconaTerzo.setIcon(imageUscite);
+        }
+        */
+
+        panelPrimo.setLayout(new BorderLayout());
+
+        panelInternoPrimo = new JPanel();
+
+        panelInternoPrimo.setLayout(new GridLayout(1, 2));
+        panelInternoPrimo.add(labelGiornoPrimo);
+        panelInternoPrimo.add(labelTipoPrimo);
+
+        panelPrimo.add(labelIconaPrimo, BorderLayout.WEST);
+        panelPrimo.add(labelCostoPrimo, BorderLayout.NORTH);
+        panelPrimo.add(panelInternoPrimo, BorderLayout.CENTER);
+        
+        panelSecondo.setLayout(new BorderLayout());
+
+        panelInternoSecondo = new JPanel();
+
+        panelInternoSecondo.setLayout(new GridLayout(1, 2));
+        panelInternoSecondo.add(labelGiornoSecondo);
+        panelInternoSecondo.add(labelTipoSecondo);
+
+        panelSecondo.add(labelIconaSecondo, BorderLayout.WEST);
+        panelSecondo.add(labelCostoSecondo, BorderLayout.NORTH);
+        panelSecondo.add(panelInternoSecondo, BorderLayout.CENTER);
+
+        panelTerzo.setLayout(new BorderLayout());
+
+        panelInternoTerzo = new JPanel();
+
+        panelInternoTerzo.setLayout(new GridLayout(1, 2));
+        panelInternoTerzo.add(labelGiornoTerzo);
+        panelInternoTerzo.add(labelTipoTerzo);
+
+        panelTerzo.add(labelIconaTerzo, BorderLayout.WEST);
+        panelTerzo.add(labelCostoTerzo, BorderLayout.NORTH);
+        panelTerzo.add(panelInternoTerzo, BorderLayout.CENTER);
+
+        TitledBorder bordoMovimenti = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Ultimi movimenti");
+
+        bordoMovimenti.setTitleFont(fontRadar);
+
+        panelMovimenti.setBorder(bordoMovimenti);
+
+        panelMovimenti.setLayout(new BorderLayout());
+
+        panelMovimenti.add(panelPrimo, BorderLayout.NORTH);
+        panelMovimenti.add(panelSecondo, BorderLayout.CENTER);
+        panelMovimenti.add(panelTerzo, BorderLayout.SOUTH);
 
         panelCentrale.add(panelSoldi);
         panelCentrale.add(panelRadar);
+        panelCentrale.add(panelMovimenti);
 
 
 
@@ -189,39 +295,112 @@ public class HomeFrame extends JFrame{
         imageBudget = new ImageIcon();
         imageCambioValuta = new ImageIcon();
 
-        panelAccount = new JPanel();
-        panelAccount.setBackground(Color.WHITE);
-        
-        menuBarAzioni = new JMenuBar();
+        panelBar = new JPanel();
+        panelBar.setLayout(new GridLayout(1, 5));
 
-        menuMovimenti = new JMenu();
-        menuPagamenti = new JMenu();
-        menuRisparmi = new JMenu();
-        menuBudget = new JMenu();
-        menuCambioValuta = new JMenu();
+        buttonMovimenti = new JButton();
+        buttonPagamenti = new JButton();
+        buttonRisparmi = new JButton();
+        buttonBudget = new JButton();
+        buttonCambioValuta = new JButton();
 
         imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimenti.png"));
-        menuMovimenti.setIcon(imageMovimenti);
+        buttonMovimenti.setIcon(imageMovimenti);
         imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmi.png"));
-        menuRisparmi.setIcon(imageRisparmi);
+        buttonRisparmi.setIcon(imageRisparmi);
         imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamenti.png"));
-        menuPagamenti.setIcon(imagePagamenti);
+        buttonPagamenti.setIcon(imagePagamenti);
         imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudget.png"));
-        menuBudget.setIcon(imageBudget);
+        buttonBudget.setIcon(imageBudget);
         imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValuta.png"));
-        menuCambioValuta.setIcon(imageCambioValuta);
+        buttonCambioValuta.setIcon(imageCambioValuta);
 
-        menuBarAzioni.add(menuMovimenti);
-        menuBarAzioni.add(menuRisparmi);
-        menuBarAzioni.add(menuPagamenti);
-        menuBarAzioni.add(menuBudget);
-        menuBarAzioni.add(menuCambioValuta);
+        buttonMovimenti.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new MovimentiFrame();
+            }
+        });
+
+        buttonPagamenti.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new PagamentiFrame();
+            }
+        });
+
+        buttonRisparmi.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new RisparmiFrame();
+            }
+        });
+
+        buttonCambioValuta.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new CambioValutaFrame();
+            }
+        });
+
+        buttonBudget.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new BudgetFrame();
+            }
+        });
+
+        buttonMovimenti.setOpaque(false);
+        buttonMovimenti.setContentAreaFilled(false);
+        buttonMovimenti.setBorderPainted(false);
+        buttonMovimenti.setFocusPainted(false);
+
+        buttonPagamenti.setOpaque(false);
+        buttonPagamenti.setContentAreaFilled(false);
+        buttonPagamenti.setBorderPainted(false);
+        buttonPagamenti.setFocusPainted(false);
+
+        buttonRisparmi.setOpaque(false);
+        buttonRisparmi.setContentAreaFilled(false);
+        buttonRisparmi.setBorderPainted(false);
+        buttonRisparmi.setFocusPainted(false);
+
+        buttonCambioValuta.setOpaque(false);
+        buttonCambioValuta.setContentAreaFilled(false);
+        buttonCambioValuta.setBorderPainted(false);
+        buttonCambioValuta.setFocusPainted(false);
+
+        buttonBudget.setOpaque(false);
+        buttonBudget.setContentAreaFilled(false);
+        buttonBudget.setBorderPainted(false);
+        buttonBudget.setFocusPainted(false);
+
+        panelBar.add(buttonMovimenti);
+        panelBar.add(buttonPagamenti);
+        panelBar.add(buttonRisparmi);
+        panelBar.add(buttonCambioValuta);
+        panelBar.add(buttonBudget);
 
         setLayout(new BorderLayout());
 
         add(panelSuperiore, BorderLayout.NORTH);
         add(panelCentrale, BorderLayout.CENTER);
-        add(menuBarAzioni, BorderLayout.SOUTH);
+        add(panelBar, BorderLayout.SOUTH);
 
         setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
