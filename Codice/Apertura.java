@@ -80,7 +80,11 @@ public class Apertura extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new FrameRegistrazione();
+                try {
+                    new FrameRegistrazione();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 

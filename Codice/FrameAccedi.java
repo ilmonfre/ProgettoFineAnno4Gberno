@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class FrameAccedi {
    public FrameAccedi() {
@@ -126,7 +127,11 @@ public class FrameAccedi {
             // Chiudi il frame di accesso
             frameAccedi.dispose();
             // Apri il frame di registrazione
-            new FrameRegistrazione();
+            try {
+               new FrameRegistrazione();
+            } catch (IOException e1) {
+               e1.printStackTrace();
+            }
          }
       });
 
