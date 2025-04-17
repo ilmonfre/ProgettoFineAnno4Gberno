@@ -15,12 +15,12 @@ public class HomeFrame extends JFrame{
     JPanel panelCentrale, panelSoldi, panelRadar, panelEntrate, panelUscite, panelMovimenti, panelPrimo, panelSecondo, panelTerzo, panelInternoPrimo, panelInternoSecondo, panelInternoTerzo;
     JLabel labelSoldi, labelDisponibilita, labelEntrateUMese, labelUsciteUMese, labelImageEntrate, labelImageUscite, labelEntrate, labelUscite;
     JLabel labelTipoPrimo, labelTipoSecondo, labelTipoTerzo, labelCostoPrimo, labelCostoSecondo, labelCostoTerzo, labelGiornoPrimo, labelGiornoSecondo, labelGiornoTerzo, labelIconaPrimo, labelIconaSecondo, labelIconaTerzo;
-    ImageIcon imageEntrate, imageUscite;
+    ImageIcon imageEntrate, imageUscite, imagePrimo, imageSecondo, imageTerzo;
 
-    JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna;
+    JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna, labelHome;
     JPanel panelBar;
-    JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta;
-    ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna;
+    JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
+    ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna, imageHome;
 
     public HomeFrame(){
 
@@ -186,13 +186,15 @@ public class HomeFrame extends JFrame{
             labelTipoPrimo.setText("Entrata");
             labelCostoPrimo.setText(Movimenti.getCostoPrimo());
             Aggiungere giorno
-            labelIconaPrimo.setIcon(imageEntrate);
+            imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"))
+            labelIconaPrimo.setIcon(imagePrimo);
         }else if(Movimenti.getTipoPrimo().toLowerCase().equals("uscita")){
 
             labelTipoPrimo.setText("Entrata");
             labelCostoPrimo.setText(Movimenti.getCostoPrimo());
             Aggiungere giorno
-            labelIconaPrimo.setIcon(imageUscite);
+            imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"))
+            labelIconaPrimo.setIcon(imagePrimo);
         }
 
         if(Movimenti.getTipoSecondo().toLowerCase().equals("entrata")){
@@ -200,13 +202,15 @@ public class HomeFrame extends JFrame{
             labelTipoSecondo.setText("Entrata");
             labelCostoSecondo.setText(Movimenti.getCostoSecondo());
             Aggiungere giorno
-            labelIconaSecondo.setIcon(imageEntrate);
+            imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"))
+            labelIconaSecondo.setIcon(imageSecondo);
         }else if(Movimenti.getTipoSecondo().toLowerCase().equals("uscita")){
 
             labelTipoSecondo.setText("Entrata");
             labelCostoSecondo.setText(Movimenti.getCostoSecondo());
             Aggiungere giorno
-            labelIconaSecondo.setIcon(imageUscite);
+            imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"))
+            labelIconaSecondo.setIcon(imageSecondo);
         }
             
         if(Movimenti.getTipoTerzo().toLowerCase().equals("entrata")){
@@ -214,13 +218,15 @@ public class HomeFrame extends JFrame{
             labelTipoTerzo.setText("Entrata");
             labelCostoTerzo.setText(Movimenti.getCostoTerzo());
             Aggiungere giorno
-            labelIconaTerzo.setIcon(imageEntrate);
+            imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"))
+            lablerIconaTerzo.setIcon(imageTerzo);
         }else if(Movimenti.getTipoTerzo().toLowerCase().equals("uscita")){
 
             labelTipoTerzo.setText("Entrata");
             labelCostoTerzo.setText(Movimenti.getCostoTerzo());
             Aggiungere giorno
-            labelIconaTerzo.setIcon(imageUscite);
+            imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"))
+            labelIconaTerzo.setIcon(imageTerzo);
         }
         */
 
@@ -293,15 +299,18 @@ public class HomeFrame extends JFrame{
         imageCambioValuta = new ImageIcon();
 
         panelBar = new JPanel();
-        panelBar.setLayout(new GridLayout(1, 5));
+        panelBar.setLayout(new GridLayout(1, 6));
         panelBar.setBackground(Color.decode("#CCFFFF"));
 
+        buttonHome = new JButton();
         buttonMovimenti = new JButton();
         buttonPagamenti = new JButton();
         buttonRisparmi = new JButton();
         buttonBudget = new JButton();
         buttonCambioValuta = new JButton();
 
+        imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeNeraPiena.png"));
+        buttonHome.setIcon(imageHome);
         imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimenti.png"));
         buttonMovimenti.setIcon(imageMovimenti);
         imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmi.png"));
@@ -363,6 +372,11 @@ public class HomeFrame extends JFrame{
             }
         });
 
+        buttonHome.setOpaque(false);
+        buttonHome.setContentAreaFilled(false);
+        buttonHome.setBorderPainted(false);
+        buttonHome.setFocusPainted(false);
+
         buttonMovimenti.setOpaque(false);
         buttonMovimenti.setContentAreaFilled(false);
         buttonMovimenti.setBorderPainted(false);
@@ -388,6 +402,7 @@ public class HomeFrame extends JFrame{
         buttonBudget.setBorderPainted(false);
         buttonBudget.setFocusPainted(false);
 
+        panelBar.add(buttonHome);
         panelBar.add(buttonMovimenti);
         panelBar.add(buttonPagamenti);
         panelBar.add(buttonRisparmi);
@@ -407,26 +422,31 @@ public class HomeFrame extends JFrame{
 
                 if(buttonTema.getIcon().equals(imageLuna)){
 
+                    buttonTema.setIcon(imageSole);
                     panelSuperiore.setBackground(Color.decode("#336699"));
-                    buttonAccount.setForeground(Color.decode("#336699"));
-                    buttonTema.setForeground(Color.decode("#336699"));
+                    buttonAccount.setForeground(Color.WHITE);
+                    buttonTema.setForeground(Color.WHITE);
                     panelCentrale.setBackground(Color.decode("#336699"));
                     panelSoldi.setBackground(Color.decode("#336699"));
-                    bordoDisponibilita.setTitleColor(Color.decode("#336699"));
-                    bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
-                    labelSoldi.setForeground(Color.decode("#336699"));
+                    bordoDisponibilita.setTitleColor(Color.WHITE);
+                    bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    labelSoldi.setForeground(Color.WHITE);
+                    URL urlAccount = getClass().getResource("/Immagini/IconaAccountBianca.png");
+                    Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
+                    imageAccount.setImage(imageTmpAccount);
+                    labelScrittaSuperiore.setForeground(Color.WHITE);
 
                     panelRadar.setBackground(Color.decode("#336699"));
-                    bordoRadar.setTitleColor(Color.decode("#336699"));
-                    bordoRadar.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
-                    bordoEntrate.setTitleColor(Color.decode("#336699"));
-                    bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
-                    URL url = getClass().getResource("/Immagini/IconaFrecciaAzzurrina.png");
-                    Image imageTmp = new ImageIcon(url).getImage();
-                    imageEntrate.setImage(imageTmp);
+                    bordoRadar.setTitleColor(Color.WHITE);
+                    bordoRadar.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    bordoEntrate.setTitleColor(Color.WHITE);
+                    bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    URL urlFreccia = getClass().getResource("/Immagini/IconaFrecciaAzzurrina.png");
+                    Image imageTmpFreccia = new ImageIcon(urlFreccia).getImage();
+                    imageEntrate.setImage(imageTmpFreccia);
                     
-                    bordoUscite.setTitleColor(Color.decode("#336699"));
-                    bordoUscite.setBorder(BorderFactory.createLineBorder(Color.decode("#336699"), 2));
+                    bordoUscite.setTitleColor(Color.WHITE);
+                    bordoUscite.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     panelEntrate.setBackground(Color.decode("#336699"));
                     panelUscite.setBackground(Color.decode("#336699"));
 
@@ -438,15 +458,77 @@ public class HomeFrame extends JFrame{
                     panelTerzo.setBackground(Color.decode("#336699"));
                     panelInternoTerzo.setBackground(Color.decode("#336699"));
                     panelBar.setBackground(Color.decode("#336699"));
-                    buttonTema.setIcon(imageSole);
+                    labelTipoPrimo.setForeground(Color.WHITE);
+                    labelCostoPrimo.setForeground(Color.WHITE);
+                    labelGiornoPrimo.setForeground(Color.WHITE);
+                    /*
+                    if(!labelIconaPrimo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpPrimo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaPrimo.setIcon(new ImageIcon(imageTmpPrimo));
+                    }
+                    labelTipoSecondo.setForeground(Color.WHITE);
+                    labelCostoSecondo.setForeground(Color.WHITE);
+                    labelGiornoSecondo.setForeground(Color.WHITE);
+                    if(!labelIconaSecondo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpSecondo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaSecondo.setIcon(new ImageIcon(imageTmpSecondo));
+                    }
+                    labelTipoTerzo.setForeground(Color.WHITE);
+                    labelCostoTerzo.setForeground(Color.WHITE);
+                    labelGiornoTerzo.setForeground(Color.WHITE);
+                    if(!labelIconaTerzo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpTerzo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaTerzo.setIcon(new ImageIcon(imageTmpTerzo));
+                    }
+                    */
+                    bordoMovimenti.setTitleColor(Color.WHITE);
+                    bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+
+                    ImageIcon imageHomeBianca = new ImageIcon(getClass().getResource("/Immagini/IconaHomeBiancaPiena.png"));
+                    buttonHome.setIcon(imageHomeBianca);
+                    ImageIcon imageMovimentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiBianca.png"));
+                    buttonMovimenti.setIcon(imageMovimentiBianca);
+                    ImageIcon imagePagamentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiBianca.png"));
+                    buttonPagamenti.setIcon(imagePagamentiBianca);
+                    ImageIcon imageRisparmiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiBianca.png"));
+                    buttonRisparmi.setIcon(imageRisparmiBianca);
+                    ImageIcon imageCambioValutaBianca = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaBianca.png"));
+                    buttonCambioValuta.setIcon(imageCambioValutaBianca);
+                    ImageIcon imageBudgetBianca = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetBianca.png"));
+                    buttonBudget.setIcon(imageBudgetBianca);
                 }else{
 
+                    buttonTema.setIcon(imageLuna);
                     panelSuperiore.setBackground(Color.decode("#CCFFFF"));
+                    buttonAccount.setForeground(Color.BLACK);
+                    buttonTema.setForeground(Color.BLACK);
                     panelCentrale.setBackground(Color.decode("#CCFFFF"));
                     panelSoldi.setBackground(Color.decode("#CCFFFF"));
+                    bordoDisponibilita.setTitleColor(Color.BLACK);
+                    bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    labelSoldi.setForeground(Color.BLACK);
+                    URL urlAccount = getClass().getResource("/Immagini/IconaAccount.png");
+                    Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
+                    imageAccount.setImage(imageTmpAccount);
+                    labelScrittaSuperiore.setForeground(Color.BLACK);
+
                     panelRadar.setBackground(Color.decode("#CCFFFF"));
+                    bordoRadar.setTitleColor(Color.BLACK);
+                    bordoRadar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    bordoEntrate.setTitleColor(Color.BLACK);
+                    bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    URL urlFreccia = getClass().getResource("/Immagini/IconaEntrate.png");
+                    Image imageTmpFreccia = new ImageIcon(urlFreccia).getImage();
+                    imageEntrate.setImage(imageTmpFreccia);
+
+                    bordoUscite.setTitleColor(Color.BLACK);
+                    bordoUscite.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     panelEntrate.setBackground(Color.decode("#CCFFFF"));
                     panelUscite.setBackground(Color.decode("#CCFFFF"));
+
                     panelMovimenti.setBackground(Color.decode("#CCFFFF"));
                     panelPrimo.setBackground(Color.decode("#CCFFFF"));
                     panelInternoPrimo.setBackground(Color.decode("#CCFFFF"));
@@ -455,7 +537,41 @@ public class HomeFrame extends JFrame{
                     panelTerzo.setBackground(Color.decode("#CCFFFF"));
                     panelInternoTerzo.setBackground(Color.decode("#CCFFFF"));
                     panelBar.setBackground(Color.decode("#CCFFFF"));
-                    buttonTema.setIcon(imageLuna);
+                    labelTipoPrimo.setForeground(Color.BLACK);
+                    labelCostoPrimo.setForeground(Color.BLACK);
+                    labelGiornoPrimo.setForeground(Color.BLACK);
+                    /*
+                    if(!labelIconaPrimo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpPrimo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaPrimo.setIcon(new ImageIcon(imageTmpPrimo));
+                    }
+                    labelTipoSecondo.setForeground(Color.BLACK);
+                    labelCostoSecondo.setForeground(Color.BLACK);
+                    labelGiornoSecondo.setForeground(Color.BLACK);
+                    if(!labelIconaSecondo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpSecondo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaSecondo.setIcon(new ImageIcon(imageTmpSecondo));
+                    }
+                    labelTipoTerzo.setForeground(Color.BLACK);
+                    labelCostoTerzo.setForeground(Color.BLACK);
+                    labelGiornoTerzo.setForeground(Color.BLACK);
+                    if(!labelIconaTerzo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpTerzo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaTerzo.setIcon(new ImageIcon(imageTmpTerzo));
+                    }
+                    */
+                    bordoMovimenti.setTitleColor(Color.BLACK);
+                    bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+                    buttonHome.setIcon(imageHome);
+                    buttonMovimenti.setIcon(imageMovimenti);
+                    buttonPagamenti.setIcon(imagePagamenti);
+                    buttonRisparmi.setIcon(imageRisparmi);
+                    buttonCambioValuta.setIcon(imageCambioValuta);
+                    buttonBudget.setIcon(imageBudget);
                 }
             }
         });
