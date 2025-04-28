@@ -8,13 +8,15 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
+    Movimenti movimenti = new Movimenti(0, 0, 1000.0);
+
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
     JButton buttonAccount, buttonTema;
 
-    JPanel panelCentrale, panelSoldi, panelRadar, panelEntrate, panelUscite, panelMovimenti, panelPrimo, panelSecondo, panelTerzo, panelInternoPrimo, panelInternoSecondo, panelInternoTerzo;
+    JPanel panelCentrale, panelSoldi, panelRadar, panelEntrate, panelUscite, panelMovimenti, panelPrimo, panelSecondo, panelTerzo, panelInternoPrimo, panelInternoSecondo, panelInternoTerzo, panelSpecPrimo, panelSpecSecondo, panelSpecTerzo;
     JLabel labelSoldi, labelDisponibilita, labelEntrateUMese, labelUsciteUMese, labelImageEntrate, labelImageUscite, labelEntrate, labelUscite;
-    JLabel labelTipoPrimo, labelTipoSecondo, labelTipoTerzo, labelCostoPrimo, labelCostoSecondo, labelCostoTerzo, labelGiornoPrimo, labelGiornoSecondo, labelGiornoTerzo, labelIconaPrimo, labelIconaSecondo, labelIconaTerzo;
+    JLabel labelTipoPrimo, labelTipoSecondo, labelTipoTerzo, labelCostoPrimo, labelCostoSecondo, labelCostoTerzo, labelGiornoPrimo, labelGiornoSecondo, labelGiornoTerzo, labelIconaPrimo, labelIconaSecondo, labelIconaTerzo, labelCategoriaPrimo, labelCategoriaSecondo, labelCategoriaTerzo, labelUtentePrimo, labelUtenteSecondo, labelUtenteTerzo;
     ImageIcon imageEntrate, imageUscite, imagePrimo, imageSecondo, imageTerzo;
 
     JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna, labelHome;
@@ -95,7 +97,8 @@ public class HomeFrame extends JFrame{
         panelSoldi.setBorder(bordoDisponibilita);
 
         labelSoldi = new JLabel();
-        //labelSoldi.setText(GestioneSoldi.getSoldi()+"  €");
+        labelSoldi.setText(movimenti.getSoldiConto()+"  €");
+        labelSoldi.setFont(new Font("Arial", Font.BOLD, 28));
         
         panelSoldi.add(labelSoldi);
 
@@ -143,8 +146,13 @@ public class HomeFrame extends JFrame{
         labelEntrate = new JLabel();
         labelUscite = new JLabel();
 
-        //labelEntrate.setText(GestioneDenaro.getEntrateUMese());
-        //labelUscite.setText(GestioneDenaro.getUsciteUMese());
+        double entrateUMese = movimenti.calcolaEntrateUMese();
+        labelEntrate.setText(String.valueOf(entrateUMese));
+        double usciteUMese = movimenti.calcolaUsciteUMese();
+        labelUscite.setText(String.valueOf(usciteUMese));
+
+        labelEntrate.setFont(new Font("Arial", Font.BOLD, 28));
+        labelUscite.setFont(new Font("Arial", Font.BOLD, 28));
 
         panelEntrate.add(labelImageEntrate);
         panelEntrate.add(labelEntrate);
@@ -179,84 +187,151 @@ public class HomeFrame extends JFrame{
         labelIconaPrimo = new JLabel();
         labelIconaSecondo = new JLabel();
         labelIconaTerzo = new JLabel();
+
+        labelCategoriaPrimo = new JLabel();
+        labelCategoriaSecondo = new JLabel();
+        labelCategoriaTerzo = new JLabel();
+
+        labelUtentePrimo = new JLabel();
+        labelUtenteSecondo = new JLabel();
+        labelUtenteTerzo = new JLabel();
         
-        /*
-        if(Movimenti.getTipoPrimo().toLowerCase().equals("entrata")){
+        Movimento primo = movimenti.calcoloPrimo();
+        Movimento secondo = movimenti.calcoloSecondo();
+        Movimento terzo = movimenti.calcoloTerzo();
 
-            labelTipoPrimo.setText("Entrata");
-            labelCostoPrimo.setText(Movimenti.getCostoPrimo());
-            Aggiungere giorno
-            imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"))
-            labelIconaPrimo.setIcon(imagePrimo);
-        }else if(Movimenti.getTipoPrimo().toLowerCase().equals("uscita")){
+        if(primo!=null){
 
-            labelTipoPrimo.setText("Entrata");
-            labelCostoPrimo.setText(Movimenti.getCostoPrimo());
-            Aggiungere giorno
-            imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"))
-            labelIconaPrimo.setIcon(imagePrimo);
+            if(primo.getTipo().toLowerCase().equals("entrata")){
+
+                labelTipoPrimo.setText("Tipo: Entrata");
+                String costoPrimo=String.valueOf(primo.getCosto());
+                labelCostoPrimo.setText(costoPrimo+"€");
+                String dataPrimo=String.valueOf(primo.getData());
+                labelGiornoPrimo.setText("Data: "+dataPrimo);
+                labelCategoriaPrimo.setText("Categoria: "+primo.getCategoria());
+                labelUtentePrimo.setText("Da: "+primo.getUtente());
+                imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
+                labelIconaPrimo.setIcon(imagePrimo);
+            }else if(primo.getTipo().toLowerCase().equals("uscita")){
+    
+                labelTipoPrimo.setText("Tipo: Entrata");
+                String costoPrimo=String.valueOf(primo.getCosto());
+                labelCostoPrimo.setText(costoPrimo+"€");
+                String dataPrimo=String.valueOf(primo.getData());
+                labelGiornoPrimo.setText("Data: "+dataPrimo);
+                labelCategoriaPrimo.setText("Categoria: "+primo.getCategoria());
+                labelUtentePrimo.setText("A: "+primo.getUtente());
+                imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
+                labelIconaPrimo.setIcon(imagePrimo);
+            }
         }
 
-        if(Movimenti.getTipoSecondo().toLowerCase().equals("entrata")){
+        if(secondo!=null){
 
-            labelTipoSecondo.setText("Entrata");
-            labelCostoSecondo.setText(Movimenti.getCostoSecondo());
-            Aggiungere giorno
-            imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"))
-            labelIconaSecondo.setIcon(imageSecondo);
-        }else if(Movimenti.getTipoSecondo().toLowerCase().equals("uscita")){
+            if(secondo.getTipo().toLowerCase().equals("entrata")){
 
-            labelTipoSecondo.setText("Entrata");
-            labelCostoSecondo.setText(Movimenti.getCostoSecondo());
-            Aggiungere giorno
-            imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"))
-            labelIconaSecondo.setIcon(imageSecondo);
+                labelTipoSecondo.setText("Tipo: Entrata");
+                String costoSecondo=String.valueOf(secondo.getCosto());
+                labelCostoSecondo.setText(costoSecondo+"€");
+                String dataSecondo=String.valueOf(secondo.getData());
+                labelGiornoSecondo.setText("Data: "+dataSecondo);
+                labelCategoriaSecondo.setText("Categoria: "+secondo.getCategoria());
+                labelUtenteSecondo.setText("Da: "+secondo.getUtente());
+                imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
+                labelIconaSecondo.setIcon(imageSecondo);
+            }else if(secondo.getTipo().toLowerCase().equals("uscita")){
+    
+                labelTipoSecondo.setText("Tipo: Entrata");
+                String costoSecondo=String.valueOf(secondo.getCosto());
+                labelCostoSecondo.setText(costoSecondo+"€");
+                String dataSecondo=String.valueOf(secondo.getData());
+                labelGiornoSecondo.setText("Data: "+dataSecondo);
+                labelCategoriaSecondo.setText("Categoria: "+secondo.getCategoria());
+                labelUtenteSecondo.setText("A: "+secondo.getUtente());
+                imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
+                labelIconaSecondo.setIcon(imageSecondo);
+            }
         }
-            
-        if(Movimenti.getTipoTerzo().toLowerCase().equals("entrata")){
 
-            labelTipoTerzo.setText("Entrata");
-            labelCostoTerzo.setText(Movimenti.getCostoTerzo());
-            Aggiungere giorno
-            imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"))
-            lablerIconaTerzo.setIcon(imageTerzo);
-        }else if(Movimenti.getTipoTerzo().toLowerCase().equals("uscita")){
+        if(terzo!=null){
 
-            labelTipoTerzo.setText("Entrata");
-            labelCostoTerzo.setText(Movimenti.getCostoTerzo());
-            Aggiungere giorno
-            imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"))
-            labelIconaTerzo.setIcon(imageTerzo);
+            if(terzo.getTipo().toLowerCase().equals("entrata")){
+
+                labelTipoTerzo.setText("Tipo: Entrata");
+                String costoTerzo=String.valueOf(terzo.getCosto());
+                labelCostoTerzo.setText(costoTerzo+"€");
+                String dataTerzo=String.valueOf(terzo.getData());
+                labelGiornoTerzo.setText("Data: "+dataTerzo);
+                labelCategoriaTerzo.setText("Categoria: "+terzo.getCategoria());
+                labelUtenteTerzo.setText("Da: "+terzo.getUtente());
+                imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
+                labelIconaTerzo.setIcon(imageTerzo);
+            }else if(terzo.getTipo().toLowerCase().equals("uscita")){
+    
+                labelTipoTerzo.setText("Tipo: Entrata");
+                String costoTerzo=String.valueOf(terzo.getCosto());
+                labelCostoTerzo.setText(costoTerzo+"€");
+                String dataTerzo=String.valueOf(terzo.getData());
+                labelGiornoTerzo.setText("Data: "+dataTerzo);
+                labelCategoriaTerzo.setText("Categoria: "+terzo.getCategoria());
+                labelUtenteTerzo.setText("A: "+terzo.getUtente());
+                imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
+                labelIconaTerzo.setIcon(imageTerzo);
+            }
         }
-        */
 
-        panelPrimo.setLayout(new BorderLayout());
+        panelPrimo = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
         panelPrimo.setBackground(Color.decode("#CCFFFF"));
 
-        panelInternoPrimo = new JPanel();
+        panelInternoPrimo = new JPanel(new GridLayout(2, 1, 5, 5)); 
         panelInternoPrimo.setBackground(Color.decode("#CCFFFF"));
 
-        panelInternoPrimo.setLayout(new GridLayout(1, 2));
-        panelInternoPrimo.add(labelGiornoPrimo);
-        panelInternoPrimo.add(labelTipoPrimo);
+        panelSpecPrimo = new JPanel(new GridLayout(1, 4, 5, 5)); 
+        panelSpecPrimo.setBackground(Color.decode("#CCFFFF"));
 
-        panelPrimo.add(labelIconaPrimo, BorderLayout.WEST);
-        panelPrimo.add(labelCostoPrimo, BorderLayout.NORTH);
-        panelPrimo.add(panelInternoPrimo, BorderLayout.CENTER);
+        labelCostoPrimo.setFont(new Font("Arial", Font.BOLD, 20));
+        labelTipoPrimo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelGiornoPrimo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelCategoriaPrimo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelUtentePrimo.setFont(new Font("Arial", Font.BOLD, 16));
+
+        panelSpecPrimo.add(labelTipoPrimo);
+        panelSpecPrimo.add(labelGiornoPrimo);
+        panelSpecPrimo.add(labelCategoriaPrimo);
+        panelSpecPrimo.add(labelUtentePrimo);
+
+        panelInternoPrimo.add(labelCostoPrimo);
+        panelInternoPrimo.add(panelSpecPrimo);
+
+        panelPrimo.add(labelIconaPrimo);
+        panelPrimo.add(panelInternoPrimo);
         
-        panelSecondo.setLayout(new BorderLayout());
+        panelSecondo = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
         panelSecondo.setBackground(Color.decode("#CCFFFF"));
 
-        panelInternoSecondo = new JPanel();
+        panelInternoSecondo = new JPanel(new GridLayout(2, 1, 5, 5)); 
         panelInternoSecondo.setBackground(Color.decode("#CCFFFF"));
 
-        panelInternoSecondo.setLayout(new GridLayout(1, 2));
-        panelInternoSecondo.add(labelGiornoSecondo);
-        panelInternoSecondo.add(labelTipoSecondo);
+        panelSpecSecondo = new JPanel(new GridLayout(1, 4, 5, 5)); 
+        panelSpecSecondo.setBackground(Color.decode("#CCFFFF"));
 
-        panelSecondo.add(labelIconaSecondo, BorderLayout.WEST);
-        panelSecondo.add(labelCostoSecondo, BorderLayout.NORTH);
-        panelSecondo.add(panelInternoSecondo, BorderLayout.CENTER);
+        labelCostoSecondo.setFont(new Font("Arial", Font.BOLD, 20));
+        labelTipoSecondo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelGiornoSecondo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelCategoriaSecondo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelUtenteSecondo.setFont(new Font("Arial", Font.BOLD, 16));
+
+        panelSpecSecondo.add(labelTipoSecondo);
+        panelSpecSecondo.add(labelGiornoSecondo);
+        panelSpecSecondo.add(labelCategoriaSecondo);
+        panelSpecSecondo.add(labelUtenteSecondo);
+
+        panelInternoSecondo.add(labelCostoSecondo);
+        panelInternoSecondo.add(panelSpecSecondo);
+
+        panelSecondo.add(labelIconaSecondo);
+        panelSecondo.add(panelInternoSecondo);
 
         panelTerzo.setLayout(new BorderLayout());
         panelTerzo.setBackground(Color.decode("#CCFFFF"));
