@@ -154,7 +154,7 @@ public class FrameRegistrazione3 {
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
+                    writer.write("\n\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -176,8 +176,7 @@ public class FrameRegistrazione3 {
         midPanel.setBackground(Color.decode("#f0ffff"));
         panel1.setBackground(Color.decode("#f0ffff"));
         panelBtn.setBackground(Color.decode("#f0ffff"));
-        //panel2.setBackground(Color.decode("#f0ffff"));
-        //bottomPanel.setBackground(Color.decode("#f0ffff"));
+        bottomPanel.setBackground(Color.decode("#f0ffff"));
 
 
         frame.setSize(500, 550);
