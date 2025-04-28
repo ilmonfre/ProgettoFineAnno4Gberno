@@ -94,6 +94,9 @@ public class Apertura extends JFrame {
         add(panelImage);
         add(panelScelta);
 
+        //panelImage.setBackground(Color.decode("#f0ffff"));
+        //panelScelta.setBackground(Color.decode("#f0ffff"));
+
         setSize(new Dimension(500, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

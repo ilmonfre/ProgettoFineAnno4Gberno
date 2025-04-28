@@ -29,11 +29,11 @@ public class FrameAccedi {
       // Crea i label per l'email
       JLabel labelEmail = new JLabel("E-mail");
       // Crea l'area di testo per l'email
-      JTextArea textAreaEmail = new JTextArea();
+      JTextArea textAreaEmail = new JTextArea(1, 20);
       // Crea i label per la password
       JLabel labelPassword = new JLabel("Password");
       // Crea l'area di testo per la password
-      JTextArea textAreaPassword = new JTextArea();
+      JTextArea textAreaPassword = new JTextArea(1, 20);
       // Crea il pannello per il pulsante di accesso
       JPanel panelButtonAccedi = new JPanel();
       // Crea il pulsante di accesso
@@ -163,6 +163,7 @@ public class FrameAccedi {
          }
       });
 
+
       // Imposta le dimensioni del frame
       frameAccedi.setSize(500, 550);
 
@@ -172,6 +173,15 @@ public class FrameAccedi {
       int y = (screenSize.height - frameAccedi.getHeight()) / 2;
       // Imposta la posizione centrata
       frameAccedi.setLocation(x, y);
+
+      panel.setBackground(Color.decode("#f0ffff"));
+      panelAccedi.setBackground(Color.decode("#f0ffff"));
+      panelButtonAccedi.setBackground(Color.decode("#f0ffff"));
+      panelButtonRegistrati.setBackground(Color.decode("#f0ffff"));
+      panelRegistrati.setBackground(Color.decode("#f0ffff"));
+      panelRegistratiNuovoAccount.setBackground(Color.decode("#f0ffff"));
+
+
 
       frameAccedi.setVisible(true);
       frameAccedi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

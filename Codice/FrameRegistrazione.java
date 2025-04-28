@@ -5,24 +5,33 @@ import java.io.*;
 
 class FrameRegistrazione{
 
-    JFrame frame, frame2;
-    JPanel topPanel, midPanel, bottomPanel;
+    JFrame frame;
+    JPanel topPanel, midPanel, bottomPanel ; // per gestire il border layout
     JLabel topLabel;
     Font fontIniziale, fontMid, fontBtn;
 
-    JPanel panel1, panelEmail;
-    JLabel lblName, lblSurname, lblCodFis;
-    JTextField txtName, txtSurname, txtCodFis;
-    JLabel lblEmail, lblEmail2, lblNtel;
-    JTextField txtEmail,txtEmail2, txtNtel;
-    JButton btn;
+    JPanel panel1, panel2, panelBtn; // per gestire il mid panel
+    JLabel lblNome, lblCognome;
+    JTextField txtNome, txtCognome;
+    JLabel lblCodFis, lblNtel;
+    JTextField txtCodFis, txtNTel;
+    JLabel lblAccedi;
+    JButton btn, btnAccedi;
 
-    File file; 
+    JProgressBar progressBar;
 
-    FrameRegistrazione() throws IOException{
+    final FileWriter file; 
+
+    FrameRegistrazione() throws IOException {
+
         frame = new JFrame();
-        frame.setTitle("Zaphyra Bank");
+        frame.setTitle("Zaphyra Bank - Sign up");
         frame.setLayout(new BorderLayout());
+
+        frame.setFocusable(true);  // per non far posizionare inizialmente il cursore
+        frame.requestFocusInWindow();
+
+        file = new FileWriter("save.csv", true);
         
         // per settare il frame in centro
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -47,89 +56,137 @@ class FrameRegistrazione{
 
         panel1 = new JPanel(new GridLayout(5, 1, 10, 20));
 
-        lblName = new JLabel("Nome: ");
-        lblName.setFont(fontMid);
-        txtName = new JTextField(20);
+        lblNome = new JLabel("Nome: ");
+        lblNome.setFont(fontMid);
+        txtNome = new JTextField(20);
+        txtNome.setHorizontalAlignment((int) SwingConstants.CENTER);
 
-        lblSurname = new JLabel("Cognome: ");
-        lblSurname.setFont(fontMid);
-        txtSurname = new JTextField(20);
+        lblCognome = new JLabel("Cognome: ");
+        lblCognome.setFont(fontMid);
+        txtCognome = new JTextField(20);
+        txtCognome.setHorizontalAlignment((int) SwingConstants.CENTER);
 
         lblCodFis = new JLabel("Codice fiscale: ");
         lblCodFis.setFont(fontMid);
         txtCodFis = new JTextField(20);
-      
-        lblEmail = new JLabel("Email: ");
-        lblEmail.setFont(fontMid);
-        txtEmail = new JTextField(20);
+        txtCodFis.setHorizontalAlignment((int) SwingConstants.CENTER);
 
         lblNtel = new JLabel("Numero di telefono: ");
         lblNtel.setFont(fontMid);
-        txtNtel = new JTextField(20);
-        
-        panel1.add(lblName); 
-        panel1.add(txtName);            
-        panel1.add(lblSurname);
-        panel1.add(txtSurname);
+        txtNTel = new JTextField(20);
+        txtNTel.setHorizontalAlignment((int) SwingConstants.CENTER);
+  
+        panel1.add(lblNome); 
+        panel1.add(txtNome);            
+        panel1.add(lblCognome);
+        panel1.add(txtCognome);
         panel1.add(lblCodFis);
         panel1.add(txtCodFis);
-        panel1.add(lblEmail);
-        panel1.add(txtEmail);
         panel1.add(lblNtel);
-        panel1.add(txtNtel);
+        panel1.add(txtNTel);
         
         midPanel.add(panel1);
-        
-        bottomPanel = new JPanel();
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(60, 20, 50, 20));
+
+        // pannello per gestire i bottoni
+        panelBtn = new JPanel(new GridLayout(2 , 1, 10, 10));
+
+        panelBtn.setBorder(BorderFactory.createEmptyBorder(60, 20, 50, 20));
         btn = new JButton("Avanti");
         btn.setBackground(Color.decode("#5299D5"));
         btn.setPreferredSize(new Dimension(200, 30));
 
         fontBtn = new Font("Segoe UI", Font.BOLD, 14);
         btn.setFont(fontBtn);
-      
-        int x1 = (screenSize.width - 500) / 2;
-        int y1 = (screenSize.height - 550) / 2;
-        btn.setLocation(x1, y1);
 
-        bottomPanel.add(btn);
-        midPanel.add(bottomPanel);
+        panel2 = new JPanel();
 
+        lblAccedi = new JLabel("Hai già un account?");
+        btnAccedi = new JButton("Accedi");
+        
+        btnAccedi.setHorizontalAlignment(JButton.CENTER);
+        btnAccedi.setBorderPainted(false);
+        btnAccedi.setContentAreaFilled(false);
+
+        panelBtn.add(lblAccedi);
+        panelBtn.add(btnAccedi);
+        panel2.add(lblAccedi);
+        panel2.add(btnAccedi);
+
+        panelBtn.add(btn);
+        panelBtn.add(panel2);
+
+        midPanel.add(panelBtn);
+        
+        frame.add(midPanel, BorderLayout.CENTER);
+
+        // bottom panel
+        bottomPanel = new JPanel();
+
+        progressBar = new JProgressBar(0, 100);
+        progressBar.setPreferredSize(new Dimension(450, 15));
+        progressBar.setForeground(Color.decode("#5299D5"));
+        progressBar.setValue(33);
+        progressBar.setStringPainted(false);
+
+        bottomPanel.add(progressBar);
+
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+
+        // action listener del bottone registrazione
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
               
-                String m = "";
+                String m = "\n";
 
-                if (txtName.getText().isEmpty() || txtSurname.getText().isEmpty() || txtCodFis.getText().isEmpty() || txtEmail.getText().isEmpty() || txtNtel.getText().isEmpty()) {
+                if (txtNome.getText().isEmpty() || txtCognome.getText().isEmpty() || txtCodFis.getText().isEmpty() || txtNTel.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(frame, "Tutti i campi sono obbligatori.", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 
-                m += txtName.getText() + " ; ";
-                m += txtSurname.getText() + " ; ";
+                m += txtNome.getText() + " ; ";
+                m += txtCognome.getText() + " ; ";
                 m += txtCodFis.getText() + " ; ";
-                m += txtEmail.getText() + " ; ";
-                m += txtNtel.getText() + " ; ";
+                m += txtNTel.getText() + " ; ";
+               
 
-                try (FileWriter writer = new FileWriter("save.csv", true);) {
+                try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
+                    //writer.write("\n");
                 } catch (IOException ex) {
                     ex.printStackTrace();
-                }             
-                frame.dispose();
+                }
+                             
+                frame.setVisible(false);
+
+                try {
+                    new FrameRegistrazione2(frame);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 
             }
 
         });
 
-        frame.add(midPanel, BorderLayout.CENTER);
+        // action listener del bottone accedi
+        btnAccedi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                frame.dispose();
+                new FrameAccedi();
+                
+            }
+        });
+
 
         topPanel.setBackground(Color.decode("#f0ffff"));
         midPanel.setBackground(Color.decode("#f0ffff"));
         panel1.setBackground(Color.decode("#f0ffff"));
+        panelBtn.setBackground(Color.decode("#f0ffff"));
+        panel2.setBackground(Color.decode("#f0ffff"));
         bottomPanel.setBackground(Color.decode("#f0ffff"));
 
 
