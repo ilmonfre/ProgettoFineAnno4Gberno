@@ -333,19 +333,31 @@ public class HomeFrame extends JFrame{
         panelSecondo.add(labelIconaSecondo);
         panelSecondo.add(panelInternoSecondo);
 
-        panelTerzo.setLayout(new BorderLayout());
+        panelTerzo = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
         panelTerzo.setBackground(Color.decode("#CCFFFF"));
 
-        panelInternoTerzo = new JPanel();
+        panelInternoTerzo = new JPanel(new GridLayout(2, 1, 5, 5)); 
         panelInternoTerzo.setBackground(Color.decode("#CCFFFF"));
 
-        panelInternoTerzo.setLayout(new GridLayout(1, 2));
-        panelInternoTerzo.add(labelGiornoTerzo);
-        panelInternoTerzo.add(labelTipoTerzo);
+        panelSpecTerzo = new JPanel(new GridLayout(1, 4, 5, 5)); 
+        panelSpecTerzo.setBackground(Color.decode("#CCFFFF"));
 
-        panelTerzo.add(labelIconaTerzo, BorderLayout.WEST);
-        panelTerzo.add(labelCostoTerzo, BorderLayout.NORTH);
-        panelTerzo.add(panelInternoTerzo, BorderLayout.CENTER);
+        labelCostoTerzo.setFont(new Font("Arial", Font.BOLD, 20));
+        labelTipoTerzo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelGiornoTerzo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelCategoriaTerzo.setFont(new Font("Arial", Font.BOLD, 16));
+        labelUtenteTerzo.setFont(new Font("Arial", Font.BOLD, 16));
+
+        panelSpecTerzo.add(labelTipoTerzo);
+        panelSpecTerzo.add(labelGiornoTerzo);
+        panelSpecTerzo.add(labelCategoriaTerzo);
+        panelSpecTerzo.add(labelUtenteTerzo);
+
+        panelInternoTerzo.add(labelCostoTerzo);
+        panelInternoTerzo.add(panelSpecTerzo);
+
+        panelTerzo.add(labelIconaTerzo);
+        panelTerzo.add(panelInternoTerzo);
 
         TitledBorder bordoMovimenti = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Ultimi movimenti");
 
@@ -403,7 +415,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new MovimentiFrame();
+                new MovimentiFrame();
             }
         });
 
