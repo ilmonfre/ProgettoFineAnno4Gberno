@@ -95,7 +95,9 @@ public class FrameRegistrazione3 {
 
         midPanel.add(panel1);
        
+
         frame.add(midPanel, BorderLayout.CENTER);
+
 
         // pannello per gestire i bottoni
         panelBtn = new JPanel(new GridLayout(2 , 1, 10, 10));
@@ -121,18 +123,21 @@ public class FrameRegistrazione3 {
 
         frame.add(midPanel, BorderLayout.CENTER);
 
-        // bottom panel
-        bottomPanel = new JPanel();
-        progressBar = new JProgressBar(0, 100);
-        progressBar.setPreferredSize(new Dimension(450, 15));
-        progressBar.setForeground(Color.decode("#5299D5"));
-        progressBar.setValue(100);
-        progressBar.setStringPainted(false);
+         // bottom panel
+         bottomPanel = new JPanel();
 
-        bottomPanel.add(progressBar);
+         progressBar = new JProgressBar(0, 100);
+         progressBar.setPreferredSize(new Dimension(450, 15));
+         progressBar.setForeground(Color.decode("#5299D5"));
+         progressBar.setValue(100);
+         progressBar.setStringPainted(false);
+ 
+         bottomPanel.add(progressBar);
+ 
+         frame.add(bottomPanel, BorderLayout.SOUTH);
+ 
 
-        frame.add(bottomPanel, BorderLayout.SOUTH);
-        btn.addActionListener(new ActionListener() {
+         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String m = "";
@@ -149,7 +154,7 @@ public class FrameRegistrazione3 {
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
+                    writer.write("\n\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -162,14 +167,9 @@ public class FrameRegistrazione3 {
             }
         });
 
-        btnIndietro.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                
-                previousFrame.setVisible(true);   
-            }
-        });
+
+
+
 
 
         topPanel.setBackground(Color.decode("#f0ffff"));

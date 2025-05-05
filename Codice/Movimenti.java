@@ -207,4 +207,18 @@ public class Movimenti {
 
         return movimentiList.get(2);
     }
+
+    public double trovaCostoso(){
+
+        double max=0;
+        for(int i=0;i<movimentiList.size();i++){
+
+            if(movimentiList.get(i).getCosto()>max){
+
+                max=movimentiList.get(i).getCosto();
+            }
+        }
+
+        return max;
+    }
 }

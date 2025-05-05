@@ -192,7 +192,7 @@ public class FrameRegistrazione2 {
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
+                    //writer.write("\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
