@@ -39,10 +39,10 @@ class GeneraDatiCarta {
         return base + (Math.abs(rand.nextLong()) % 100000000000000L);
     }
 
-    // Generazione data scadenza (tra 1 e 5 anni da oggi)
+    // Generazione data scadenza (tra 5 anni da oggi)
     private Date generaDataScadenza() {
         Calendar cal = Calendar.getInstance();
-        int anno = 1 + 5;
+        int anno = 5;
         cal.add(Calendar.YEAR, anno);
         return cal.getTime();
     }

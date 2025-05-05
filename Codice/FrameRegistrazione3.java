@@ -148,7 +148,6 @@ public class FrameRegistrazione3 {
                 }
 
                 // controllo del corretto inserimento dell'email
-
                 String email = txtEmail.getText().trim();  // trim esclude eventuali spazi bianchi
                 if(!email.contains("@") || email.indexOf("@") == 0 || email.indexOf("@") == email.length() - 1 || !email.substring(email.indexOf("@")).contains(".")) {
                     JOptionPane.showMessageDialog(frame, "Indirizzo email non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -185,8 +184,6 @@ public class FrameRegistrazione3 {
                 GeneraDatiCarta gen = new GeneraDatiCarta();
                 gen.salvaSulFile();
                 
-                
-
                 new HomeFrame();
                 
             }

@@ -144,7 +144,17 @@ class FrameRegistrazione{
                     JOptionPane.showMessageDialog(frame, "Tutti i campi sono obbligatori.", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
+                String cf = txtCodFis.getText().trim().toUpperCase();
+                // struttura codice fiscale
+                String strutturaCodFis = "^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$";
+
+                if (!cf.matches(strutturaCodFis)) {
+                    JOptionPane.showMessageDialog(frame, "Codice fiscale non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+        
+
                 m += txtNome.getText() + " ; ";
                 m += txtCognome.getText() + " ; ";
                 m += txtCodFis.getText() + " ; ";
