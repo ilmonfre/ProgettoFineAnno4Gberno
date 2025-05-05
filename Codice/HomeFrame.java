@@ -662,9 +662,8 @@ public class HomeFrame extends JFrame{
                 }
             }
         });
-
-        setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setVisible(true);
     }
 }
