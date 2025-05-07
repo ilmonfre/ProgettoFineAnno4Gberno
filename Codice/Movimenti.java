@@ -208,17 +208,51 @@ public class Movimenti {
         return movimentiList.get(2);
     }
 
-    public double trovaCostoso(){
+    public int trovaCostoso(){
 
-        double max=0;
+        if(movimentiList.size()==0){
+
+            return 0;
+        }
+        int max=0;
         for(int i=0;i<movimentiList.size();i++){
 
             if(movimentiList.get(i).getCosto()>max){
 
-                max=movimentiList.get(i).getCosto();
+                max=(int) Math.round(movimentiList.get(i).getCosto());
             }
         }
 
         return max;
+    }
+
+    public ArrayList<Movimento> cercaMovimentiNome(String cerca){
+
+        ArrayList<Movimento> trovatiList = new ArrayList<>();
+
+        for(int i=0;i<movimentiList.size();i++){
+
+            if(movimentiList.get(i).getUtente().equals(cerca)){
+
+                trovatiList.add(movimentiList.get(i));
+            }
+        }
+
+        return trovatiList;
+    }
+
+    public ArrayList<Movimento> cercaMovimentiCosto(double prezzoMax){
+
+        ArrayList<Movimento> trovatiList = new ArrayList<>();
+
+        for(int i=0;i<movimentiList.size();i++){
+
+            if(movimentiList.get(i).getCosto()<=prezzoMax){
+
+                trovatiList.add(movimentiList.get(i));
+            }
+        }
+
+        return trovatiList;
     }
 }
