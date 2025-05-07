@@ -13,12 +13,17 @@ public class Apertura extends JFrame {
     JPanel panelImage, panelScelta;
     JButton buttonAccedi, buttonRegistrati;
 
+    Font font;
+
     public Apertura() {
 
         setLayout(new GridLayout(2, 1));
 
+        setFocusable(true);  // per non far posizionare inizialmente il cursore
+        requestFocusInWindow();
+
         panelImage = new JPanel();
-        panelImage.setBackground(Color.WHITE);
+        //panelImage.setBackground(Color.WHITE);
 
         try {
             BufferedImage imageIcon = ImageIO.read(getClass().getResourceAsStream("/Immagini/LogoBanca.jpg/"));
@@ -50,11 +55,13 @@ public class Apertura extends JFrame {
         panelScelta.setBorder(BorderFactory.createEmptyBorder(20, 20, 40, 20));
         panelScelta.setLayout(new GridLayout(2, 1, 20, 40));
 
+        font = new Font("Serif", Font.BOLD, 24);
+        
         buttonAccedi = new JButton("Accedi");
         buttonRegistrati = new JButton("Registrati");
 
-        buttonAccedi.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
-        buttonRegistrati.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+        buttonAccedi.setFont(font);
+        buttonRegistrati.setFont(font);
 
         buttonAccedi.setBackground(Color.decode("#5299D5"));
         buttonRegistrati.setBackground(Color.decode("#5299D5"));
@@ -94,8 +101,8 @@ public class Apertura extends JFrame {
         add(panelImage);
         add(panelScelta);
 
-        //panelImage.setBackground(Color.decode("#f0ffff"));
-        //panelScelta.setBackground(Color.decode("#f0ffff"));
+        panelImage.setBackground(Color.decode("#f0ffff"));
+        panelScelta.setBackground(Color.decode("#f0ffff"));
 
         setSize(new Dimension(500, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

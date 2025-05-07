@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
-    Movimenti movimenti = new Movimenti(0, 0, 1000.0);
+    Movimenti movimenti = new Movimenti(0, 0, 0.0);
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
@@ -707,6 +707,25 @@ public class HomeFrame extends JFrame{
                 }
             }
         });
+
+
+        buttonAccount = new JButton();
+
+        buttonAccount.addActionListener(new ActionListener (){
+            @Override
+            public void actionPerformed (ActionEvent e){
+
+                //new FrameAccount();
+
+            }
+        
+        
+        });
+
+
+
+
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setVisible(true);
