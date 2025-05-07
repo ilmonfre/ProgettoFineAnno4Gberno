@@ -6,7 +6,7 @@ public class FrameRisparmi {
    public FrameRisparmi() {
       // Creazione del frame
       JFrame frameRisparmi = new JFrame("Risparmi");
-      frameRisparmi.setSize(500, 550);
+      frameRisparmi.setExtendedState(JFrame.MAXIMIZED_BOTH);
       frameRisparmi.setFocusable(true);
       frameRisparmi.requestFocusInWindow();
 
@@ -45,7 +45,7 @@ public class FrameRisparmi {
       barraSuperiore.add(btnPlus, BorderLayout.WEST);
       barraSuperiore.add(btnImage, BorderLayout.EAST);
       labelRisparmii.setHorizontalAlignment(SwingConstants.CENTER);
-      labelRisparmii.setFont(new Font("Arial", Font.BOLD, 18));
+      labelRisparmii.setFont(new Font("Arial", Font.BOLD, 30));
       labelRisparmii.setForeground(Color.decode("#1c2697"));
       barraSuperiore.add(labelRisparmii, BorderLayout.CENTER);
 
@@ -60,13 +60,15 @@ public class FrameRisparmi {
       textFieldRisparmi.setHorizontalAlignment(SwingConstants.CENTER);
       textFieldRisparmi.setBackground(Color.WHITE);
       textFieldRisparmi.setForeground(Color.decode("#1c2697"));
-      textFieldRisparmi.setFont(new Font("Arial", Font.BOLD, 16));
+      textFieldRisparmi.setFont(new Font("Arial", Font.BOLD, 25));
       textFieldConto.setForeground(Color.decode("#1c2697"));
-      textFieldConto.setFont(new Font("Arial", Font.BOLD, 16));
+      textFieldConto.setFont(new Font("Arial", Font.BOLD, 25));
 
       // Creazione delle etichette
       JLabel labelConto = new JLabel("Conto:");
+      labelConto.setFont(new Font("Arial", Font.BOLD, 25));
       JLabel labelRisparmio = new JLabel("Cassa di Risparmio:");
+      labelRisparmio.setFont(new Font("Arial", Font.BOLD, 25));
       labelConto.setHorizontalAlignment(SwingConstants.CENTER);
       labelConto.setForeground(Color.decode("#1c2697"));
       labelRisparmio.setHorizontalAlignment(SwingConstants.CENTER);
@@ -79,13 +81,234 @@ public class FrameRisparmi {
       panelRisparmi.add(textFieldRisparmi);
       panelRisparmi.setBackground(Color.decode("#cbf4f4"));
 
-      // Aggiunta dei pannelli al frame
-      frameRisparmi.setLayout(new BorderLayout());
-      frameRisparmi.add(barraSuperiore, BorderLayout.NORTH);
-      frameRisparmi.add(panelRisparmi, BorderLayout.CENTER);
+      
 
-      frameRisparmi.setVisible(true);
-      frameRisparmi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna, labelHome;
+      JPanel panelBar;
+      JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
+      ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageHome;
+
+      imageMovimenti = new ImageIcon();
+      imageRisparmi = new ImageIcon();
+      imagePagamenti = new ImageIcon();
+      imageBudget = new ImageIcon();
+      imageCambioValuta = new ImageIcon();
+
+      panelBar = new JPanel();
+      panelBar.setLayout(new GridLayout(1, 6));
+      panelBar.setBackground(Color.decode("#cbf4f4"));
+
+      buttonHome = new JButton();
+      buttonMovimenti = new JButton();
+      buttonPagamenti = new JButton();
+      buttonRisparmi = new JButton();
+      buttonBudget = new JButton();
+      buttonCambioValuta = new JButton();
+
+      imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeNera.png"));
+      buttonHome.setIcon(imageHome);
+      imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimenti.png"));
+      buttonMovimenti.setIcon(imageMovimenti);
+      imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiNera.png"));
+      buttonRisparmi.setIcon(imageRisparmi);
+      imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamenti.png"));
+      buttonPagamenti.setIcon(imagePagamenti);
+      imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudget.png"));
+      buttonBudget.setIcon(imageBudget);
+      imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValuta.png"));
+      buttonCambioValuta.setIcon(imageCambioValuta);
+
+      buttonMovimenti.addActionListener(new ActionListener(){
+
+         @Override
+         public void actionPerformed(ActionEvent e){
+
+            frameRisparmi.dispose();
+            new MovimentiFrame();
+         }
+      });
+
+      buttonPagamenti.addActionListener(new ActionListener(){
+
+         @Override
+         public void actionPerformed(ActionEvent e){
+
+            frameRisparmi.dispose();
+            //new PagamentiFrame();
+         }
+      });
+
+      buttonHome.addActionListener(new ActionListener(){
+
+         @Override
+         public void actionPerformed(ActionEvent e){
+
+            frameRisparmi.dispose();
+            new HomeFrame();
+         }
+      });
+
+      buttonCambioValuta.addActionListener(new ActionListener(){
+
+         @Override
+         public void actionPerformed(ActionEvent e){
+
+            frameRisparmi.dispose();
+            //new CambioValutaFrame();
+         }
+      });
+
+      buttonBudget.addActionListener(new ActionListener(){
+
+         @Override
+         public void actionPerformed(ActionEvent e){
+
+            frameRisparmi.dispose();
+            //new BudgetFrame();
+         }
+      });
+
+      buttonHome.setOpaque(false);
+      buttonHome.setContentAreaFilled(false);
+      buttonHome.setBorderPainted(false);
+      buttonHome.setFocusPainted(false);
+
+      buttonMovimenti.setOpaque(false);
+      buttonMovimenti.setContentAreaFilled(false);
+      buttonMovimenti.setBorderPainted(false);
+      buttonMovimenti.setFocusPainted(false);
+
+      buttonPagamenti.setOpaque(false);
+      buttonPagamenti.setContentAreaFilled(false);
+      buttonPagamenti.setBorderPainted(false);
+      buttonPagamenti.setFocusPainted(false);
+
+      buttonRisparmi.setOpaque(false);
+      buttonRisparmi.setContentAreaFilled(false);
+      buttonRisparmi.setBorderPainted(false);
+      buttonRisparmi.setFocusPainted(false);
+
+      buttonCambioValuta.setOpaque(false);
+      buttonCambioValuta.setContentAreaFilled(false);
+      buttonCambioValuta.setBorderPainted(false);
+      buttonCambioValuta.setFocusPainted(false);
+
+      buttonBudget.setOpaque(false);
+      buttonBudget.setContentAreaFilled(false);
+      buttonBudget.setBorderPainted(false);
+      buttonBudget.setFocusPainted(false);
+
+      panelBar.add(buttonHome);
+      panelBar.add(buttonMovimenti);
+      panelBar.add(buttonPagamenti);
+      panelBar.add(buttonRisparmi);
+      panelBar.add(buttonCambioValuta);
+      panelBar.add(buttonBudget);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       btnImage.addActionListener(e -> {
          // Cambia l'icona del pulsante
@@ -189,6 +412,14 @@ public class FrameRisparmi {
          }
          });
       });
+      // Aggiunta dei pannelli al frame
+      frameRisparmi.setLayout(new BorderLayout());
+      frameRisparmi.add(barraSuperiore, BorderLayout.NORTH);
+      frameRisparmi.add(panelRisparmi, BorderLayout.CENTER);
+      frameRisparmi.add(panelBar, BorderLayout.SOUTH);
+
+      frameRisparmi.setVisible(true);
+      frameRisparmi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
    public static void main(String[] args) {

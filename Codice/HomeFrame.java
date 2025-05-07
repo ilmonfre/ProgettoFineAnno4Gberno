@@ -101,7 +101,7 @@ public class HomeFrame extends JFrame{
         panelSoldi.setBorder(bordoDisponibilita);
 
         labelSoldi = new JLabel();
-        labelSoldi.setText(movimenti.getSoldiConto()+"  €");
+        labelSoldi.setText(movimenti.getSoldiConto() + "  €");
         labelSoldi.setFont(new Font("Arial", Font.BOLD, 28));
         
         panelSoldi.add(labelSoldi);
@@ -439,7 +439,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new RisparmiFrame();
+                new FrameRisparmi();
             }
         });
 
@@ -674,7 +674,7 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed (ActionEvent e){
 
-                new FrameAccount();
+                //new FrameAccount();
 
             }
         
