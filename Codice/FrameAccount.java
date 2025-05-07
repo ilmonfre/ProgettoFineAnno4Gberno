@@ -45,7 +45,7 @@ public class FrameAccount {
  
          panel1 = new JPanel(new GridLayout(5, 1, 10, 20));
  
-         lblTitolare = new JLabel("Titolare conto: " + );
+         lblTitolare = new JLabel("Titolare conto: ");
          lblTitolare.setFont(fontMid);
  
          lblCodFis = new JLabel();
@@ -56,12 +56,9 @@ public class FrameAccount {
          lblNtel.setFont(fontMid);
          
          panel1.add(lblTitolare);
-
          panel1.add(lblCodFis);
-
          panel1.add(lblNtel);
 
-         
          midPanel.add(panel1);
 
 

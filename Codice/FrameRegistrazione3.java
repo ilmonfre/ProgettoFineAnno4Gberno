@@ -185,7 +185,7 @@ public class FrameRegistrazione3 {
                 GeneraDatiCarta gen = new GeneraDatiCarta();
                 gen.salvaSulFile();
                 
-                new HomeFrame();
+                new Apertura();
                 
                 GeneraDatiCarta dati = new GeneraDatiCarta();
                 

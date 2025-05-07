@@ -317,7 +317,7 @@ public class MovimentiFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new HomeFrame();
+                //new HomeFrame();
             }
         });
 

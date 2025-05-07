@@ -1,12 +1,9 @@
 public class MainApertura {
     
     public static void main(String[] args) {
+        Utente utente = new Utente(null, null);
         
-<<<<<<< HEAD
-        new MovimentiFrame();
-=======
-        // new Apertura();
-        new HomeFrame();
->>>>>>> 51c09935aad10ca56150496db5da854a08b13223
+        new HomeFrame(utente);
+
     }
 }

@@ -8,6 +8,9 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
+    private String email;
+    private String pass;
+
     Movimenti movimenti = new Movimenti(0, 0, 0.0);
 
     JLabel labelScrittaSuperiore;
@@ -24,7 +27,8 @@ public class HomeFrame extends JFrame{
     JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
     ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna, imageHome;
 
-    public HomeFrame(){
+    public HomeFrame(Utente utente){
+        utente = null;
 
         panelSuperiore = new JPanel();
 
