@@ -7,6 +7,8 @@ public class FrameRisparmi {
       // Creazione del frame
       JFrame frameRisparmi = new JFrame("Risparmi");
       frameRisparmi.setSize(500, 550);
+      frameRisparmi.setFocusable(true);
+      frameRisparmi.requestFocusInWindow();
 
       // Calcolo della posizione centrata
       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,6 +25,7 @@ public class FrameRisparmi {
       JPanel barraSuperiore = new JPanel();
       barraSuperiore.setLayout(new BorderLayout());
       barraSuperiore.setPreferredSize(new Dimension(500, 50));
+      barraSuperiore.setBackground(Color.decode("#cbf4f4"));
 
       // Pulsante "+" a sinistra
       JButton btnPlus = new JButton(imagePiu);
@@ -43,6 +46,7 @@ public class FrameRisparmi {
       barraSuperiore.add(btnImage, BorderLayout.EAST);
       labelRisparmii.setHorizontalAlignment(SwingConstants.CENTER);
       labelRisparmii.setFont(new Font("Arial", Font.BOLD, 18));
+      labelRisparmii.setForeground(Color.decode("#1c2697"));
       barraSuperiore.add(labelRisparmii, BorderLayout.CENTER);
 
       // Creazione del pannello principale
@@ -52,21 +56,28 @@ public class FrameRisparmi {
       textFieldConto.setEditable(false);
       textFieldRisparmi.setEditable(false);
       textFieldConto.setHorizontalAlignment(SwingConstants.CENTER);
+      textFieldConto.setBackground(Color.WHITE);
       textFieldRisparmi.setHorizontalAlignment(SwingConstants.CENTER);
+      textFieldRisparmi.setBackground(Color.WHITE);
+      textFieldRisparmi.setForeground(Color.decode("#1c2697"));
       textFieldRisparmi.setFont(new Font("Arial", Font.BOLD, 16));
+      textFieldConto.setForeground(Color.decode("#1c2697"));
       textFieldConto.setFont(new Font("Arial", Font.BOLD, 16));
 
       // Creazione delle etichette
       JLabel labelConto = new JLabel("Conto:");
       JLabel labelRisparmio = new JLabel("Cassa di Risparmio:");
       labelConto.setHorizontalAlignment(SwingConstants.CENTER);
+      labelConto.setForeground(Color.decode("#1c2697"));
       labelRisparmio.setHorizontalAlignment(SwingConstants.CENTER);
+      labelRisparmio.setForeground(Color.decode("#1c2697"));
 
       // Aggiunta delle etichette e dei campi di testo al pannello
       panelRisparmi.add(labelConto);
       panelRisparmi.add(textFieldConto);
       panelRisparmi.add(labelRisparmio);
       panelRisparmi.add(textFieldRisparmi);
+      panelRisparmi.setBackground(Color.decode("#cbf4f4"));
 
       // Aggiunta dei pannelli al frame
       frameRisparmi.setLayout(new BorderLayout());
@@ -83,29 +94,31 @@ public class FrameRisparmi {
          btnPlus.setIcon(imagePiuBianca);
 
          // Cambia lo sfondo e il colore del testo
-         barraSuperiore.setBackground(Color.BLACK);
-         labelRisparmio.setForeground(Color.WHITE);
-         labelConto.setForeground(Color.WHITE);
-         labelRisparmio.setForeground(Color.WHITE);
-         textFieldRisparmi.setBackground(Color.BLACK);
-         textFieldRisparmi.setForeground(Color.WHITE);
-         textFieldConto.setBackground(Color.BLACK);
-         textFieldConto.setForeground(Color.WHITE);
-         panelRisparmi.setBackground(Color.BLACK);
+         barraSuperiore.setBackground(Color.decode("#1c2697"));
+         labelRisparmii.setForeground(Color.decode("#cbf4f4"));
+         labelRisparmio.setForeground(Color.decode("#cbf4f4"));
+         labelConto.setForeground(Color.decode("#cbf4f4"));
+         labelRisparmio.setForeground(Color.decode("#cbf4f4"));
+         textFieldRisparmi.setBackground(Color.decode("#2f48d0"));
+         textFieldRisparmi.setForeground(Color.decode("#cbf4f4"));
+         textFieldConto.setBackground(Color.decode("#2f48d0"));
+         textFieldConto.setForeground(Color.decode("#cbf4f4"));
+         panelRisparmi.setBackground(Color.decode("#1c2697"));
          } else {
          btnImage.setIcon(imageLuna);
          btnPlus.setIcon(imagePiu);
 
          // Ripristina lo sfondo e il colore del testo
-         barraSuperiore.setBackground(Color.WHITE);
-         labelRisparmio.setForeground(Color.BLACK);
-         labelConto.setForeground(Color.BLACK);
-         labelRisparmio.setForeground(Color.BLACK);
+         barraSuperiore.setBackground(Color.decode("#cbf4f4"));
+         labelRisparmii.setForeground(Color.decode("#1c2697"));
+         labelRisparmio.setForeground(Color.decode("#1c2697"));
+         labelConto.setForeground(Color.decode("#1c2697"));
+         labelRisparmio.setForeground(Color.decode("#1c2697"));
          textFieldRisparmi.setBackground(Color.WHITE);
-         textFieldRisparmi.setForeground(Color.BLACK);
+         textFieldRisparmi.setForeground(Color.decode("#1c2697"));
          textFieldConto.setBackground(Color.WHITE);
-         textFieldConto.setForeground(Color.BLACK);
-         panelRisparmi.setBackground(Color.WHITE);
+         textFieldConto.setForeground(Color.decode("#1c2697"));
+         panelRisparmi.setBackground(Color.decode("#cbf4f4"));
          }
       });
 
