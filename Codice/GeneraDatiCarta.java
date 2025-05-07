@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ class GeneraDatiCarta {
     String pin;
 
     Random rand = new Random();
+    static FileWriter writer;
 
     GeneraDatiCarta() {
         this.IBAN = generaIBAN();
@@ -22,9 +24,9 @@ class GeneraDatiCarta {
 
     // Generazione IBAN
     private String generaIBAN() {
-        String paese = "IT";                                                     // Prefisso paese
+        String paese = "IT";    // Prefisso paese
         String check = String.format("%02d", rand.nextInt(100));    // Due cifre di controllo
-        char cin = (char)('A' + rand.nextInt(26));                        // CIN (una lettera maiuscola)
+        char cin = (char)('A' + rand.nextInt(26));  // CIN (una lettera maiuscola)
         String abi = String.format("%05d", rand.nextInt(100000));   // ABI (5 cifre)
         String cab = String.format("%05d", rand.nextInt(100000));   // CAB (5 cifre)
         String conto = String.format("%012d", Math.abs(rand.nextLong()) % 1000000000000L);  // Numero conto (12 caratteri numerici)
@@ -33,14 +35,14 @@ class GeneraDatiCarta {
 
     // Generazione numero carta (16 cifre)
     private long generaNumeroCarta() {
-        long base = 1000000000000000L;
+        long base = 4000000000000000L;
         return base + (Math.abs(rand.nextLong()) % 100000000000000L);
     }
 
-    // Generazione data scadenza (tra 1 e 5 anni da oggi)
+    // Generazione data scadenza (tra 5 anni da oggi)
     private Date generaDataScadenza() {
         Calendar cal = Calendar.getInstance();
-        int anno = 1 + rand.nextInt(5);
+        int anno = 5;
         cal.add(Calendar.YEAR, anno);
         return cal.getTime();
     }
@@ -56,11 +58,26 @@ class GeneraDatiCarta {
     }
 
     //Metodo per stampare i dati
-    //public void stampaDati() {
-    //    System.out.println("IBAN: " + IBAN);
-    //    System.out.println("Numero Carta: " + numeroCarta);
-    //    System.out.println("Data Scadenza: " + dataScadenza);
-    //    System.out.println("CVV: " + cvv);
-    //    System.out.println("PIN: " + pin);
-    //}
+    public String stampaDati() {
+        String res = "";
+
+        res += generaIBAN() + " ; ";
+        res += generaNumeroCarta() + " ; ";
+        res += generaDataScadenza() + " ; "; 
+        res += generaCVV() + " ; ";     
+        res += generaPIN() + "\n\n";
+
+        return res;
+    }
+  
+    void salvaSulFile(){
+        try(FileWriter writer = new FileWriter("save.csv", true)){
+            writer.write(stampaDati());
+            writer.write("\n\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
