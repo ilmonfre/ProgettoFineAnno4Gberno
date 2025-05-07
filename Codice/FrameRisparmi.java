@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class FrameRisparmi {
    public FrameRisparmi() {
@@ -33,16 +34,16 @@ public class FrameRisparmi {
       btnImage.setBorderPainted(false);
       btnImage.setContentAreaFilled(false);
 
-      JLabel labelRisparmi = new JLabel("Risparmi");
+      JLabel labelRisparmii = new JLabel("Risparmi");
 
       JTextField textFieldRisparmi = new JTextField("0 €");
       JTextField textFieldConto = new JTextField("1000 €"); // Valore iniziale del conto
 
       barraSuperiore.add(btnPlus, BorderLayout.WEST);
       barraSuperiore.add(btnImage, BorderLayout.EAST);
-      labelRisparmi.setHorizontalAlignment(SwingConstants.CENTER);
-      labelRisparmi.setFont(new Font("Arial", Font.BOLD, 18));
-      barraSuperiore.add(labelRisparmi, BorderLayout.CENTER);
+      labelRisparmii.setHorizontalAlignment(SwingConstants.CENTER);
+      labelRisparmii.setFont(new Font("Arial", Font.BOLD, 18));
+      barraSuperiore.add(labelRisparmii, BorderLayout.CENTER);
 
       // Creazione del pannello principale
       JPanel panelRisparmi = new JPanel();
@@ -83,7 +84,7 @@ public class FrameRisparmi {
 
          // Cambia lo sfondo e il colore del testo
          barraSuperiore.setBackground(Color.BLACK);
-         labelRisparmi.setForeground(Color.WHITE);
+         labelRisparmio.setForeground(Color.WHITE);
          labelConto.setForeground(Color.WHITE);
          labelRisparmio.setForeground(Color.WHITE);
          textFieldRisparmi.setBackground(Color.BLACK);
@@ -97,7 +98,7 @@ public class FrameRisparmi {
 
          // Ripristina lo sfondo e il colore del testo
          barraSuperiore.setBackground(Color.WHITE);
-         labelRisparmi.setForeground(Color.BLACK);
+         labelRisparmio.setForeground(Color.BLACK);
          labelConto.setForeground(Color.BLACK);
          labelRisparmio.setForeground(Color.BLACK);
          textFieldRisparmi.setBackground(Color.WHITE);
