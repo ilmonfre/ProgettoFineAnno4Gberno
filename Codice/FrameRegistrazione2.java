@@ -185,6 +185,14 @@ public class FrameRegistrazione2 {
                     return;
                 }
 
+                String date = txtData.getText().trim();
+                String strutturaData = "^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$";
+
+                if (!date.matches(strutturaData)) {
+                    JOptionPane.showMessageDialog(frame, "Data di nascita non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 m += txtData.getText() + " ; ";
                 m += txtLuogo.getText() + " ; ";
                 m += txtIndirizzo.getText() + " ; ";
@@ -192,7 +200,6 @@ public class FrameRegistrazione2 {
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -46,7 +46,7 @@ public class HomeFrame extends JFrame{
             InputStream is = getClass().getResourceAsStream("/Font/PlayfairDisplayRegular.ttf");
             Font font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(32f);
             labelScrittaSuperiore.setFont(font);
-            labelScrittaSuperiore.setAlignmentX(CENTER_ALIGNMENT);
+            labelScrittaSuperiore.setHorizontalAlignment(SwingConstants.CENTER);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -662,9 +662,8 @@ public class HomeFrame extends JFrame{
                 }
             }
         });
-
-        setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setVisible(true);
     }
 }

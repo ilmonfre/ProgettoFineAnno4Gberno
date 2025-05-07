@@ -147,14 +147,33 @@ public class FrameRegistrazione3 {
                     return;
                 }
 
+                // controllo del corretto inserimento dell'email
+                String email = txtEmail.getText().trim();  // trim esclude eventuali spazi bianchi
+                if(!email.contains("@") || email.indexOf("@") == 0 || email.indexOf("@") == email.length() - 1 || !email.substring(email.indexOf("@")).contains(".")) {
+                    JOptionPane.showMessageDialog(frame, "Indirizzo email non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // controllo del corretto inserimento della password
+                char[] p = pass.getPassword();
+                String password = new String(p);
+
+                if(!password.matches(".*[A-Z].*")){
+                    JOptionPane.showMessageDialog(frame, "Devi inserire almeno un carattere MAIUSCOLO!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if(!password.matches(".*[0-9].*")){
+                    JOptionPane.showMessageDialog(frame, "Devi inserire almeno un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 m += txtEmail.getText() + " ; ";
                 m += new String(pass.getPassword()) + " ; ";
 
-                
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -162,22 +181,20 @@ public class FrameRegistrazione3 {
                 frame.dispose();
                 JOptionPane.showMessageDialog(frame, "Registrazione completata con successo!");
 
+                GeneraDatiCarta gen = new GeneraDatiCarta();
+                gen.salvaSulFile();
+                
                 new HomeFrame();
                 
             }
         });
 
 
-
-
-
-
         topPanel.setBackground(Color.decode("#f0ffff"));
         midPanel.setBackground(Color.decode("#f0ffff"));
         panel1.setBackground(Color.decode("#f0ffff"));
         panelBtn.setBackground(Color.decode("#f0ffff"));
-        //panel2.setBackground(Color.decode("#f0ffff"));
-        //bottomPanel.setBackground(Color.decode("#f0ffff"));
+        bottomPanel.setBackground(Color.decode("#f0ffff"));
 
 
         frame.setSize(500, 550);
