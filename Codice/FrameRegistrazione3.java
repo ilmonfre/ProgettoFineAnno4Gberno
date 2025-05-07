@@ -154,7 +154,7 @@ public class FrameRegistrazione3 {
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n\n");
+                    writer.write("\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -164,12 +164,11 @@ public class FrameRegistrazione3 {
 
                 new HomeFrame();
                 
+                GeneraDatiCarta dati = new GeneraDatiCarta();
+                
+                
             }
         });
-
-
-
-
 
 
         topPanel.setBackground(Color.decode("#f0ffff"));
