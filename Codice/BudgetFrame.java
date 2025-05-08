@@ -3,7 +3,8 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.BorderLayout
+import java.awt.Dimension;
+import java.awt.Font;
 
 public class BudgetFrame extends JFrame{
 
@@ -14,7 +15,7 @@ public class BudgetFrame extends JFrame{
     JPanel panelSettimanale, panelMensile, panelAnnuale, panelImpostazioni, panelModifica, panelCrea, panelSupCen;
     JProgressBar barSettimanale, barMensile, barAnnuale;
     JButton buttonAggiungi, buttonImpostazioni;
-    RoundedBorderButton buttonModifica, buttonElimina, buttonConferma, buttonCrea, buttonConfCrea;
+    RoundedBorderButton buttonModifica, buttonElimina, buttonConferma, buttonConfCrea;
     JPopupMenu menuImpostazioni, menuModifica, menuCrea;
     RoundedTextField textModifica, textMax;
     JLabel labelErrore, labelCentrale, labelSpesiSett, labelSpesiMen, labelSpesiAnn, labelRimastiSett, labelRimastiMen, labelRimastiAnn, labelMaxSett, labelMaxMen, labelMaxAnn;
@@ -23,8 +24,8 @@ public class BudgetFrame extends JFrame{
     JPanel panelBar;
     JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
     ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna, imageHome;
-
-    Budget budget;
+    
+    Budget budget = new Budget(0, 0, 0, 0, 0, 0);
 
     public BudgetFrame(){
 
@@ -78,7 +79,7 @@ public class BudgetFrame extends JFrame{
         buttonAggiungi.setIcon(imageAggiungi);
 
         ImageIcon imageImpostazioni = new ImageIcon(getClass().getResource("/Immagini/IconaImpostazioniNera.png"));
-        buttonAggiungi.setIcon(imageImpostazioni);
+        buttonImpostazioni.setIcon(imageImpostazioni);
 
         buttonAggiungi.setOpaque(false);
         buttonAggiungi.setContentAreaFilled(false);
@@ -127,10 +128,9 @@ public class BudgetFrame extends JFrame{
         buttonConferma = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
 
         labelErrore = new JLabel();
-        labelCentrale = new JLabel();
-        buttonCrea = new RoundedBorderButton("Crea", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
+        labelCentrale = new JLabel("Non è presente nessun budget");
 
-        buttonConferma.addActionListener(new ActionListener(){
+        buttonAggiungi.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent e){
@@ -162,9 +162,11 @@ public class BudgetFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
 
-                labelCentrale.setText("Non è presente nessun limite");
-                panelCen.add(labelCentrale);
-                panelCen.add(buttonCrea);
+                panelSettimanale.removeAll();
+                panelSettimanale.setLayout(new GridLayout(2, 1));
+                panelSettimanale.add(labelCentrale);
+                panelSettimanale.revalidate();
+                panelSettimanale.repaint();
             }
         });
 
@@ -231,9 +233,9 @@ public class BudgetFrame extends JFrame{
         panelCrea.add(buttonConfCrea);
         menuCrea.add(panelCrea);
 
-        buttonCrea.addActionListener(e -> {
+        buttonAggiungi.addActionListener(e -> {
             
-            menuCrea.show(buttonCrea, 0, buttonCrea.getHeight());
+            menuCrea.show(buttonAggiungi, 0, buttonAggiungi.getHeight());
         });
 
         panelImpostazioni.setLayout(new GridLayout(1, 2));
@@ -263,56 +265,235 @@ public class BudgetFrame extends JFrame{
 
         panelSupCen = new JPanel();
 
-        panelSupCen.setLayout(new BorderLayout());
-        
-        panelSupCen.add(buttonAggiungi, BorderLayout.WEST);
-        panelSupCen.add(buttonImpostazioni, BorderLayout.EAST);
-
-        if(budget.getMaxSett()==-1){
-
-            panelSettimanale.setLayout(new GridLayout(3, 1));
-
-            panelSettimanale.add(panelSupCen);
-            panelSettimanale.add(labelCentrale);
-            panelSettimanale.add(buttonCrea);
-        }
-        if(budget.getMaxSett()!=-1){
-
-            barSettimanale = new JProgressBar();
-        
-            barSettimanale.setMaximum((int) Math.round(budget.getMaxSett()));
+        new Timer(500, new ActionListener(){
             
-            new Timer(500, new ActionListener() {
+            int prec = 0;
+            boolean stop = false;
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                if(stop==false){
+
+                    if(budget.getMaxSett()==-1){
+
+                        if(prec==1){
+    
+                            stop=true;
+                        }else{
+    
+                            panelSettimanale.repaint();
+            
+                            panelSupCen.setLayout(new BorderLayout());
+                        
+                            panelSupCen.add(buttonAggiungi, BorderLayout.WEST);
+                            panelSupCen.add(buttonImpostazioni, BorderLayout.EAST);
                 
-                public void actionPerformed(ActionEvent e) {
-                    
-                    barSettimanale.setValue((int) Math.round(budget.getCorrenteSett()));
-                }
-            }).start();
-
-            String spesiSett = String.valueOf(budget.getCorrenteSett());
-            labelSpesiSett = new JLabel("Hai speso "+spesiSett+" €");
-
-            String rimastiSett = String.valueOf(budget.getMaxSett()-budget.getCorrenteSett());
-            labelSpesiSett = new JLabel("Rispetto al budget settimanale sono rimasti "+rimastiSett+" €");
-
-            String limSett = String.valueOf(budget.getMaxSett());
-            labelMaxSett = new JLabel("Il budget settimanale è "+limSett+" €");
-
-            panelSettimanale.setLayout(new GridLayout(2, 2));
+                            buttonImpostazioni.setEnabled(false);
+                            buttonAggiungi.setEnabled(true);
+                
+                            labelCentrale.setFont(new Font("Arial", Font.BOLD, 25));
+                            labelCentrale.setAlignmentX(CENTER_ALIGNMENT);
+                            labelCentrale.setAlignmentY(CENTER_ALIGNMENT);
+                
+                            panelSettimanale.setLayout(new GridLayout(2, 1));
+                
+                            panelSettimanale.add(panelSupCen);
+                            panelSettimanale.add(labelCentrale);
+    
+                            prec=1;
+                        }
+                    }
+                    if(budget.getMaxSett()!=-1){
+                        
+                        if(prec==2){
+    
+                            stop=true;
+                        }else{
+    
+                            panelSettimanale.repaint();
             
-            panelSettimanale.add(barSettimanale);
-            panelSettimanale.add(labelMaxSett);
-            panelSettimanale.add(labelSpesiSett);
-            panelSettimanale.add(labelRimastiSett);
-        }
+                            barSettimanale = new JProgressBar();
+                        
+                            barSettimanale.setMaximum((int) Math.round(budget.getMaxSett()));
+                            
+                            new Timer(500, new ActionListener() {
+                                
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    
+                                    barSettimanale.setValue((int) Math.round(budget.getCorrenteSett()));
+                                    barSettimanale.repaint();
+                                }
+                            }).start();
+                
+                            buttonImpostazioni.setEnabled(true);
+                            buttonAggiungi.setEnabled(false);
+                
+                            panelSupCen.setLayout(new BorderLayout());
+                        
+                            panelSupCen.add(buttonAggiungi, BorderLayout.WEST);
+                            panelSupCen.add(buttonImpostazioni, BorderLayout.EAST);
+                
+                            buttonImpostazioni.setEnabled(false);
+                
+                            String spesiSett = String.valueOf(budget.getCorrenteSett());
+                            labelSpesiSett = new JLabel("Hai speso "+spesiSett+" €");
+                
+                            String rimastiSett = String.valueOf(budget.getMaxSett()-budget.getCorrenteSett());
+                            labelRimastiSett = new JLabel("Rispetto al budget settimanale sono rimasti "+rimastiSett+" €");
+                
+                            String limSett = String.valueOf(budget.getMaxSett());
+                            labelMaxSett = new JLabel("Il budget settimanale è "+limSett+" €");
+                
+                            JPanel panelTmp = new JPanel();
+                            panelTmp.add(barSettimanale);
+                            panelTmp.add(labelMaxSett);
+                
+                            JPanel panelTmp2 = new JPanel();
+                            panelTmp2.add(labelSpesiSett);
+                            panelTmp2.add(labelRimastiSett);
+                
+                            panelSettimanale.setLayout(new GridLayout(3, 1));
+                            
+                            panelSettimanale.add(panelSupCen);
+                            panelSettimanale.add(panelTmp);
+                            panelSettimanale.add(panelTmp2);
+    
+                            prec=2;
+                        }
+                    }
+                }
+            }
+        }).start();
 
         panelCen.addTab("Budget settimanale", panelSettimanale);
+
+        imageMovimenti = new ImageIcon();
+        imageRisparmi = new ImageIcon();
+        imagePagamenti = new ImageIcon();
+        imageBudget = new ImageIcon();
+        imageCambioValuta = new ImageIcon();
+
+        panelBar = new JPanel();
+        panelBar.setLayout(new GridLayout(1, 6));
+        panelBar.setBackground(Color.decode("#CCFFFF"));
+
+        buttonHome = new JButton();
+        buttonMovimenti = new JButton();
+        buttonPagamenti = new JButton();
+        buttonRisparmi = new JButton();
+        buttonBudget = new JButton();
+        buttonCambioValuta = new JButton();
+
+        imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeNera.png"));
+        buttonHome.setIcon(imageHome);
+        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimenti.png"));
+        buttonMovimenti.setIcon(imageMovimenti);
+        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiNera.png"));
+        buttonRisparmi.setIcon(imageRisparmi);
+        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamenti.png"));
+        buttonPagamenti.setIcon(imagePagamenti);
+        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudget.png"));
+        buttonBudget.setIcon(imageBudget);
+        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValuta.png"));
+        buttonCambioValuta.setIcon(imageCambioValuta);
+
+        buttonHome.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                Utente utente = new Utente("nikmonfre@gmail.com", "Ciao2");
+                new HomeFrame(utente);
+            }
+        });
+
+        buttonPagamenti.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new PagamentiFrame();
+            }
+        });
+
+        buttonRisparmi.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                new FrameRisparmi();
+            }
+        });
+
+        buttonCambioValuta.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new CambioValutaFrame();
+            }
+        });
+
+        buttonMovimenti.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                new MovimentiFrame();
+            }
+        });
+
+        buttonHome.setOpaque(false);
+        buttonHome.setContentAreaFilled(false);
+        buttonHome.setBorderPainted(false);
+        buttonHome.setFocusPainted(false);
+
+        buttonMovimenti.setOpaque(false);
+        buttonMovimenti.setContentAreaFilled(false);
+        buttonMovimenti.setBorderPainted(false);
+        buttonMovimenti.setFocusPainted(false);
+
+        buttonPagamenti.setOpaque(false);
+        buttonPagamenti.setContentAreaFilled(false);
+        buttonPagamenti.setBorderPainted(false);
+        buttonPagamenti.setFocusPainted(false);
+
+        buttonRisparmi.setOpaque(false);
+        buttonRisparmi.setContentAreaFilled(false);
+        buttonRisparmi.setBorderPainted(false);
+        buttonRisparmi.setFocusPainted(false);
+
+        buttonCambioValuta.setOpaque(false);
+        buttonCambioValuta.setContentAreaFilled(false);
+        buttonCambioValuta.setBorderPainted(false);
+        buttonCambioValuta.setFocusPainted(false);
+
+        buttonBudget.setOpaque(false);
+        buttonBudget.setContentAreaFilled(false);
+        buttonBudget.setBorderPainted(false);
+        buttonBudget.setFocusPainted(false);
+
+        panelBar.add(buttonHome);
+        panelBar.add(buttonMovimenti);
+        panelBar.add(buttonPagamenti);
+        panelBar.add(buttonRisparmi);
+        panelBar.add(buttonCambioValuta);
+        panelBar.add(buttonBudget);
+
+        panelBar.setPreferredSize(new Dimension(0, 60));
 
         setLayout(new BorderLayout());
 
         add(panelSup, BorderLayout.NORTH);
         add(panelCen, BorderLayout.CENTER);
+        add(panelBar, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra

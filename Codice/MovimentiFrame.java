@@ -320,7 +320,7 @@ public class MovimentiFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new HomeFrame();
+                //new HomeFrame();
             }
         });
 
@@ -402,7 +402,7 @@ public class MovimentiFrame extends JFrame{
         panelBar.add(buttonBudget);
 
         panelBar.setPreferredSize(new Dimension(0, 60));
-        
+
         setLayout(new BorderLayout());
 
         add(panelSuperiore, BorderLayout.NORTH);

@@ -10,6 +10,8 @@ public class HomeFrame extends JFrame{
 
     Budget budget;
     Movimenti movimenti = new Movimenti(0, 0, 0, budget);
+    private String email;
+    private String pass;
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
@@ -25,7 +27,8 @@ public class HomeFrame extends JFrame{
     JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
     ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna, imageHome;
 
-    public HomeFrame(){
+    public HomeFrame(Utente utente){
+        utente = null;
 
         panelSuperiore = new JPanel();
 
