@@ -8,7 +8,8 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
-    Movimenti movimenti = new Movimenti(0, 0, 0.0);
+    Budget budget;
+    Movimenti movimenti = new Movimenti(0, 0, 0, budget);
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
