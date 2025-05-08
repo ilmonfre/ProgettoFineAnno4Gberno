@@ -8,7 +8,14 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
+<<<<<<< HEAD
     Movimenti movimenti = new Movimenti(0, 0, 0.0);
+=======
+    Budget budget;
+    Movimenti movimenti = new Movimenti(0, 0, 0, budget);
+    private String email;
+    private String pass;
+>>>>>>> caec64e5fbf22b7f1d47add90555558a9d7e5853
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
@@ -89,16 +96,17 @@ public class HomeFrame extends JFrame{
         panelSoldi = new JPanel();
         panelSoldi.setBackground(Color.decode("#CCFFFF"));
 
-        TitledBorder bordoDisponibilita = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Disponibilità");
-        Font fontDisponibilita = new Font("Serif", Font.ITALIC, 20);
+        RoundedBorder bordoDisponibilita = new RoundedBorder(2, 20, 20, Color.decode("#1c2697"));
+        TitledBorder titoloDisponibilita = new TitledBorder(bordoDisponibilita, "Disponibilità");
+        titoloDisponibilita.setTitleColor(Color.decode("#1c2697"));
+        titoloDisponibilita.setTitleFont(new Font("Arial", Font.BOLD, 20));
 
-        bordoDisponibilita.setTitleFont(fontDisponibilita);
-
-        panelSoldi.setBorder(bordoDisponibilita);
+        panelSoldi.setBorder(titoloDisponibilita);
 
         labelSoldi = new JLabel();
-        labelSoldi.setText(movimenti.getSoldiConto() + "  €");
+        labelSoldi.setText(movimenti.getSoldiConto()+" €");
         labelSoldi.setFont(new Font("Arial", Font.BOLD, 28));
+        labelSoldi.setForeground(Color.decode("#1c2697"));
         
         panelSoldi.add(labelSoldi);
 
@@ -109,24 +117,28 @@ public class HomeFrame extends JFrame{
         panelUscite = new JPanel();
         panelUscite.setBackground(Color.decode("#CCFFFF"));
 
-        TitledBorder bordoRadar = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Radar");
-        Font fontRadar = new Font("Serif", Font.ITALIC, 20);
+        RoundedBorder bordoRadar = new RoundedBorder(2, 20, 20, Color.decode("#1c2697"));
+        TitledBorder titoloRadar = new TitledBorder(bordoRadar, "Radar mensile");
+        titoloRadar.setTitleColor(Color.decode("#1c2697"));
+        titoloRadar.setTitleFont(new Font("Arial", Font.BOLD, 20));
 
-        bordoRadar.setTitleFont(fontRadar);
+        panelRadar.setBorder(titoloRadar);
 
-        panelRadar.setBorder(bordoRadar);
+        RoundedBorder bordoEntrate = new RoundedBorder(2, 20, 20, Color.decode("#1c2697"));
+        TitledBorder titoloEntrate = new TitledBorder(bordoEntrate, "Entrate");
+        titoloEntrate.setTitleColor(Color.decode("#1c2697"));
+        titoloEntrate.setTitleFont(new Font("Arial", Font.BOLD, 20));
+        titoloEntrate.setTitleJustification(TitledBorder.CENTER);
 
-        TitledBorder bordoEntrate = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Entrate");
-        TitledBorder bordoUscite = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Uscite");
+        panelEntrate.setBorder(titoloEntrate);
 
-        bordoEntrate.setTitleFont(fontRadar);
-        bordoEntrate.setTitleJustification(TitledBorder.CENTER);
+        RoundedBorder bordoUscite = new RoundedBorder(2, 20, 20, Color.decode("#be1327"));
+        TitledBorder titoloUscite = new TitledBorder(bordoUscite, "Uscite");
+        titoloUscite.setTitleColor(Color.decode("#be1327"));
+        titoloUscite.setTitleFont(new Font("Arial", Font.BOLD, 20));
+        titoloUscite.setTitleJustification(TitledBorder.CENTER);
 
-        bordoUscite.setTitleFont(fontRadar);
-        bordoUscite.setTitleJustification(TitledBorder.CENTER);
-
-        panelEntrate.setBorder(bordoEntrate);
-        panelUscite.setBorder(bordoUscite);
+        panelUscite.setBorder(titoloUscite);
         
         labelEntrateUMese = new JLabel();
         labelUsciteUMese = new JLabel();
@@ -144,12 +156,14 @@ public class HomeFrame extends JFrame{
         labelImageUscite = new JLabel(imageUscite);
 
         labelEntrate = new JLabel();
+        labelEntrate.setForeground(Color.decode("#1c2697"));
         labelUscite = new JLabel();
+        labelUscite.setForeground(Color.decode("#be1327"));
 
         double entrateUMese = movimenti.calcolaEntrateUMese();
-        labelEntrate.setText(String.valueOf(entrateUMese));
+        labelEntrate.setText(String.valueOf(entrateUMese)+" €");
         double usciteUMese = movimenti.calcolaUsciteUMese();
-        labelUscite.setText(String.valueOf(usciteUMese));
+        labelUscite.setText(String.valueOf(usciteUMese)+" €");
 
         labelEntrate.setFont(new Font("Arial", Font.BOLD, 28));
         labelUscite.setFont(new Font("Arial", Font.BOLD, 28));
@@ -213,6 +227,13 @@ public class HomeFrame extends JFrame{
                 labelUtentePrimo.setText("Da: "+primo.getUtente());
                 imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
                 labelIconaPrimo.setIcon(imagePrimo);
+                labelTipoPrimo = new JLabel();
+
+                labelTipoPrimo.setForeground(Color.decode("#1c2697"));
+                labelCostoPrimo.setForeground(Color.decode("#1c2697"));
+                labelGiornoPrimo.setForeground(Color.decode("#1c2697"));
+                labelCategoriaPrimo.setForeground(Color.decode("#1c2697"));
+                labelUtentePrimo.setForeground(Color.decode("#1c2697"));
             }else if(primo.getTipo().toLowerCase().equals("uscita")){
     
                 labelTipoPrimo.setText("Tipo: Entrata");
@@ -224,6 +245,12 @@ public class HomeFrame extends JFrame{
                 labelUtentePrimo.setText("A: "+primo.getUtente());
                 imagePrimo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
                 labelIconaPrimo.setIcon(imagePrimo);
+
+                labelTipoPrimo.setForeground(Color.decode("#be1327"));
+                labelCostoPrimo.setForeground(Color.decode("#be1327"));
+                labelGiornoPrimo.setForeground(Color.decode("#be1327"));
+                labelCategoriaPrimo.setForeground(Color.decode("#be1327"));
+                labelUtentePrimo.setForeground(Color.decode("#be1327"));
             }
         }
 
@@ -240,6 +267,12 @@ public class HomeFrame extends JFrame{
                 labelUtenteSecondo.setText("Da: "+secondo.getUtente());
                 imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
                 labelIconaSecondo.setIcon(imageSecondo);
+
+                labelTipoSecondo.setForeground(Color.decode("#1c2697"));
+                labelCostoSecondo.setForeground(Color.decode("#1c2697"));
+                labelGiornoSecondo.setForeground(Color.decode("#1c2697"));
+                labelCategoriaSecondo.setForeground(Color.decode("#1c2697"));
+                labelUtenteSecondo.setForeground(Color.decode("#1c2697"));
             }else if(secondo.getTipo().toLowerCase().equals("uscita")){
     
                 labelTipoSecondo.setText("Tipo: Entrata");
@@ -251,6 +284,12 @@ public class HomeFrame extends JFrame{
                 labelUtenteSecondo.setText("A: "+secondo.getUtente());
                 imageSecondo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
                 labelIconaSecondo.setIcon(imageSecondo);
+
+                labelTipoSecondo.setForeground(Color.decode("#be1327"));
+                labelCostoSecondo.setForeground(Color.decode("#be1327"));
+                labelGiornoSecondo.setForeground(Color.decode("#be1327"));
+                labelCategoriaSecondo.setForeground(Color.decode("#be1327"));
+                labelUtenteSecondo.setForeground(Color.decode("#be1327"));
             }
         }
 
@@ -267,6 +306,12 @@ public class HomeFrame extends JFrame{
                 labelUtenteTerzo.setText("Da: "+terzo.getUtente());
                 imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaEntrate.png"));
                 labelIconaTerzo.setIcon(imageTerzo);
+
+                labelTipoTerzo.setForeground(Color.decode("#1c2697"));
+                labelCostoTerzo.setForeground(Color.decode("#1c2697"));
+                labelGiornoTerzo.setForeground(Color.decode("#1c2697"));
+                labelCategoriaTerzo.setForeground(Color.decode("#1c2697"));
+                labelUtenteTerzo.setForeground(Color.decode("#1c2697"));
             }else if(terzo.getTipo().toLowerCase().equals("uscita")){
     
                 labelTipoTerzo.setText("Tipo: Entrata");
@@ -278,6 +323,12 @@ public class HomeFrame extends JFrame{
                 labelUtenteTerzo.setText("A: "+terzo.getUtente());
                 imageTerzo = new ImageIcon(getClass().getResource("/Immagini/IconaUscite.png"));
                 labelIconaTerzo.setIcon(imageTerzo);
+
+                labelTipoTerzo.setForeground(Color.decode("#be1327"));
+                labelCostoTerzo.setForeground(Color.decode("#be1327"));
+                labelGiornoTerzo.setForeground(Color.decode("#be1327"));
+                labelCategoriaTerzo.setForeground(Color.decode("#be1327"));
+                labelUtenteTerzo.setForeground(Color.decode("#be1327"));
             }
         }
 
@@ -359,11 +410,12 @@ public class HomeFrame extends JFrame{
         panelTerzo.add(labelIconaTerzo);
         panelTerzo.add(panelInternoTerzo);
 
-        TitledBorder bordoMovimenti = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2), "Ultimi movimenti");
+        RoundedBorder bordoMovimenti = new RoundedBorder(2, 20, 20, Color.decode("#1c2697"));
+        TitledBorder titoloMovimenti = new TitledBorder(bordoMovimenti, "Ultimi movimenti");
+        titoloMovimenti.setTitleColor(Color.decode("#1c2697"));
+        titoloMovimenti.setTitleFont(new Font("Arial", Font.BOLD, 20));
 
-        bordoMovimenti.setTitleFont(fontRadar);
-
-        panelMovimenti.setBorder(bordoMovimenti);
+        panelMovimenti.setBorder(titoloMovimenti);
 
         panelMovimenti.setLayout(new BorderLayout());
 
@@ -515,8 +567,8 @@ public class HomeFrame extends JFrame{
                     buttonTema.setForeground(Color.WHITE);
                     panelCentrale.setBackground(Color.decode("#336699"));
                     panelSoldi.setBackground(Color.decode("#336699"));
-                    bordoDisponibilita.setTitleColor(Color.WHITE);
-                    bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    //bordoDisponibilita.setTitleColor(Color.WHITE);
+                    //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     labelSoldi.setForeground(Color.WHITE);
                     URL urlAccount = getClass().getResource("/Immagini/IconaAccountBianca.png");
                     Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
@@ -524,16 +576,16 @@ public class HomeFrame extends JFrame{
                     labelScrittaSuperiore.setForeground(Color.WHITE);
 
                     panelRadar.setBackground(Color.decode("#336699"));
-                    bordoRadar.setTitleColor(Color.WHITE);
-                    bordoRadar.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-                    bordoEntrate.setTitleColor(Color.WHITE);
-                    bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    //bordoRadar.setTitleColor(Color.WHITE);
+                    //bordoRadar.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    //bordoEntrate.setTitleColor(Color.WHITE);
+                    //bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     URL urlFreccia = getClass().getResource("/Immagini/IconaFrecciaAzzurrina.png");
                     Image imageTmpFreccia = new ImageIcon(urlFreccia).getImage();
                     imageEntrate.setImage(imageTmpFreccia);
                     
-                    bordoUscite.setTitleColor(Color.WHITE);
-                    bordoUscite.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    //bordoUscite.setTitleColor(Color.WHITE);
+                    //bordoUscite.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     panelEntrate.setBackground(Color.decode("#336699"));
                     panelUscite.setBackground(Color.decode("#336699"));
 
@@ -571,8 +623,8 @@ public class HomeFrame extends JFrame{
                         labelIconaTerzo.setIcon(new ImageIcon(imageTmpTerzo));
                     }
                     */
-                    bordoMovimenti.setTitleColor(Color.WHITE);
-                    bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    //bordoMovimenti.setTitleColor(Color.WHITE);
+                    //bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
                     ImageIcon imageHomeBianca = new ImageIcon(getClass().getResource("/Immagini/IconaHomeBiancaPiena.png"));
                     buttonHome.setIcon(imageHomeBianca);
@@ -594,8 +646,8 @@ public class HomeFrame extends JFrame{
                     buttonTema.setForeground(Color.BLACK);
                     panelCentrale.setBackground(Color.decode("#CCFFFF"));
                     panelSoldi.setBackground(Color.decode("#CCFFFF"));
-                    bordoDisponibilita.setTitleColor(Color.BLACK);
-                    bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    //bordoDisponibilita.setTitleColor(Color.BLACK);
+                    //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     labelSoldi.setForeground(Color.BLACK);
                     URL urlAccount = getClass().getResource("/Immagini/IconaAccount.png");
                     Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
@@ -603,16 +655,16 @@ public class HomeFrame extends JFrame{
                     labelScrittaSuperiore.setForeground(Color.BLACK);
 
                     panelRadar.setBackground(Color.decode("#CCFFFF"));
-                    bordoRadar.setTitleColor(Color.BLACK);
-                    bordoRadar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-                    bordoEntrate.setTitleColor(Color.BLACK);
-                    bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    //bordoRadar.setTitleColor(Color.BLACK);
+                    //bordoRadar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    //bordoEntrate.setTitleColor(Color.BLACK);
+                    //bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     URL urlFreccia = getClass().getResource("/Immagini/IconaEntrate.png");
                     Image imageTmpFreccia = new ImageIcon(urlFreccia).getImage();
                     imageEntrate.setImage(imageTmpFreccia);
 
-                    bordoUscite.setTitleColor(Color.BLACK);
-                    bordoUscite.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    //bordoUscite.setTitleColor(Color.BLACK);
+                    //bordoUscite.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     panelEntrate.setBackground(Color.decode("#CCFFFF"));
                     panelUscite.setBackground(Color.decode("#CCFFFF"));
 
@@ -650,8 +702,8 @@ public class HomeFrame extends JFrame{
                         labelIconaTerzo.setIcon(new ImageIcon(imageTmpTerzo));
                     }
                     */
-                    bordoMovimenti.setTitleColor(Color.BLACK);
-                    bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+                    //bordoMovimenti.setTitleColor(Color.BLACK);
+                    //bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
                     buttonHome.setIcon(imageHome);
                     buttonMovimenti.setIcon(imageMovimenti);
