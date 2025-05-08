@@ -159,7 +159,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new HomeFrame();
+            //new HomeFrame();
          }
       });
 

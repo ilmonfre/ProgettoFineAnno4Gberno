@@ -159,12 +159,12 @@ public class FrameRegistrazione3 {
                 String password = new String(p);
 
                 if(!password.matches(".*[A-Z].*")){
-                    JOptionPane.showMessageDialog(frame, "Devi inserire almeno un carattere MAIUSCOLO!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Devi inserire almeno un carattere MAIUSCOLO nella password!", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 if(!password.matches(".*[0-9].*")){
-                    JOptionPane.showMessageDialog(frame, "Devi inserire almeno un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, "Devi inserire almeno un numero nella password!", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -174,7 +174,6 @@ public class FrameRegistrazione3 {
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
-                    writer.write("\n");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

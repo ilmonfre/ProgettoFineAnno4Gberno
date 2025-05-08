@@ -131,7 +131,6 @@ public class FrameAccedi {
             
             String csv = "save.csv";
 
-            Utente utente = null;
             try (BufferedReader reader = new BufferedReader(new FileReader(csv))) {
                String line;
                boolean found = false;
@@ -142,20 +141,16 @@ public class FrameAccedi {
                   if (fields.length > 9 &&  fields[7].trim().equals(email.trim()) && fields[8].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
                      found = true;
 
-                     utente = new Utente(fields[7], fields[8]);
+                     FrameAccount.utente = new Utente(fields);
                      
                      break;
                   }  
                  
                }
-               Utente ver = new Utente(null, null);
-
-               ver.setEmail(utente.getEmail());
-               ver.setPass(utente.getPass());
 
                if(found){
                   frame.dispose();
-                  new HomeFrame(ver);
+                  new HomeFrame();
                   
                }else{
                   JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
