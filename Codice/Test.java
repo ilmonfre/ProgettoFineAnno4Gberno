@@ -5,7 +5,7 @@ public class Test {
 
     public static void main(String[] args) {
         try {
-            new FrameRegistrazione3(frame);
+            new FrameRegistrazione2(frame);
         } catch (Exception e) {
             e.printStackTrace();
         }

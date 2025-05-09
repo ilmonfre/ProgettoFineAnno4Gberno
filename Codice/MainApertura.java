@@ -1,12 +1,13 @@
 public class MainApertura {
     
     public static void main(String[] args) {
-        
 <<<<<<< HEAD
-        new MovimentiFrame();
-=======
-        // new Apertura();
+        
         new HomeFrame();
->>>>>>> 51c09935aad10ca56150496db5da854a08b13223
+        
+=======
+>>>>>>> caec64e5fbf22b7f1d47add90555558a9d7e5853
+
+        new BudgetFrame();
     }
 }

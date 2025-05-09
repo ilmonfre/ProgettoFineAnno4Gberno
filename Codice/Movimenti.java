@@ -13,7 +13,9 @@ public class Movimenti {
     private double totaleUscite;
     private double soldiConto;
 
-    public Movimenti(double totaleEntrate, double totaleUscite, double soldiConto){
+    Budget budget;
+
+    public Movimenti(double totaleEntrate, double totaleUscite, double soldiConto, Budget budget){
 
         movimentiList = new ArrayList<>();
         entrateList = new ArrayList<>();
@@ -21,6 +23,7 @@ public class Movimenti {
         this.totaleEntrate=totaleEntrate;
         this.totaleUscite=totaleUscite;
         this.soldiConto=soldiConto;
+        this.budget=budget;
     }
 
     public ArrayList<Movimento> getMovimentiList() {
@@ -72,9 +75,9 @@ public class Movimenti {
         return true;
     }
 
-    public boolean nuovaUscite(double costo, LocalDate data, String tipo, String categoria, String utente){
+    public boolean nuovaUscita(double costo, LocalDate data, String tipo, String categoria, String utente){
 
-        if(costo<=0 || tipo==null || categoria==null || data==null || utente==null){
+        if(costo<=0 || tipo==null || categoria==null || data==null || utente==null && budget.controllaSettimanale(costo)==true && budget.controllaMensile(costo)==true && budget.controllaAnnuale(costo)==true){
 
             return false;
         }
@@ -85,6 +88,9 @@ public class Movimenti {
         setSoldiConto(getSoldiConto()-costo);
         fileMovimenti(nuovo);
         fileUscite(nuovo);
+        budget.setCorrenteSett(budget.getCorrenteSett()+costo);
+        budget.setCorrenteMen(budget.getCorrenteMen()+costo);
+        budget.setCorrenteAnn(budget.getCorrenteAnn()+costo);
 
         return true;
     }
@@ -181,7 +187,6 @@ public class Movimenti {
 
     public Movimento calcoloPrimo(){
 
-        movimentiList.add(new Movimento(100, null, "entrata", "Tecnologia", "Apple"));
         if(movimentiList.size()<1){
 
             return null;

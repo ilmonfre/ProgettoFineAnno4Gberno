@@ -180,7 +180,7 @@ public class FrameRegistrazione2 {
             public void actionPerformed(ActionEvent e) {
                 String m = "";
                 
-                if(txtData.getText().isEmpty() || txtData.equals("gg/mm/yyyy") || txtLuogo.getText().isEmpty() || txtIndirizzo.getText().isEmpty() || txtIndirizzo.equals("ad es.: via Giuseppe Verdi 20")){
+                if(txtData.getText().isEmpty() || txtData.equals("gg/mm/yyyy") || txtLuogo.getText().isEmpty() || txtIndirizzo.getText().isEmpty() || txtIndirizzo.equals("ad es.: via Giuseppe Verdi 20") || txtCitta.getText().isEmpty()){
                     JOptionPane.showMessageDialog(frame, "Tutti i campi sono obbligatori!", "Errore", JOptionPane.ERROR_MESSAGE );
                     return;
                 }
@@ -196,6 +196,7 @@ public class FrameRegistrazione2 {
                 m += txtData.getText() + " ; ";
                 m += txtLuogo.getText() + " ; ";
                 m += txtIndirizzo.getText() + " ; ";
+                m += txtCitta.getText() + " ; ";
                 
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){

@@ -17,7 +17,6 @@ public class MovimentiFrame extends JFrame{
     JPopupMenu menuFiltro;
     JPanel panelSlider;
     JLabel labelSlider, labelValore, labelVuoto;
-
     JButton buttonTema;
 
     JPanel panelRisultati;
@@ -29,6 +28,7 @@ public class MovimentiFrame extends JFrame{
     ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna, imageHome;
 
     Movimenti movimenti;
+    Budget budget;
 
     public MovimentiFrame(){
 
@@ -68,7 +68,7 @@ public class MovimentiFrame extends JFrame{
         panelCercaInf = new JPanel();
         panelCercaInf.setBackground(Color.decode("#CCFFFF"));
 
-        movimenti = new Movimenti(0, 0, 0);
+        movimenti = new Movimenti(0, 0, 0, budget);
 
         textCerca = new RoundedTextField(20, 30);
         textCerca.setBackground(Color.decode("#D3D3D3"));
@@ -94,8 +94,8 @@ public class MovimentiFrame extends JFrame{
         });
         textCerca.setSize(new Dimension(200, 50));
 
-        Color colorButton = Color.decode("#27408B");
-        Color colorHover = Color.decode("#4682B4");
+        Color colorButton = Color.decode("#1c2697");
+        Color colorHover = Color.decode("#cbf4f4");
         ImageIcon iconFiltra = new ImageIcon(getClass().getResource("/Immagini/IconaFiltraBianca.png"));
         buttonFiltra = new RoundedBorderButton("", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
         buttonFiltra.setIcon(iconFiltra);
@@ -145,7 +145,10 @@ public class MovimentiFrame extends JFrame{
 
         menuFiltro.add(panelSlider);
 
-        buttonFiltra.addActionListener(e -> {menuFiltro.show(buttonFiltra, 0, buttonFiltra.getHeight());});
+        buttonFiltra.addActionListener(e -> {
+
+            menuFiltro.show(buttonFiltra, 0, buttonFiltra.getHeight());
+        });
 
         panelCerca.setLayout(new GridLayout(2, 1));
 
@@ -317,7 +320,7 @@ public class MovimentiFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new HomeFrame();
+                //new HomeFrame();
             }
         });
 
@@ -337,7 +340,7 @@ public class MovimentiFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new RisparmiFrame();
+                new FrameRisparmi();
             }
         });
 
@@ -399,7 +402,7 @@ public class MovimentiFrame extends JFrame{
         panelBar.add(buttonBudget);
 
         panelBar.setPreferredSize(new Dimension(0, 60));
-        
+
         setLayout(new BorderLayout());
 
         add(panelSuperiore, BorderLayout.NORTH);
@@ -409,5 +412,21 @@ public class MovimentiFrame extends JFrame{
         setSize(1000, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+        buttonTema.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                if(buttonTema.getIcon().equals(imageLuna)){
+
+                    buttonTema.setIcon(imageSole);
+
+                }else{
+
+                    buttonTema.setIcon(imageLuna);
+                }
+            }
+        });
     }
 }
