@@ -10,7 +10,7 @@ public class FrameAccount {
     JLabel topLabel;
 
     JPanel panel1;
-    JLabel lblTitolare, lblCodFis, lblNtel, lblDataNascita, lblLuogoNascita, lblIndirizzo, lblCitta;
+    JLabel lblNomeTitolare, lblCognomeTitolare, lblCodFis, lblNtel, lblDataNascita, lblLuogoNascita, lblIndirizzo, lblCitta, lblEmail, lblPassword;
 
     JButton btn;
 
@@ -40,16 +40,18 @@ public class FrameAccount {
 
         frame.add(topPanel, BorderLayout.NORTH);
 
-
         // mid panel
         midPanel = new JPanel();
-        fontMid = new Font("Segoe UI", Font.PLAIN, 14);
+        fontMid = new Font("Segoe UI", Font.BOLD, 14);
         midPanel.setBorder(BorderFactory.createEmptyBorder(30, 20, 50, 20));
 
-        panel1 = new JPanel(new GridLayout(7, 1, 10, 20));
+        panel1 = new JPanel(new GridLayout(9, 1, 10, 20));
 
-        lblTitolare = new JLabel("Titolare conto: " + utente.getNomeCognome());
-        lblTitolare.setFont(fontMid);
+        lblNomeTitolare = new JLabel("Nome: " + utente.getNome());
+        lblNomeTitolare.setFont(fontMid);
+
+        lblCognomeTitolare = new JLabel("Cognome: " + utente.getCognome());
+        lblCognomeTitolare.setFont(fontMid);
 
         lblCodFis = new JLabel("Codice fiscale: " + utente.getCodFis());
         lblCodFis.setFont(fontMid);
@@ -68,14 +70,23 @@ public class FrameAccount {
 
         lblCitta = new JLabel("Citta di residenza: " + utente.getCitta());
         lblCitta.setFont(fontMid);
+
+        lblEmail = new JLabel("Email: " + utente.getEmail());
+        lblEmail.setFont(fontMid);
+
+        lblPassword = new JLabel("Password: " + utente.getPassword());
+        lblPassword.setFont(fontMid);
         
-        panel1.add(lblTitolare);
+        panel1.add(lblNomeTitolare);
+        panel1.add(lblCognomeTitolare);
         panel1.add(lblCodFis);
         panel1.add(lblNtel);
         panel1.add(lblDataNascita);
         panel1.add(lblLuogoNascita);
         panel1.add(lblIndirizzo);
         panel1.add(lblCitta);
+        panel1.add(lblEmail);
+        panel1.add(lblPassword);
 
         midPanel.add(panel1);
 
@@ -101,8 +112,10 @@ public class FrameAccount {
         
         });
 
+        //frame.add(btn);
 
-        frame.pack();
+
+        frame.setSize(550, 500);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
