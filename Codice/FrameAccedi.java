@@ -71,13 +71,13 @@ public class FrameAccedi {
       btnPass.setBackground(Color.LIGHT_GRAY);
       final boolean[] isPasswordVisible = {false};
       btnPass.addActionListener(e -> {
-          if (isPasswordVisible[0]) {
-              pass.setEchoChar('*'); // Nasconde la password
-              isPasswordVisible[0] = false;
-          } else {
-              pass.setEchoChar('\u0000'); // Mostra la password
-              isPasswordVisible[0] = true;
-          }
+         if (isPasswordVisible[0]) {
+            pass.setEchoChar('*'); // Nasconde la password
+            isPasswordVisible[0] = false;
+         } else {
+            pass.setEchoChar('\u0000'); // Mostra la password
+            isPasswordVisible[0] = true;
+         }
       });
       
       panel1.add(lblEmail);
@@ -138,7 +138,7 @@ public class FrameAccedi {
                while ((line = reader.readLine()) != null) {
                   String[] fields = line.split(";");
                   
-                  if (fields.length > 9 &&  fields[7].trim().equals(email.trim()) && fields[8].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
+                  if (fields.length > 9 &&  fields[8].trim().equals(email.trim()) && fields[9].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
                      found = true;
 
                      FrameAccount.utente = new Utente(fields);

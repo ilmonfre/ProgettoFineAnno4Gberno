@@ -16,8 +16,8 @@ public class FrameRisparmi {
       int y = (screenSize.height - frameRisparmi.getHeight()) / 2;
       frameRisparmi.setLocation(x, y);
 
-      ImageIcon imagePiu = new ImageIcon(getClass().getResource("/Immagini/Icona+Nera.png"));
-      ImageIcon imagePiuBianca = new ImageIcon(getClass().getResource("/Immagini/Icona+Bianca.png"));
+      ImageIcon imagePiu = new ImageIcon(getClass().getResource("/Immagini/Icona+Scura.png"));
+      ImageIcon imagePiuBianca = new ImageIcon(getClass().getResource("/Immagini/Icona+Chiara.png"));
       ImageIcon imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
       ImageIcon imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
 
@@ -120,17 +120,17 @@ public class FrameRisparmi {
       buttonBudget = new JButton();
       buttonCambioValuta = new JButton();
 
-      imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeNera.png"));
+      imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeScura.png"));
       buttonHome.setIcon(imageHome);
-      imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimenti.png"));
+      imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiScura.png"));
       buttonMovimenti.setIcon(imageMovimenti);
-      imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiNera.png"));
+      imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiScura.png"));
       buttonRisparmi.setIcon(imageRisparmi);
-      imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamenti.png"));
+      imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiScura.png"));
       buttonPagamenti.setIcon(imagePagamenti);
-      imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudget.png"));
+      imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetScura.png"));
       buttonBudget.setIcon(imageBudget);
-      imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValuta.png"));
+      imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaScura.png"));
       buttonCambioValuta.setIcon(imageCambioValuta);
 
       buttonMovimenti.addActionListener(new ActionListener(){

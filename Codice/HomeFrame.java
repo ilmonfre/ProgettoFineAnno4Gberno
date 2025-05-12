@@ -8,14 +8,11 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
-<<<<<<< HEAD
-    Movimenti movimenti = new Movimenti(0, 0, 0.0);
-=======
     Budget budget;
     Movimenti movimenti = new Movimenti(0, 0, 0, budget);
     private String email;
     private String pass;
->>>>>>> caec64e5fbf22b7f1d47add90555558a9d7e5853
+
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
@@ -42,7 +39,7 @@ public class HomeFrame extends JFrame{
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();
 
-        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccount.png"));
+        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccountChiara.png"));
         imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
         imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
 
@@ -448,17 +445,17 @@ public class HomeFrame extends JFrame{
         buttonBudget = new JButton();
         buttonCambioValuta = new JButton();
 
-        imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeNeraPiena.png"));
+        imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeScuraPiena.png"));
         buttonHome.setIcon(imageHome);
-        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimenti.png"));
+        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiChiara.png"));
         buttonMovimenti.setIcon(imageMovimenti);
-        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmi.png"));
+        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiChiara.png"));
         buttonRisparmi.setIcon(imageRisparmi);
-        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamenti.png"));
+        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiChiara.png"));
         buttonPagamenti.setIcon(imagePagamenti);
-        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudget.png"));
+        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetChiara.png"));
         buttonBudget.setIcon(imageBudget);
-        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValuta.png"));
+        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaChiara.png"));
         buttonCambioValuta.setIcon(imageCambioValuta);
 
         buttonMovimenti.addActionListener(new ActionListener(){
@@ -570,7 +567,7 @@ public class HomeFrame extends JFrame{
                     //bordoDisponibilita.setTitleColor(Color.WHITE);
                     //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     labelSoldi.setForeground(Color.WHITE);
-                    URL urlAccount = getClass().getResource("/Immagini/IconaAccountBianca.png");
+                    URL urlAccount = getClass().getResource("/Immagini/IconaAccountChiara.png");
                     Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
                     imageAccount.setImage(imageTmpAccount);
                     labelScrittaSuperiore.setForeground(Color.WHITE);
@@ -626,17 +623,17 @@ public class HomeFrame extends JFrame{
                     //bordoMovimenti.setTitleColor(Color.WHITE);
                     //bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
-                    ImageIcon imageHomeBianca = new ImageIcon(getClass().getResource("/Immagini/IconaHomeBiancaPiena.png"));
+                    ImageIcon imageHomeBianca = new ImageIcon(getClass().getResource("/Immagini/IconaHomeChiaraPiena.png"));
                     buttonHome.setIcon(imageHomeBianca);
-                    ImageIcon imageMovimentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiBianca.png"));
+                    ImageIcon imageMovimentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiChiara.png"));
                     buttonMovimenti.setIcon(imageMovimentiBianca);
-                    ImageIcon imagePagamentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiBianca.png"));
+                    ImageIcon imagePagamentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiChiara.png"));
                     buttonPagamenti.setIcon(imagePagamentiBianca);
-                    ImageIcon imageRisparmiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiBianca.png"));
+                    ImageIcon imageRisparmiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiChiara.png"));
                     buttonRisparmi.setIcon(imageRisparmiBianca);
-                    ImageIcon imageCambioValutaBianca = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaBianca.png"));
+                    ImageIcon imageCambioValutaBianca = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaChiara.png"));
                     buttonCambioValuta.setIcon(imageCambioValutaBianca);
-                    ImageIcon imageBudgetBianca = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetBianca.png"));
+                    ImageIcon imageBudgetBianca = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetChiara.png"));
                     buttonBudget.setIcon(imageBudgetBianca);
                 }else{
 
@@ -649,7 +646,7 @@ public class HomeFrame extends JFrame{
                     //bordoDisponibilita.setTitleColor(Color.BLACK);
                     //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     labelSoldi.setForeground(Color.BLACK);
-                    URL urlAccount = getClass().getResource("/Immagini/IconaAccount.png");
+                    URL urlAccount = getClass().getResource("/Immagini/IconaAccountScura.png");
                     Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
                     imageAccount.setImage(imageTmpAccount);
                     labelScrittaSuperiore.setForeground(Color.BLACK);

@@ -405,8 +405,8 @@ public class BudgetFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                Utente utente = new Utente("nikmonfre@gmail.com", "Ciao2");
-                new HomeFrame(utente);
+                //Utente utente = new Utente();
+                new HomeFrame();
             }
         });
 
