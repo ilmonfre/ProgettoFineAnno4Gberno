@@ -32,7 +32,7 @@ public class HomeFrame extends JFrame{
         panelSuperiore = new JPanel();
 
         panelSuperiore.setLayout(new GridLayout(1, 3));
-        panelSuperiore.setBackground(Color.decode("#CCFFFF"));
+        panelSuperiore.setBackground(Color.decode("#cbf4f4"));
 
         imageAccount = new ImageIcon();
         imageSole = new ImageIcon();
@@ -87,10 +87,10 @@ public class HomeFrame extends JFrame{
 
 
         panelCentrale = new JPanel();
-        panelCentrale.setBackground(Color.decode("#CCFFFF"));
+        panelCentrale.setBackground(Color.decode("#cbf4f4"));
         panelCentrale.setLayout(new GridLayout(3, 2));
         panelSoldi = new JPanel();
-        panelSoldi.setBackground(Color.decode("#CCFFFF"));
+        panelSoldi.setBackground(Color.decode("#cbf4f4"));
 
         RoundedBorder bordoDisponibilita = new RoundedBorder(2, 20, 20, Color.decode("#1c2697"));
         TitledBorder titoloDisponibilita = new TitledBorder(bordoDisponibilita, "Disponibilità");
@@ -107,11 +107,11 @@ public class HomeFrame extends JFrame{
         panelSoldi.add(labelSoldi);
 
         panelRadar = new JPanel();
-        panelRadar.setBackground(Color.decode("#CCFFFF"));
+        panelRadar.setBackground(Color.decode("#cbf4f4"));
         panelEntrate = new JPanel();
-        panelEntrate.setBackground(Color.decode("#CCFFFF"));
+        panelEntrate.setBackground(Color.decode("#cbf4f4"));
         panelUscite = new JPanel();
-        panelUscite.setBackground(Color.decode("#CCFFFF"));
+        panelUscite.setBackground(Color.decode("#cbf4f4"));
 
         RoundedBorder bordoRadar = new RoundedBorder(2, 20, 20, Color.decode("#1c2697"));
         TitledBorder titoloRadar = new TitledBorder(bordoRadar, "Radar mensile");
@@ -176,7 +176,7 @@ public class HomeFrame extends JFrame{
         panelRadar.add(panelUscite);
 
         panelMovimenti = new JPanel();
-        panelMovimenti.setBackground(Color.decode("#CCFFFF"));
+        panelMovimenti.setBackground(Color.decode("#cbf4f4"));
 
         panelPrimo = new JPanel();
         panelSecondo = new JPanel();
@@ -329,13 +329,13 @@ public class HomeFrame extends JFrame{
         }
 
         panelPrimo = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
-        panelPrimo.setBackground(Color.decode("#CCFFFF"));
+        panelPrimo.setBackground(Color.decode("#cbf4f4"));
 
         panelInternoPrimo = new JPanel(new GridLayout(2, 1, 5, 5)); 
-        panelInternoPrimo.setBackground(Color.decode("#CCFFFF"));
+        panelInternoPrimo.setBackground(Color.decode("#cbf4f4"));
 
         panelSpecPrimo = new JPanel(new GridLayout(1, 4, 5, 5)); 
-        panelSpecPrimo.setBackground(Color.decode("#CCFFFF"));
+        panelSpecPrimo.setBackground(Color.decode("#cbf4f4"));
 
         labelCostoPrimo.setFont(new Font("Arial", Font.BOLD, 20));
         labelTipoPrimo.setFont(new Font("Arial", Font.BOLD, 16));
@@ -355,13 +355,13 @@ public class HomeFrame extends JFrame{
         panelPrimo.add(panelInternoPrimo);
         
         panelSecondo = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
-        panelSecondo.setBackground(Color.decode("#CCFFFF"));
+        panelSecondo.setBackground(Color.decode("#cbf4f4"));
 
         panelInternoSecondo = new JPanel(new GridLayout(2, 1, 5, 5)); 
-        panelInternoSecondo.setBackground(Color.decode("#CCFFFF"));
+        panelInternoSecondo.setBackground(Color.decode("#cbf4f4"));
 
         panelSpecSecondo = new JPanel(new GridLayout(1, 4, 5, 5)); 
-        panelSpecSecondo.setBackground(Color.decode("#CCFFFF"));
+        panelSpecSecondo.setBackground(Color.decode("#cbf4f4"));
 
         labelCostoSecondo.setFont(new Font("Arial", Font.BOLD, 20));
         labelTipoSecondo.setFont(new Font("Arial", Font.BOLD, 16));
@@ -381,13 +381,13 @@ public class HomeFrame extends JFrame{
         panelSecondo.add(panelInternoSecondo);
 
         panelTerzo = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10)); 
-        panelTerzo.setBackground(Color.decode("#CCFFFF"));
+        panelTerzo.setBackground(Color.decode("#cbf4f4"));
 
         panelInternoTerzo = new JPanel(new GridLayout(2, 1, 5, 5)); 
-        panelInternoTerzo.setBackground(Color.decode("#CCFFFF"));
+        panelInternoTerzo.setBackground(Color.decode("#cbf4f4"));
 
         panelSpecTerzo = new JPanel(new GridLayout(1, 4, 5, 5)); 
-        panelSpecTerzo.setBackground(Color.decode("#CCFFFF"));
+        panelSpecTerzo.setBackground(Color.decode("#cbf4f4"));
 
         labelCostoTerzo.setFont(new Font("Arial", Font.BOLD, 20));
         labelTipoTerzo.setFont(new Font("Arial", Font.BOLD, 16));
@@ -435,7 +435,7 @@ public class HomeFrame extends JFrame{
 
         panelBar = new JPanel();
         panelBar.setLayout(new GridLayout(1, 6));
-        panelBar.setBackground(Color.decode("#CCFFFF"));
+        panelBar.setBackground(Color.decode("#cbf4f4"));
 
         buttonHome = new JButton();
         buttonMovimenti = new JButton();
@@ -446,15 +446,15 @@ public class HomeFrame extends JFrame{
 
         imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeScuraPiena.png"));
         buttonHome.setIcon(imageHome);
-        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiChiara.png"));
+        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiScura.png"));
         buttonMovimenti.setIcon(imageMovimenti);
-        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiChiara.png"));
+        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiScura.png"));
         buttonRisparmi.setIcon(imageRisparmi);
-        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiChiara.png"));
+        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiScura.png"));
         buttonPagamenti.setIcon(imagePagamenti);
-        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetChiara.png"));
+        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetScura.png"));
         buttonBudget.setIcon(imageBudget);
-        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaChiara.png"));
+        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaScura.png"));
         buttonCambioValuta.setIcon(imageCambioValuta);
 
         buttonMovimenti.addActionListener(new ActionListener(){
@@ -558,11 +558,11 @@ public class HomeFrame extends JFrame{
                 if(buttonTema.getIcon().equals(imageLuna)){
 
                     buttonTema.setIcon(imageSole);
-                    panelSuperiore.setBackground(Color.decode("#336699"));
+                    panelSuperiore.setBackground(Color.decode("#1c2697"));
                     buttonAccount.setForeground(Color.WHITE);
                     buttonTema.setForeground(Color.WHITE);
-                    panelCentrale.setBackground(Color.decode("#336699"));
-                    panelSoldi.setBackground(Color.decode("#336699"));
+                    panelCentrale.setBackground(Color.decode("#1c2697"));
+                    panelSoldi.setBackground(Color.decode("#1c2697"));
                     //bordoDisponibilita.setTitleColor(Color.WHITE);
                     //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     labelSoldi.setForeground(Color.WHITE);
@@ -571,7 +571,7 @@ public class HomeFrame extends JFrame{
                     imageAccount.setImage(imageTmpAccount);
                     labelScrittaSuperiore.setForeground(Color.WHITE);
 
-                    panelRadar.setBackground(Color.decode("#336699"));
+                    panelRadar.setBackground(Color.decode("#1c2697"));
                     //bordoRadar.setTitleColor(Color.WHITE);
                     //bordoRadar.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
                     //bordoEntrate.setTitleColor(Color.WHITE);
@@ -582,17 +582,17 @@ public class HomeFrame extends JFrame{
                     
                     //bordoUscite.setTitleColor(Color.WHITE);
                     //bordoUscite.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-                    panelEntrate.setBackground(Color.decode("#336699"));
-                    panelUscite.setBackground(Color.decode("#336699"));
+                    panelEntrate.setBackground(Color.decode("#1c2697"));
+                    panelUscite.setBackground(Color.decode("#1c2697"));
 
-                    panelMovimenti.setBackground(Color.decode("#336699"));
-                    panelPrimo.setBackground(Color.decode("#336699"));
-                    panelInternoPrimo.setBackground(Color.decode("#336699"));
-                    panelSecondo.setBackground(Color.decode("#336699"));
-                    panelInternoSecondo.setBackground(Color.decode("#336699"));
-                    panelTerzo.setBackground(Color.decode("#336699"));
-                    panelInternoTerzo.setBackground(Color.decode("#336699"));
-                    panelBar.setBackground(Color.decode("#336699"));
+                    panelMovimenti.setBackground(Color.decode("#1c2697"));
+                    panelPrimo.setBackground(Color.decode("#1c2697"));
+                    panelInternoPrimo.setBackground(Color.decode("#1c2697"));
+                    panelSecondo.setBackground(Color.decode("#1c2697"));
+                    panelInternoSecondo.setBackground(Color.decode("#1c2697"));
+                    panelTerzo.setBackground(Color.decode("#1c2697"));
+                    panelInternoTerzo.setBackground(Color.decode("#1c2697"));
+                    panelBar.setBackground(Color.decode("#1c2697"));
                     labelTipoPrimo.setForeground(Color.WHITE);
                     labelCostoPrimo.setForeground(Color.WHITE);
                     labelGiornoPrimo.setForeground(Color.WHITE);
@@ -637,11 +637,11 @@ public class HomeFrame extends JFrame{
                 }else{
 
                     buttonTema.setIcon(imageLuna);
-                    panelSuperiore.setBackground(Color.decode("#CCFFFF"));
+                    panelSuperiore.setBackground(Color.decode("#cbf4f4"));
                     buttonAccount.setForeground(Color.BLACK);
                     buttonTema.setForeground(Color.BLACK);
-                    panelCentrale.setBackground(Color.decode("#CCFFFF"));
-                    panelSoldi.setBackground(Color.decode("#CCFFFF"));
+                    panelCentrale.setBackground(Color.decode("#cbf4f4"));
+                    panelSoldi.setBackground(Color.decode("#cbf4f4"));
                     //bordoDisponibilita.setTitleColor(Color.BLACK);
                     //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     labelSoldi.setForeground(Color.BLACK);
@@ -650,7 +650,7 @@ public class HomeFrame extends JFrame{
                     imageAccount.setImage(imageTmpAccount);
                     labelScrittaSuperiore.setForeground(Color.BLACK);
 
-                    panelRadar.setBackground(Color.decode("#CCFFFF"));
+                    panelRadar.setBackground(Color.decode("#cbf4f4"));
                     //bordoRadar.setTitleColor(Color.BLACK);
                     //bordoRadar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
                     //bordoEntrate.setTitleColor(Color.BLACK);
@@ -661,17 +661,17 @@ public class HomeFrame extends JFrame{
 
                     //bordoUscite.setTitleColor(Color.BLACK);
                     //bordoUscite.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-                    panelEntrate.setBackground(Color.decode("#CCFFFF"));
-                    panelUscite.setBackground(Color.decode("#CCFFFF"));
+                    panelEntrate.setBackground(Color.decode("#cbf4f4"));
+                    panelUscite.setBackground(Color.decode("#cbf4f4"));
 
-                    panelMovimenti.setBackground(Color.decode("#CCFFFF"));
-                    panelPrimo.setBackground(Color.decode("#CCFFFF"));
-                    panelInternoPrimo.setBackground(Color.decode("#CCFFFF"));
-                    panelSecondo.setBackground(Color.decode("#CCFFFF"));
-                    panelInternoSecondo.setBackground(Color.decode("#CCFFFF"));
-                    panelTerzo.setBackground(Color.decode("#CCFFFF"));
-                    panelInternoTerzo.setBackground(Color.decode("#CCFFFF"));
-                    panelBar.setBackground(Color.decode("#CCFFFF"));
+                    panelMovimenti.setBackground(Color.decode("#cbf4f4"));
+                    panelPrimo.setBackground(Color.decode("#cbf4f4"));
+                    panelInternoPrimo.setBackground(Color.decode("#cbf4f4"));
+                    panelSecondo.setBackground(Color.decode("#cbf4f4"));
+                    panelInternoSecondo.setBackground(Color.decode("#cbf4f4"));
+                    panelTerzo.setBackground(Color.decode("#cbf4f4"));
+                    panelInternoTerzo.setBackground(Color.decode("#cbf4f4"));
+                    panelBar.setBackground(Color.decode("#cbf4f4"));
                     labelTipoPrimo.setForeground(Color.BLACK);
                     labelCostoPrimo.setForeground(Color.BLACK);
                     labelGiornoPrimo.setForeground(Color.BLACK);
