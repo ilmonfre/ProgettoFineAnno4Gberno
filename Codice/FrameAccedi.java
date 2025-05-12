@@ -71,13 +71,13 @@ public class FrameAccedi {
       btnPass.setBackground(Color.LIGHT_GRAY);
       final boolean[] isPasswordVisible = {false};
       btnPass.addActionListener(e -> {
-          if (isPasswordVisible[0]) {
-              pass.setEchoChar('*'); // Nasconde la password
-              isPasswordVisible[0] = false;
-          } else {
-              pass.setEchoChar('\u0000'); // Mostra la password
-              isPasswordVisible[0] = true;
-          }
+         if (isPasswordVisible[0]) {
+            pass.setEchoChar('*'); // Nasconde la password
+            isPasswordVisible[0] = false;
+         } else {
+            pass.setEchoChar('\u0000'); // Mostra la password
+            isPasswordVisible[0] = true;
+         }
       });
       
       panel1.add(lblEmail);
@@ -125,7 +125,7 @@ public class FrameAccedi {
       // funzione del pulsante di accesso
       btn.addActionListener(new ActionListener() {
          @Override
-         public void actionPerformed(ActionEvent e) {
+         public void actionPerformed(ActionEvent e){
             String email = txtEmail.getText();
             String password = new String(pass.getPassword());
             
@@ -139,25 +139,25 @@ public class FrameAccedi {
                   String[] fields = line.split(";");
                   
                   if (fields.length > 14 &&  fields[8].trim().equals(email.trim()) && fields[9].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
+                 
                      found = true;
 
                      FrameAccount.utente = new Utente(fields);
                      
                      break;
-                  }  
+                  }
+                   
+                  if(found){
+                     frame.dispose();
+                     new HomeFrame();
+                  
+                  }else{
+                     JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+                  }
                  
                }
-
-               if(found){
-                  frame.dispose();
-                  new HomeFrame();
-                  
-               }else{
-                  JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
-               }
-            } catch (IOException e2) {
-               
-               e2.printStackTrace();
+            } catch(InterruptedException e1){
+               e1.printStackTrace();
             }
          }
       });
