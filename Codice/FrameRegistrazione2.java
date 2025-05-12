@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class FrameRegistrazione2 {
 
@@ -190,6 +192,25 @@ public class FrameRegistrazione2 {
 
                 if (!date.matches(strutturaData)) {
                     JOptionPane.showMessageDialog(frame, "Data di nascita non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                LocalDate data = LocalDate.parse(date, formatter);
+
+                LocalDate maggiorenne = LocalDate.now();
+                maggiorenne.format(formatter);
+                maggiorenne.minusYears(18);
+
+                if(!(data.isBefore(maggiorenne) || data.isEqual(maggiorenne))){
+                    JOptionPane.showMessageDialog(frame, "Data di nascita non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                String indirizzo = txtIndirizzo.getText().trim();
+                if(!indirizzo.matches(".*\\d.*")){
+                    JOptionPane.showMessageDialog(frame, "Inserire il numero civico!", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 

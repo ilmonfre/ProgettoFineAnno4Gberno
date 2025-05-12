@@ -124,20 +124,20 @@ public class FrameRegistrazione3 {
         frame.add(midPanel, BorderLayout.CENTER);
 
          // bottom panel
-         bottomPanel = new JPanel();
+        bottomPanel = new JPanel();
 
-         progressBar = new JProgressBar(0, 100);
-         progressBar.setPreferredSize(new Dimension(450, 15));
-         progressBar.setForeground(Color.decode("#5299D5"));
-         progressBar.setValue(100);
-         progressBar.setStringPainted(false);
+        progressBar = new JProgressBar(0, 100);
+        progressBar.setPreferredSize(new Dimension(450, 15));
+        progressBar.setForeground(Color.decode("#5299D5"));
+        progressBar.setValue(100);
+        progressBar.setStringPainted(false);
  
-         bottomPanel.add(progressBar);
+        bottomPanel.add(progressBar);
  
-         frame.add(bottomPanel, BorderLayout.SOUTH);
+        frame.add(bottomPanel, BorderLayout.SOUTH);
  
 
-         btn.addActionListener(new ActionListener() {
+        btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String m = "";

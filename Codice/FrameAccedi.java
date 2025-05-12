@@ -141,11 +141,10 @@ public class FrameAccedi {
                   if (fields.length > 9 &&  fields[8].trim().equals(email.trim()) && fields[9].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
                      found = true;
 
-                     FrameAccount.utente = new Utente(fields);
+                     //FrameAccount.utente = new Utente(fields);
                      
                      break;
-                  }  
-                 
+                  }
                }
 
                if(found){
@@ -155,6 +154,7 @@ public class FrameAccedi {
                }else{
                   JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
                }
+               reader.close();
             } catch (IOException e2) {
                
                e2.printStackTrace();
