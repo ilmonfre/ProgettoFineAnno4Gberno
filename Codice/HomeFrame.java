@@ -12,10 +12,6 @@ public class HomeFrame extends JFrame{
     Movimenti movimenti = new Movimenti(0, 0, 0, budget);
     private String email;
     private String pass;
-<<<<<<< HEAD
-=======
-
->>>>>>> 501c1213c8cfeefd69c8768fffa51fb2d93402c3
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
@@ -42,11 +38,7 @@ public class HomeFrame extends JFrame{
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();
 
-<<<<<<< HEAD
         /*imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccount.png"));
-=======
-        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccountChiara.png"));
->>>>>>> 501c1213c8cfeefd69c8768fffa51fb2d93402c3
         imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
         imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
 */
@@ -82,7 +74,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new AccountFrame();
+                new FrameAccount();
             }
         });
 
@@ -727,7 +719,6 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed (ActionEvent e){
 
-                dispose();
                 new FrameAccount();
                 
 

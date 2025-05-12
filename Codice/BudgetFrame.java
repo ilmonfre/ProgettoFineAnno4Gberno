@@ -404,7 +404,6 @@ public class BudgetFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
                 dispose();
-                //Utente utente = new Utente();
                 new HomeFrame();
             }
         });

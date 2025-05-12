@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class FrameRegistrazione2 {
 
@@ -186,10 +189,75 @@ public class FrameRegistrazione2 {
                 }
 
                 String date = txtData.getText().trim();
-                String strutturaData = "^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$";
+                String strutturaData = "^[0-9]{2}/[0-9]{2}/[0-9]{4}$";
 
+                // Controllo formato data
                 if (!date.matches(strutturaData)) {
                     JOptionPane.showMessageDialog(frame, "Data di nascita non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                try {
+                    LocalDate data = LocalDate.parse(date, format);
+                    LocalDate maggiorenne = LocalDate.now().minusYears(18);
+
+                    if (data.isAfter(maggiorenne)) {
+                        JOptionPane.showMessageDialog(frame, "Data di nascita non valida!", "Errore", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                } catch (DateTimeParseException e1) {
+                    JOptionPane.showMessageDialog(frame, "Data di nascita non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // controllo del corretto inserimento dell'indirizzo
+                String indirizzo = txtIndirizzo.getText().trim().toUpperCase();
+
+                String[] arrayStrade = {"VIA", "VIALE", "CORSO", "PIAZZA"};
+                String[] arrayStrutturaNcivico = {"^[0-9]$", "^[0-9]{2}$", "^[0-9]{3}$", "^[0-9][A-Z]$", "^[0-9]{2}[A-Z]$", "^[0-9]{3}[A-Z]$"};
+
+                String strutturaIndirizzo = "Formato non valido";
+
+                String[] parole = indirizzo.split(" ");
+
+                if (parole.length < 3) {
+                    JOptionPane.showMessageDialog(frame, "L'indirizzo deve contenere almeno una strada, un nome e un numero civico.", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                boolean stradaValida = false;
+                for (String strada : arrayStrade) {
+                    if (parole[0].equals(strada)) {
+                        stradaValida = true;
+                        break;
+                    }
+                }
+
+                boolean numeroCivicoValido = false;
+                String numeroCivico = parole[parole.length - 1];
+
+                for (String regex : arrayStrutturaNcivico) {
+                    if (numeroCivico.matches(regex)) {
+                        numeroCivicoValido = true;
+                        break;
+                    }
+                }
+
+                boolean nomeViaPresente = false;
+                if (stradaValida && numeroCivicoValido && parole.length > 2) {
+                    nomeViaPresente = true;
+                }
+
+                if (stradaValida && numeroCivicoValido && nomeViaPresente) {
+                    String nomeVia = "";
+                    for (int i = 1; i < parole.length - 1; i++) {
+                        nomeVia += parole[i] + " ";
+                    }
+                    strutturaIndirizzo = parole[0] + nomeVia.trim() + numeroCivico;
+                } else {
+                    JOptionPane.showMessageDialog(frame, "L'indirizzo inserito non è valido", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 

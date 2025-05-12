@@ -1,12 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 
 public class FrameAccedi {
-
 
    JFrame frame;
    JPanel topPanel, midPanel;
@@ -125,42 +123,39 @@ public class FrameAccedi {
       // funzione del pulsante di accesso
       btn.addActionListener(new ActionListener() {
          @Override
-         public void actionPerformed(ActionEvent e){
+         public void actionPerformed(ActionEvent e) {
             String email = txtEmail.getText();
             String password = new String(pass.getPassword());
             
             String csv = "save.csv";
+            boolean found = false;
 
             try (BufferedReader reader = new BufferedReader(new FileReader(csv))) {
-               String line;
-               boolean found = false;
+                  String line;
 
-               while ((line = reader.readLine()) != null) {
-                  String[] fields = line.split(";");
-                  
-                  if (fields.length > 14 &&  fields[8].trim().equals(email.trim()) && fields[9].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
-                 
-                     found = true;
+                  while ((line = reader.readLine()) != null) {
+                     String[] fields = line.split(";");
 
-                     FrameAccount.utente = new Utente(fields);
-                     
-                     break;
+                     if (fields.length > 14 && fields[8].trim().equals(email.trim()) && fields[9].trim().equals(password.trim())) { 
+                        found = true;
+                        FrameAccount.utente = new Utente(fields);
+                        break;
+                     }
                   }
-                   
-                  if(found){
-                     frame.dispose();
-                     new HomeFrame();
-                  
-                  }else{
-                     JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
-                  }
-                 
-               }
-            } catch(InterruptedException e1){
-               e1.printStackTrace();
+            } catch (IOException e2) {
+                  e2.printStackTrace();
             }
+
+            if (found) {
+                  frame.dispose();
+                  new HomeFrame();
+            } else {
+                  JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+
          }
       });
+
 
       btnReg.addActionListener(new ActionListener() {
          @Override
@@ -174,7 +169,6 @@ public class FrameAccedi {
                }
          }
       });
-
 
 
       topPanel.setBackground(Color.decode("#f0ffff"));
