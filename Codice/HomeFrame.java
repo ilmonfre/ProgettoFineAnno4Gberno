@@ -8,14 +8,10 @@ import java.net.URL;
 
 public class HomeFrame extends JFrame{
 
-<<<<<<< HEAD
-    Movimenti movimenti = new Movimenti(0, 0, 0.0);
-=======
     Budget budget;
     Movimenti movimenti = new Movimenti(0, 0, 0, budget);
     private String email;
     private String pass;
->>>>>>> caec64e5fbf22b7f1d47add90555558a9d7e5853
 
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
@@ -42,10 +38,10 @@ public class HomeFrame extends JFrame{
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();
 
-        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccount.png"));
+        /*imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccount.png"));
         imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
         imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
-
+*/
         labelScrittaSuperiore = new JLabel("ZaphiraBank");
 
         try {

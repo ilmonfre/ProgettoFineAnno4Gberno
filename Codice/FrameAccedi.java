@@ -138,7 +138,7 @@ public class FrameAccedi {
                while ((line = reader.readLine()) != null) {
                   String[] fields = line.split(";");
                   
-                  if (fields.length > 9 &&  fields[7].trim().equals(email.trim()) && fields[8].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
+                  if (fields.length > 14 &&  fields[8].trim().equals(email.trim()) && fields[9].trim().equals(password.trim())) { // trim serve per escludere eventuali spazi bianchi
                      found = true;
 
                      FrameAccount.utente = new Utente(fields);
