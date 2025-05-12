@@ -39,8 +39,8 @@ public class FrameRisparmi {
 
       JLabel labelRisparmii = new JLabel("Risparmi");
 
-      JTextField textFieldRisparmi = new JTextField("0 €");
-      JTextField textFieldConto = new JTextField("1000 €"); // Valore iniziale del conto
+      RoundedTextField textFieldRisparmi = new RoundedTextField(20, 30);
+      RoundedTextField textFieldConto = new RoundedTextField(20, 30); // Valore iniziale del conto
 
       barraSuperiore.add(btnPlus, BorderLayout.WEST);
       barraSuperiore.add(btnImage, BorderLayout.EAST);
@@ -102,12 +102,9 @@ public class FrameRisparmi {
       JPanel panelBar;
       JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
       ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageHome;
+      ImageIcon imageAccountChiara, imageMovimentiChiara, imageRisparmiChiara, imagePagamentiChiara, imageBudgetChiara, imageCambioValutaChiara, imageHomeChiara;
 
-      imageMovimenti = new ImageIcon();
-      imageRisparmi = new ImageIcon();
-      imagePagamenti = new ImageIcon();
-      imageBudget = new ImageIcon();
-      imageCambioValuta = new ImageIcon();
+      
 
       panelBar = new JPanel();
       panelBar.setLayout(new GridLayout(1, 6));
@@ -119,12 +116,13 @@ public class FrameRisparmi {
       buttonRisparmi = new JButton();
       buttonBudget = new JButton();
       buttonCambioValuta = new JButton();
+      
 
       imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeScura.png"));
       buttonHome.setIcon(imageHome);
       imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiScura.png"));
       buttonMovimenti.setIcon(imageMovimenti);
-      imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiScura.png"));
+      imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiScuraPiena.png"));
       buttonRisparmi.setIcon(imageRisparmi);
       imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiScura.png"));
       buttonPagamenti.setIcon(imagePagamenti);
@@ -132,6 +130,13 @@ public class FrameRisparmi {
       buttonBudget.setIcon(imageBudget);
       imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaScura.png"));
       buttonCambioValuta.setIcon(imageCambioValuta);
+
+      imageHomeChiara = new ImageIcon(getClass().getResource("/Immagini/IconaHomeChiara.png"));
+      imageMovimentiChiara = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiChiara.png"));
+      imageRisparmiChiara = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiChiaraPiena.png"));
+      imagePagamentiChiara = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiChiara.png"));
+      imageBudgetChiara = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetChiara.png"));
+      imageCambioValutaChiara = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaChiara.png"));
 
       buttonMovimenti.addActionListener(new ActionListener(){
 
@@ -159,7 +164,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            //new HomeFrame();
+            new HomeFrame();
          }
       });
 
@@ -179,7 +184,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            //new BudgetFrame();
+            new BudgetFrame();
          }
       });
 
@@ -219,104 +224,13 @@ public class FrameRisparmi {
       panelBar.add(buttonRisparmi);
       panelBar.add(buttonCambioValuta);
       panelBar.add(buttonBudget);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      panelBar.setBackground(Color.WHITE);
 
       btnImage.addActionListener(e -> {
-         // Cambia l'icona del pulsante
+         // Chiaro
          if (btnImage.getIcon().equals(imageLuna)) {
          btnImage.setIcon(imageSole);
          btnPlus.setIcon(imagePiuBianca);
-
-         // Cambia lo sfondo e il colore del testo
          barraSuperiore.setBackground(Color.decode("#1c2697"));
          labelRisparmii.setForeground(Color.decode("#cbf4f4"));
          labelRisparmio.setForeground(Color.decode("#cbf4f4"));
@@ -327,11 +241,17 @@ public class FrameRisparmi {
          textFieldConto.setBackground(Color.decode("#2f48d0"));
          textFieldConto.setForeground(Color.decode("#cbf4f4"));
          panelRisparmi.setBackground(Color.decode("#1c2697"));
+         panelBar.setBackground(Color.decode("#2f48d0"));
+         buttonHome.setIcon(imageHomeChiara);
+         buttonMovimenti.setIcon(imageMovimentiChiara);
+         buttonRisparmi.setIcon(imageRisparmiChiara);
+         buttonPagamenti.setIcon(imagePagamentiChiara);
+         buttonBudget.setIcon(imageBudgetChiara);
+         buttonCambioValuta.setIcon(imageCambioValutaChiara);
+         //Scuro
          } else {
          btnImage.setIcon(imageLuna);
          btnPlus.setIcon(imagePiu);
-
-         // Ripristina lo sfondo e il colore del testo
          barraSuperiore.setBackground(Color.decode("#cbf4f4"));
          labelRisparmii.setForeground(Color.decode("#1c2697"));
          labelRisparmio.setForeground(Color.decode("#1c2697"));
@@ -342,6 +262,13 @@ public class FrameRisparmi {
          textFieldConto.setBackground(Color.WHITE);
          textFieldConto.setForeground(Color.decode("#1c2697"));
          panelRisparmi.setBackground(Color.decode("#cbf4f4"));
+         panelBar.setBackground(Color.WHITE);
+         buttonHome.setIcon(imageHome);
+         buttonMovimenti.setIcon(imageMovimenti);
+         buttonRisparmi.setIcon(imageRisparmi);
+         buttonPagamenti.setIcon(imagePagamenti);
+         buttonBudget.setIcon(imageBudget);
+         buttonCambioValuta.setIcon(imageCambioValuta);
          }
       });
 
@@ -422,8 +349,8 @@ public class FrameRisparmi {
       frameRisparmi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
-   public static void main(String[] args) {
-      new FrameRisparmi();
-   }
+   // public static void main(String[] args) {
+   //    new FrameRisparmi();
+   // }
 }
 

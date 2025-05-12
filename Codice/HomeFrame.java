@@ -39,7 +39,7 @@ public class HomeFrame extends JFrame{
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();
 
-        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccountChiara.png"));
+        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccountScura.png"));
         imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
         imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
 
@@ -447,15 +447,15 @@ public class HomeFrame extends JFrame{
 
         imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeScuraPiena.png"));
         buttonHome.setIcon(imageHome);
-        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiChiara.png"));
+        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiScura.png"));
         buttonMovimenti.setIcon(imageMovimenti);
-        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiChiara.png"));
+        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiScura.png"));
         buttonRisparmi.setIcon(imageRisparmi);
-        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiChiara.png"));
+        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiScura.png"));
         buttonPagamenti.setIcon(imagePagamenti);
-        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetChiara.png"));
+        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetScura.png"));
         buttonBudget.setIcon(imageBudget);
-        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaChiara.png"));
+        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaScura.png"));
         buttonCambioValuta.setIcon(imageCambioValuta);
 
         buttonMovimenti.addActionListener(new ActionListener(){
