@@ -88,6 +88,7 @@ public class FrameAccount {
         panel1.add(lblEmail);
         panel1.add(lblPassword);
         panel1.add(btn);
+        
         midPanel.add(panel1); 
 
         // panel per un bottone

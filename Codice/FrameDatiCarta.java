@@ -87,12 +87,6 @@ public class FrameDatiCarta {
 
         frame.add(midPanel, BorderLayout.CENTER);
 
-
-
-        
-
-        
-
         frame.setSize(600, 550);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
