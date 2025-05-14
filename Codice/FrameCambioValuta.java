@@ -9,7 +9,7 @@ public class FrameCambioValuta {
         frameCambioValuta.requestFocusInWindow();
 
         JPanel barraSuperiore = new JPanel();
-        barraSuperiore.setBackground(Color.decode("cbf4f4"));
+        barraSuperiore.setBackground(Color.decode("#cbf4f4"));
 
         ImageIcon imagePiu = new ImageIcon(getClass().getResource("/Immagini/Icona+Scura.png"));
         ImageIcon imagePiuBianca = new ImageIcon(getClass().getResource("/Immagini/Icona+Chiara.png"));

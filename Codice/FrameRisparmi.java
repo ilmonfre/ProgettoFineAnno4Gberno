@@ -345,8 +345,8 @@ public class FrameRisparmi {
       frameRisparmi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
-   // public static void main(String[] args) {
-   //    new FrameRisparmi();
-   // }
+   public static void main(String[] args) {
+      new FrameRisparmi();
+   }
 }
 
