@@ -9,7 +9,7 @@ public class FrameAccount {
     JPanel topPanel, midPanel, bottomPanel;
     JLabel topLabel;
 
-    JPanel panel1;
+    JPanel panel1, btnPanel;
     JLabel lblNomeTitolare, lblCognomeTitolare, lblCodFis, lblNtel, lblDataNascita, lblLuogoNascita, lblIndirizzo, lblCitta, lblEmail, lblPassword;
 
     JButton btn;
@@ -42,10 +42,10 @@ public class FrameAccount {
 
         // mid panel
         midPanel = new JPanel();
-        fontMid = new Font("Segoe UI", Font.BOLD, 14);
+        fontMid = new Font("Segoe UI", Font.PLAIN, 14);
         midPanel.setBorder(BorderFactory.createEmptyBorder(30, 20, 50, 20));
 
-        panel1 = new JPanel(new GridLayout(9, 1, 10, 20));
+        //panel1 = new JPanel(new GridLayout(5, 2, 10, 20));
 
         lblNomeTitolare = new JLabel("Nome: " + utente.getNome());
         lblNomeTitolare.setFont(fontMid);
@@ -87,10 +87,8 @@ public class FrameAccount {
         panel1.add(lblCitta);
         panel1.add(lblEmail);
         panel1.add(lblPassword);
-
-        midPanel.add(panel1);
-
-        frame.add(midPanel, BorderLayout.CENTER);
+        panel1.add(btn);
+        midPanel.add(panel1); 
 
         // panel per un bottone
         btn = new JButton("Dati della carta");
@@ -98,24 +96,25 @@ public class FrameAccount {
         Dimension d = new Dimension(200, 35);
         btn.setPreferredSize(d);
 
+        btn.setHorizontalAlignment(JButton.CENTER);
+        btn.setBorderPainted(false);
+        btn.setContentAreaFilled(false);
+
         btn.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed (ActionEvent e){
 
-                try {
-                    new FrameDatiCarta(frame);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                new FrameDatiCarta();
 
             }
         
         });
+        midPanel.add(btn);
 
-        //frame.add(btn);
+        frame.add(midPanel, BorderLayout.CENTER);
 
 
-        frame.setSize(550, 500);
+        frame.setSize(600, 550);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

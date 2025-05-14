@@ -711,23 +711,6 @@ public class HomeFrame extends JFrame{
         });
 
 
-        buttonAccount = new JButton();
-
-        buttonAccount.addActionListener(new ActionListener (){
-
-            @Override
-            public void actionPerformed (ActionEvent e){
-
-                new FrameAccount();
-                
-
-            }
-        });
-
-
-
-
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setVisible(true);
