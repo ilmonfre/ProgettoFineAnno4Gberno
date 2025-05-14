@@ -590,91 +590,84 @@ public class HomeFrame extends JFrame{
                 if (tema==1) {
                     // Tema Scuro
                     buttonTema.setIcon(imageSole);
+                    panelSuperiore.setBackground(Color.decode("#1c2697"));
+                    buttonAccount.setForeground(Color.WHITE);
+                    buttonTema.setForeground(Color.WHITE);
+                    panelCentrale.setBackground(Color.decode("#1c2697"));
+                    panelSoldi.setBackground(Color.decode("#1c2697"));
+                    //bordoDisponibilita.setTitleColor(Color.WHITE);
+                    //bordoDisponibilita.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    labelSoldi.setForeground(Color.WHITE);
+                    URL urlAccount = getClass().getResource("/Immagini/IconaAccountChiara.png");
+                    Image imageTmpAccount = new ImageIcon(urlAccount).getImage();
+                    imageAccount.setImage(imageTmpAccount);
+                    labelScrittaSuperiore.setForeground(Color.WHITE);
 
-                    Color darkBg = Color.decode("#1c2697");
-                    Color lightFg = Color.decode("#cbf4f4");
-
-                    // Colori principali
-                    panelSuperiore.setBackground(darkBg);
-                    panelCentrale.setBackground(darkBg);
-                    panelSoldi.setBackground(darkBg);
-                    panelRadar.setBackground(darkBg);
-                    panelEntrate.setBackground(darkBg);
-                    panelUscite.setBackground(darkBg);
-                    panelMovimenti.setBackground(darkBg);
-                    panelPrimo.setBackground(darkBg);
-                    panelInternoPrimo.setBackground(darkBg);
-                    panelSecondo.setBackground(darkBg);
-                    panelInternoSecondo.setBackground(darkBg);
-                    panelTerzo.setBackground(darkBg);
-                    panelInternoTerzo.setBackground(darkBg);
-                    panelBar.setBackground(darkBg);
-
-                    buttonAccount.setForeground(lightFg);
-                    buttonTema.setForeground(lightFg);
-                    labelScrittaSuperiore.setForeground(lightFg);
-                    labelSoldi.setForeground(lightFg);
-                    labelEntrate.setForeground(lightFg);
-
-                    // Titoli e bordi
-
-                    titoloDisponibilita.setTitleColor(lightFg);
-                    titoloDisponibilita.setBorder(new RoundedBorder(2, 20, 20, lightFg));
-
-                    titoloRadar.setTitleColor(lightFg);
-                    titoloRadar.setBorder(new RoundedBorder(2, 20, 20, lightFg));
-
-                    titoloEntrate.setTitleColor(lightFg);
-                    titoloEntrate.setBorder(new RoundedBorder(2, 20, 20, lightFg));
-
-                    titoloMovimenti.setTitleColor(lightFg);
-                    titoloMovimenti.setBorder(new RoundedBorder(2, 20, 20, lightFg));
-
-                    // Icone
-                    imageAccount.setImage(new ImageIcon(getClass().getResource("/Immagini/IconaAccountChiara.png")).getImage());
-                    Image imageTmpFreccia = new ImageIcon(getClass().getResource("/Immagini/IconaFrecciaAzzurrina.png")).getImage();
+                    panelRadar.setBackground(Color.decode("#1c2697"));
+                    //bordoRadar.setTitleColor(Color.WHITE);
+                    //bordoRadar.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    //bordoEntrate.setTitleColor(Color.WHITE);
+                    //bordoEntrate.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    URL urlFreccia = getClass().getResource("/Immagini/IconaFrecciaAzzurrina.png");
+                    Image imageTmpFreccia = new ImageIcon(urlFreccia).getImage();
                     imageEntrate.setImage(imageTmpFreccia);
+                    
+                    //bordoUscite.setTitleColor(Color.WHITE);
+                    //bordoUscite.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    panelEntrate.setBackground(Color.decode("#1c2697"));
+                    panelUscite.setBackground(Color.decode("#1c2697"));
 
-                    // Labels movimenti
-                    labelTipoPrimo.setForeground(lightFg);
-                    labelCostoPrimo.setForeground(lightFg);
-                    labelGiornoPrimo.setForeground(lightFg);
+                    panelMovimenti.setBackground(Color.decode("#1c2697"));
+                    panelPrimo.setBackground(Color.decode("#1c2697"));
+                    panelInternoPrimo.setBackground(Color.decode("#1c2697"));
+                    panelSecondo.setBackground(Color.decode("#1c2697"));
+                    panelInternoSecondo.setBackground(Color.decode("#1c2697"));
+                    panelTerzo.setBackground(Color.decode("#1c2697"));
+                    panelInternoTerzo.setBackground(Color.decode("#1c2697"));
+                    panelBar.setBackground(Color.decode("#1c2697"));
+                    labelTipoPrimo.setForeground(Color.WHITE);
+                    labelCostoPrimo.setForeground(Color.WHITE);
+                    labelGiornoPrimo.setForeground(Color.WHITE);
+                    /*
+                    if(!labelIconaPrimo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpPrimo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaPrimo.setIcon(new ImageIcon(imageTmpPrimo));
+                    }
+                    labelTipoSecondo.setForeground(Color.WHITE);
+                    labelCostoSecondo.setForeground(Color.WHITE);
+                    labelGiornoSecondo.setForeground(Color.WHITE);
+                    if(!labelIconaSecondo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpSecondo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaSecondo.setIcon(new ImageIcon(imageTmpSecondo));
+                    }
+                    labelTipoTerzo.setForeground(Color.WHITE);
+                    labelCostoTerzo.setForeground(Color.WHITE);
+                    labelGiornoTerzo.setForeground(Color.WHITE);
+                    if(!labelIconaTerzo.getIcon().equals(imageUscite)){
+                        
+                        Image imageTmpTerzo = new ImageIcon(urlFreccia).getImage();
+                        labelIconaTerzo.setIcon(new ImageIcon(imageTmpTerzo));
+                    }
+                    */
+                    //bordoMovimenti.setTitleColor(Color.WHITE);
+                    //bordoMovimenti.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
-                    labelTipoSecondo.setForeground(lightFg);
-                    labelCostoSecondo.setForeground(lightFg);
-                    labelGiornoSecondo.setForeground(lightFg);
+                    ImageIcon imageHomeBianca = new ImageIcon(getClass().getResource("/Immagini/IconaHomeChiaraPiena.png"));
+                    buttonHome.setIcon(imageHomeBianca);
+                    ImageIcon imageMovimentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiChiara.png"));
+                    buttonMovimenti.setIcon(imageMovimentiBianca);
+                    ImageIcon imagePagamentiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiChiara.png"));
+                    buttonPagamenti.setIcon(imagePagamentiBianca);
+                    ImageIcon imageRisparmiBianca = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiChiara.png"));
+                    buttonRisparmi.setIcon(imageRisparmiBianca);
+                    ImageIcon imageCambioValutaBianca = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaChiara.png"));
+                    buttonCambioValuta.setIcon(imageCambioValutaBianca);
+                    ImageIcon imageBudgetBianca = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetChiara.png"));
+                    buttonBudget.setIcon(imageBudgetBianca);
+                }else{
 
-                    labelTipoTerzo.setForeground(lightFg);
-                    labelCostoTerzo.setForeground(lightFg);
-                    labelGiornoTerzo.setForeground(lightFg);
-
-                    // Frecce se non sono uscite
-                    if (!labelIconaPrimo.getIcon().equals(imageUscite)) labelIconaPrimo.setIcon(new ImageIcon(imageTmpFreccia));
-                    if (!labelIconaSecondo.getIcon().equals(imageUscite)) labelIconaSecondo.setIcon(new ImageIcon(imageTmpFreccia));
-                    if (!labelIconaTerzo.getIcon().equals(imageUscite)) labelIconaTerzo.setIcon(new ImageIcon(imageTmpFreccia));
-
-                    // Icone menu
-                    buttonHome.repaint();
-                    buttonHome.revalidate();
-                    buttonMovimenti.repaint();
-                    buttonMovimenti.revalidate();
-                    buttonPagamenti.repaint();
-                    buttonPagamenti.revalidate();
-                    buttonRisparmi.repaint();
-                    buttonRisparmi.revalidate();
-                    buttonCambioValuta.repaint();
-                    buttonCambioValuta.revalidate();
-                    buttonBudget.repaint();
-                    buttonBudget.revalidate();
-
-                    buttonHome.setIcon(iconaHomeChiara);
-                    buttonMovimenti.setIcon(iconaMovimentiChiara);
-                    buttonPagamenti.setIcon(iconaPagamentiChiara);
-                    buttonRisparmi.setIcon(iconaRisparmiChiara);
-                    buttonCambioValuta.setIcon(iconaCambioValutaChiara);
-                    buttonBudget.setIcon(iconaBudgetChiara);
-                } else {
-                    // Tema Chiaro
                     buttonTema.setIcon(imageLuna);
 
                     Color darkBg = Color.decode("#1c2697");
@@ -783,5 +776,6 @@ public class HomeFrame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setVisible(true);
-    }
+
+    } 
 }

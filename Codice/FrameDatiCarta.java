@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+import java.awt.event.*;
 
 public class FrameDatiCarta {
     
 
-    JFrame frame, previousFrame;
+    JFrame frame;
     JPanel topPanel, midPanel;
     JLabel topLabel;
     JButton btn;
@@ -15,19 +15,24 @@ public class FrameDatiCarta {
 
     static DatiCartaUtente dati;
 
-    Font fontIniziale, fontMid;
+    Font fontIniziale, fontMid,fontBtn;
 
-    FrameDatiCarta(JFrame previousFrame) throws IOException{
-        this.previousFrame = previousFrame;
+    FrameDatiCarta(){
 
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Dati carta");
         frame.setLayout(new BorderLayout());
 
+        // per settare il frame in centro
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - 500) / 2;
+        int y = (screenSize.height - 550) / 2;
+        frame.setLocation(x, y);
+
 
         // top panel
         topPanel = new JPanel();
-        topLabel = new JLabel("ILa tua carta!");
+        topLabel = new JLabel("La tua carta!");
         fontIniziale = new Font("Serif", Font.BOLD, 28);
         topLabel.setFont(fontIniziale);
         topPanel.add(topLabel);
@@ -60,13 +65,35 @@ public class FrameDatiCarta {
         midPanel.add(lblDataScadenza);
         midPanel.add(lblcvv);
         midPanel.add(lblpin);
+        
+        btn = new JButton("Indietro");
+
+        btn.setBackground(Color.LIGHT_GRAY);
+        Dimension d = new Dimension(200, 35);
+        btn.setPreferredSize(d);
+
+        fontBtn = new Font("Segoe UI", Font.BOLD, 14);
+        btn.setFont(fontBtn);
+        btn.setFont(fontBtn);
+
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();  
+            }
+        });
+
+        midPanel.add(btn);
 
         frame.add(midPanel, BorderLayout.CENTER);
-        
+
+
 
         
 
-        frame.pack();
+        
+
+        frame.setSize(600, 550);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
