@@ -13,7 +13,6 @@ public class HomeFrame extends JFrame{
     private String email;
     private String pass;
 
-
     JLabel labelScrittaSuperiore;
     JPanel panelSuperiore;
     JButton buttonAccount, buttonTema;
@@ -39,10 +38,10 @@ public class HomeFrame extends JFrame{
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();
 
-        imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccountScura.png"));
+        /*imageAccount = new ImageIcon(getClass().getResource("/Immagini/IconaAccount.png"));
         imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
         imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
-
+*/
         labelScrittaSuperiore = new JLabel("ZaphiraBank");
 
         try {
@@ -74,7 +73,6 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
 
-                dispose();
                 new FrameAccount();
             }
         });
@@ -720,7 +718,6 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed (ActionEvent e){
 
-                dispose();
                 new FrameAccount();
                 
 

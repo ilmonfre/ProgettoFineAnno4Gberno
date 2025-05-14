@@ -153,8 +153,15 @@ class FrameRegistrazione{
                     JOptionPane.showMessageDialog(frame, "Codice fiscale non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-        
 
+                String nTel = txtNTel.getText().trim();
+                String strutturaNtel = "^[0-9]{10}$";
+
+                if(!nTel.matches(strutturaNtel)){
+                    JOptionPane.showMessageDialog(frame, "Numero di telefono non valido!", "Errore", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+        
                 m += txtNome.getText() + " ; ";
                 m += txtCognome.getText() + " ; ";
                 m += txtCodFis.getText() + " ; ";

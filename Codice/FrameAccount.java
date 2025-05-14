@@ -9,8 +9,8 @@ public class FrameAccount {
     JPanel topPanel, midPanel, bottomPanel;
     JLabel topLabel;
 
-    JPanel panel1;
-    JLabel lblTitolare, lblCodFis, lblNtel, lblDataNascita, lblLuogoNascita, lblIndirizzo, lblCitta;
+    JPanel panel1, btnPanel;
+    JLabel lblNomeTitolare, lblCognomeTitolare, lblCodFis, lblNtel, lblDataNascita, lblLuogoNascita, lblIndirizzo, lblCitta, lblEmail, lblPassword;
 
     JButton btn;
 
@@ -40,16 +40,18 @@ public class FrameAccount {
 
         frame.add(topPanel, BorderLayout.NORTH);
 
-
         // mid panel
         midPanel = new JPanel();
         fontMid = new Font("Segoe UI", Font.PLAIN, 14);
         midPanel.setBorder(BorderFactory.createEmptyBorder(30, 20, 50, 20));
 
-        panel1 = new JPanel(new GridLayout(7, 1, 10, 20));
+        //panel1 = new JPanel(new GridLayout(5, 2, 10, 20));
 
-        lblTitolare = new JLabel("Titolare conto: " + utente.getNomeCognome());
-        lblTitolare.setFont(fontMid);
+        lblNomeTitolare = new JLabel("Nome: " + utente.getNome());
+        lblNomeTitolare.setFont(fontMid);
+
+        lblCognomeTitolare = new JLabel("Cognome: " + utente.getCognome());
+        lblCognomeTitolare.setFont(fontMid);
 
         lblCodFis = new JLabel("Codice fiscale: " + utente.getCodFis());
         lblCodFis.setFont(fontMid);
@@ -68,18 +70,25 @@ public class FrameAccount {
 
         lblCitta = new JLabel("Citta di residenza: " + utente.getCitta());
         lblCitta.setFont(fontMid);
+
+        lblEmail = new JLabel("Email: " + utente.getEmail());
+        lblEmail.setFont(fontMid);
+
+        lblPassword = new JLabel("Password: " + utente.getPassword());
+        lblPassword.setFont(fontMid);
         
-        panel1.add(lblTitolare);
+        panel1.add(lblNomeTitolare);
+        panel1.add(lblCognomeTitolare);
         panel1.add(lblCodFis);
         panel1.add(lblNtel);
         panel1.add(lblDataNascita);
         panel1.add(lblLuogoNascita);
         panel1.add(lblIndirizzo);
         panel1.add(lblCitta);
-
-        midPanel.add(panel1);
-
-        frame.add(midPanel, BorderLayout.CENTER);
+        panel1.add(lblEmail);
+        panel1.add(lblPassword);
+        panel1.add(btn);
+        midPanel.add(panel1); 
 
         // panel per un bottone
         btn = new JButton("Dati della carta");
@@ -87,22 +96,25 @@ public class FrameAccount {
         Dimension d = new Dimension(200, 35);
         btn.setPreferredSize(d);
 
+        btn.setHorizontalAlignment(JButton.CENTER);
+        btn.setBorderPainted(false);
+        btn.setContentAreaFilled(false);
+
         btn.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed (ActionEvent e){
 
-                try {
-                    new FrameDatiCarta(frame);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                new FrameDatiCarta();
 
             }
         
         });
+        midPanel.add(btn);
+
+        frame.add(midPanel, BorderLayout.CENTER);
 
 
-        frame.pack();
+        frame.setSize(600, 550);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
