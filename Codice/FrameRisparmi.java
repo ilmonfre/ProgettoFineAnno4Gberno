@@ -10,11 +10,7 @@ public class FrameRisparmi {
       frameRisparmi.setFocusable(true);
       frameRisparmi.requestFocusInWindow();
 
-      // Calcolo della posizione centrata
-      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-      int x = (screenSize.width - frameRisparmi.getWidth()) / 2;
-      int y = (screenSize.height - frameRisparmi.getHeight()) / 2;
-      frameRisparmi.setLocation(x, y);
+      
 
       ImageIcon imagePiu = new ImageIcon(getClass().getResource("/Immagini/Icona+Scura.png"));
       ImageIcon imagePiuBianca = new ImageIcon(getClass().getResource("/Immagini/Icona+Chiara.png"));
@@ -349,8 +345,8 @@ public class FrameRisparmi {
       frameRisparmi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
-   // public static void main(String[] args) {
-   //    new FrameRisparmi();
-   // }
+   public static void main(String[] args) {
+      new FrameRisparmi();
+   }
 }
 
