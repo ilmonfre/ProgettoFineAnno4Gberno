@@ -115,11 +115,7 @@ public class FrameAccount {
             @Override
             public void actionPerformed (ActionEvent e){
 
-                try {
-                    new FrameDatiCarta();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                new FrameDatiCarta();
             }
         });
 

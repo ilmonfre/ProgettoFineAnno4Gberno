@@ -97,7 +97,6 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
 
-                dispose();
                 new FrameAccount();
             }
         });
@@ -753,19 +752,6 @@ public class HomeFrame extends JFrame{
                     buttonCambioValuta.setIcon(iconaCambioValutaScura);
                     buttonBudget.setIcon(iconaBudgetScura);
                 }
-            }
-        });
-
-
-        buttonAccount = new JButton();
-
-        buttonAccount.addActionListener(new ActionListener (){
-
-            @Override
-            public void actionPerformed (ActionEvent e){
-
-                dispose();
-                new FrameAccount();
             }
         });
 
