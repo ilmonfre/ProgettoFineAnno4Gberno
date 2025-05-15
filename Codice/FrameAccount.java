@@ -26,9 +26,12 @@ public class FrameAccount {
 
         // per settare il frame in centro
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - 500) / 2;
-        int y = (screenSize.height - 550) / 2;
+        int x = (screenSize.width - 600) / 2;
+        int y = (screenSize.height - 600) / 2;
         frame.setLocation(x, y);
+
+        frame.setFocusable(true);  // per non far posizionare inizialmente il cursore
+        frame.requestFocusInWindow();
 
         // top panel
         topPanel = new JPanel();
@@ -43,9 +46,9 @@ public class FrameAccount {
         // mid panel
         midPanel = new JPanel();
         fontMid = new Font("Segoe UI", Font.PLAIN, 14);
-        midPanel.setBorder(BorderFactory.createEmptyBorder(30, 20, 50, 20));
+        midPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 50, 20));
 
-        //panel1 = new JPanel(new GridLayout(5, 2, 10, 20));
+        panel1 = new JPanel(new GridLayout(11, 2, 10, 20));
 
         lblNomeTitolare = new JLabel("Nome: " + utente.getNome());
         lblNomeTitolare.setFont(fontMid);
@@ -87,37 +90,49 @@ public class FrameAccount {
         panel1.add(lblCitta);
         panel1.add(lblEmail);
         panel1.add(lblPassword);
-        panel1.add(btn);
-        
-        midPanel.add(panel1); 
 
         // panel per un bottone
+        bottomPanel = new JPanel();
+
         btn = new JButton("Dati della carta");
         btn.setBackground(Color.decode("#5299D5"));
         Dimension d = new Dimension(200, 35);
-        btn.setPreferredSize(d);
+        btn.setPreferredSize(d);     
 
-        btn.setHorizontalAlignment(JButton.CENTER);
-        btn.setBorderPainted(false);
+        btn.setOpaque(false);
         btn.setContentAreaFilled(false);
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+
+        bottomPanel.add(btn);
+
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        midPanel.add(panel1); 
+        frame.add(midPanel, BorderLayout.CENTER);
 
         btn.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed (ActionEvent e){
 
-                new FrameDatiCarta();
-
+                try {
+                    new FrameDatiCarta();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
-        
         });
-        midPanel.add(btn);
-
-        frame.add(midPanel, BorderLayout.CENTER);
 
 
-        frame.setSize(600, 550);
+        panel1.setBackground(Color.decode("#f0ffff"));
+        topPanel.setBackground(Color.decode("#f0ffff"));
+        midPanel.setBackground(Color.decode("#f0ffff"));
+        bottomPanel.setBackground(Color.decode("#f0ffff"));
+
+
+        frame.setSize(600, 600);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
 }

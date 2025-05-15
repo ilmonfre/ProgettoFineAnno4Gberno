@@ -1,4 +1,3 @@
-import java.security.KeyStore.PasswordProtection;
 
 public class Utente {
 
@@ -13,6 +12,12 @@ public class Utente {
     private String email;
     private String password;
 
+    private String IBAN;
+    private String nCarta;
+    private String cvv;
+    private String pin;
+    private String dataScadenza;
+
     Utente(String[] fields){
         nome = fields[0];
         cognome = fields[1];
@@ -24,6 +29,13 @@ public class Utente {
         citta = fields[7];
         email = fields[8];
         password = fields[9];
+
+        IBAN = fields[10];
+        nCarta = fields[11];
+        dataScadenza = fields[12];
+        cvv = fields[13];
+        pin = fields[14];
+        
     }
 
     public String getNome() {
@@ -94,5 +106,41 @@ public class Utente {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public String getIBAN() {
+        return IBAN;
+    }
+    public void setIBAN(String iBAN) {
+        IBAN = iBAN;
+    }
+
+    public String getnCarta() {
+        return nCarta;
+    }
+    public void setnCarta(String nCarta) {
+        this.nCarta = nCarta;
+    }
+
+    public String getDataScadenza() {
+        return dataScadenza;
+    }
+    public void setDataScadenza(String dataScadenza) {
+        this.dataScadenza = dataScadenza;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 }
