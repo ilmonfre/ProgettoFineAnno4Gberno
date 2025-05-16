@@ -29,6 +29,8 @@ public class BudgetFrame extends JFrame{
 
     public BudgetFrame(){
 
+        setTitle("Zaphyra Bank - Budget");
+
         panelSup = new JPanel();
 
         buttonSettimanale = new JButton();
@@ -1049,7 +1051,7 @@ public class BudgetFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new MovimentiFrame();
+                new FrameMovimenti();
             }
         });
 

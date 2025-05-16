@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 public class FrameCambioValuta {
     public FrameCambioValuta(){
-        JFrame frameCambioValuta = new JFrame("Cambio Valuta");
+        JFrame frameCambioValuta = new JFrame("Zaphyra Bank - Cambio Valuta");
         frameCambioValuta.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frameCambioValuta.setFocusable(true);
         frameCambioValuta.requestFocusInWindow();

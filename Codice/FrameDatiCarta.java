@@ -18,7 +18,7 @@ public class FrameDatiCarta {
     FrameDatiCarta(){
 
         frame = new JFrame();
-        frame.setTitle("Zaphyra Bank - utente carta");
+        frame.setTitle("Zaphyra Bank - La tua carta");
         frame.setLayout(new BorderLayout());
 
         // per settare il frame in centro

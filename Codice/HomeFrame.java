@@ -36,6 +36,8 @@ public class HomeFrame extends JFrame{
 
     public HomeFrame(){
 
+        setTitle("Zaphyra Bank - Home");
+
         String basePath = "/Immagini/";// Icone tema chiaro
         iconaHomeChiara = new ImageIcon(getClass().getResource(basePath + "IconaHomeChiaraPiena.png"));
         iconaMovimentiChiara = new ImageIcon(getClass().getResource(basePath + "IconaMovimentiChiara.png"));
@@ -486,7 +488,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new MovimentiFrame();
+                new FrameMovimenti();
             }
         });
 
