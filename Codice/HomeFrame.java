@@ -494,7 +494,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new CambioValutaFrame();
+                new FrameCambioValuta();
             }
         });
 
@@ -711,19 +711,6 @@ public class HomeFrame extends JFrame{
         });
 
 
-        buttonAccount = new JButton();
-
-        buttonAccount.addActionListener(new ActionListener (){
-
-            @Override
-            public void actionPerformed (ActionEvent e){
-
-                dispose();
-                new FrameAccount();
-                
-
-            }
-        });
 
 
 
