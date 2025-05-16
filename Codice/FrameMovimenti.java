@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.*;
 
-public class MovimentiFrame extends JFrame{
+public class FrameMovimenti extends JFrame{
 
     JPanel panelCerca, panelCercaSup, panelCercaInf, panelSuperiore;
     RoundedTextField textCerca;
@@ -30,7 +30,7 @@ public class MovimentiFrame extends JFrame{
     Movimenti movimenti;
     Budget budget;
 
-    public MovimentiFrame(){
+    public FrameMovimenti(){
 
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();

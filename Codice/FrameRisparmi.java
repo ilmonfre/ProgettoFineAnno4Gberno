@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class FrameRisparmi {
    public FrameRisparmi() {
       // Creazione del frame
-      JFrame frameRisparmi = new JFrame("Risparmi");
+      JFrame frameRisparmi = new JFrame("Zaphyra Bank - Risparmi");
       frameRisparmi.setExtendedState(JFrame.MAXIMIZED_BOTH);
       frameRisparmi.setFocusable(true);
       frameRisparmi.requestFocusInWindow();
@@ -140,7 +140,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new MovimentiFrame();
+            new FrameMovimenti();
          }
       });
 
