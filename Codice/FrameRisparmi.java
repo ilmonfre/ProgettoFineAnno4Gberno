@@ -37,7 +37,8 @@ public class FrameRisparmi {
 
       RoundedTextField textFieldRisparmi = new RoundedTextField(20, 30);
       RoundedTextField textFieldConto = new RoundedTextField(20, 30); // Valore iniziale del conto
-
+      // textFieldRisparmi.setText("0 €");
+      // textFieldConto.setText("1000 €"); // Valore iniziale del conto
       barraSuperiore.add(btnPlus, BorderLayout.WEST);
       barraSuperiore.add(btnImage, BorderLayout.EAST);
       labelRisparmii.setHorizontalAlignment(SwingConstants.CENTER);

@@ -1,18 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
-=======
-public class FrameCambioValuta {
-    public FrameCambioValuta(){
-        JFrame frameCambioValuta = new JFrame("Zaphyra Bank - Cambio Valuta");
-        frameCambioValuta.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frameCambioValuta.setFocusable(true);
-        frameCambioValuta.requestFocusInWindow();
->>>>>>> e5b1af7f3ff15f454e5e724311cb25aa2f1dc912
-
 public class FrameCambioValuta extends JFrame {
     private JTextField inputField, outputField;
     private JComboBox<String> currencyBox;
