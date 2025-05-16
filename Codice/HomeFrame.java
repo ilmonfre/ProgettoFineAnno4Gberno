@@ -31,6 +31,8 @@ public class HomeFrame extends JFrame{
 
     public HomeFrame(){
 
+        setTitle("Zaphyra Bank - Home");
+
         String basePath = "/Immagini/";// Icone tema chiaro
         iconaHomeChiara = new ImageIcon(getClass().getResource(basePath + "IconaHomeChiaraPiena.png"));
         iconaMovimentiChiara = new ImageIcon(getClass().getResource(basePath + "IconaMovimentiChiara.png"));
@@ -92,7 +94,6 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
 
-                dispose();
                 new FrameAccount();
             }
         });
@@ -482,7 +483,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new MovimentiFrame();
+                new FrameMovimenti();
             }
         });
 
@@ -512,7 +513,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new CambioValutaFrame();
+                new FrameCambioValuta();
             }
         });
 
@@ -756,24 +757,7 @@ public class HomeFrame extends JFrame{
                 }
             }
         });
-
-
-        buttonAccount = new JButton();
-
-        buttonAccount.addActionListener(new ActionListener (){
-
-            @Override
-            public void actionPerformed (ActionEvent e){
-
-                dispose();
-                new FrameAccount();
-            }
-        });
-
-
-
-
-
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setVisible(true);

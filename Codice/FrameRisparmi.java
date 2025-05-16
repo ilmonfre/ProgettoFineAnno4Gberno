@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class FrameRisparmi {
    public FrameRisparmi() {
       // Creazione del frame
-      JFrame frameRisparmi = new JFrame("Risparmi");
+      JFrame frameRisparmi = new JFrame("Zaphyra Bank - Risparmi");
       frameRisparmi.setExtendedState(JFrame.MAXIMIZED_BOTH);
       frameRisparmi.setFocusable(true);
       frameRisparmi.requestFocusInWindow();
@@ -37,7 +37,8 @@ public class FrameRisparmi {
 
       RoundedTextField textFieldRisparmi = new RoundedTextField(20, 30);
       RoundedTextField textFieldConto = new RoundedTextField(20, 30); // Valore iniziale del conto
-
+      // textFieldRisparmi.setText("0 €");
+      // textFieldConto.setText("1000 €"); // Valore iniziale del conto
       barraSuperiore.add(btnPlus, BorderLayout.WEST);
       barraSuperiore.add(btnImage, BorderLayout.EAST);
       labelRisparmii.setHorizontalAlignment(SwingConstants.CENTER);
@@ -140,7 +141,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new MovimentiFrame();
+            new FrameMovimenti();
          }
       });
 
