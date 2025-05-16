@@ -1,10 +1,14 @@
 import javax.swing.*;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import java.awt.KeyboardFocusManager;
 import java.awt.GridLayout;
 import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Component;
 
 public class BudgetFrame extends JFrame{
 
@@ -18,7 +22,7 @@ public class BudgetFrame extends JFrame{
     RoundedBorderButton buttonModifica, buttonElimina, buttonConferma, buttonConfCrea, buttonModificaMensile, buttonEliminaMensile, buttonConfermaMensile, buttonConfCreaMensile, buttonModificaAnnuale, buttonEliminaAnnuale, buttonConfermaAnnuale, buttonConfCreaAnnuale;
     JPopupMenu menuImpostazioni, menuModifica, menuCrea, menuImpostazioniMensile, menuModificaMensile, menuCreaMensile, menuImpostazioniAnnuale, menuModificaAnnuale, menuCreaAnnuale;
     RoundedTextField textModifica, textMax, textModificaMensile, textMaxMensile, textModificaAnnuale, textMaxAnnuale;
-    JLabel labelErrore, labelCentrale, labelSpesiSett, labelSpesiMen, labelSpesiAnn, labelRimastiSett, labelRimastiMen, labelRimastiAnn, labelMaxSett, labelMaxMen, labelMaxAnn;
+    JLabel labelErrore, labelErroreMensile, labelErroreAnnuale, labelCentrale, labelCentraleMensile, labelCentraleAnnuale, labelSpesiSett, labelSpesiMen, labelSpesiAnn, labelRimastiSett, labelRimastiMen, labelRimastiAnn, labelMaxSett, labelMaxMen, labelMaxAnn;
 
     JLabel labelAccount, labelMovimenti, labelRisparmi, labelPagamenti, labelBudget, labelCambioValuta, labelSole, labelLuna, labelHome;
     JPanel panelBar;
@@ -26,6 +30,81 @@ public class BudgetFrame extends JFrame{
     ImageIcon imageAccount, imageMovimenti, imageRisparmi, imagePagamenti, imageBudget, imageCambioValuta, imageSole, imageLuna, imageHome;
     
     Budget budget = new Budget(0, 0, 0, 0, 0, 0);
+
+    public void aggiornaPannelloSettimanale() {
+        panelSettimanale.removeAll();
+
+        // Sezione superiore con pulsanti
+        panelSupCen.setLayout(new BorderLayout());
+        panelSupCen.add(buttonAggiungi, BorderLayout.WEST);
+        panelSupCen.add(buttonImpostazioni, BorderLayout.EAST);
+
+        // Controllo: budget settimanale non ancora impostato
+        if (budget.getMaxSett() == -1) {
+            buttonImpostazioni.setEnabled(false);
+            buttonAggiungi.setEnabled(true);
+
+            labelCentrale.setFont(new Font("Arial", Font.BOLD, 25));
+            labelCentrale.setHorizontalAlignment(SwingConstants.CENTER);
+
+            panelSettimanale.setLayout(new BorderLayout());
+            panelSettimanale.add(panelSupCen, BorderLayout.NORTH);
+            panelSettimanale.add(labelCentrale, BorderLayout.CENTER);
+
+        } else {
+            buttonImpostazioni.setEnabled(true);
+            buttonAggiungi.setEnabled(false);
+
+            // Barra di progresso
+            barSettimanale = new JProgressBar();
+            barSettimanale.setMaximum((int) Math.round(budget.getMaxSett()));
+            barSettimanale.setValue((int) Math.round(budget.getCorrenteSett()));
+            barSettimanale.setPreferredSize(new Dimension(250, 30));
+            barSettimanale.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            // Etichette
+            String spesiSett = String.valueOf(budget.getCorrenteSett());
+            labelSpesiSett = new JLabel("Hai speso " + spesiSett + " €");
+            labelSpesiSett.setFont(new Font("Arial", Font.PLAIN, 18));
+            labelSpesiSett.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            String rimastiSett = String.valueOf(budget.getMaxSett() - budget.getCorrenteSett());
+            labelRimastiSett = new JLabel("Rispetto al budget settimanale sono rimasti " + rimastiSett + " €");
+            labelRimastiSett.setFont(new Font("Arial", Font.PLAIN, 18));
+            labelRimastiSett.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            String limSett = String.valueOf(budget.getMaxSett());
+            labelMaxSett = new JLabel("Il budget settimanale è " + limSett + " €");
+            labelMaxSett.setFont(new Font("Arial", Font.PLAIN, 18));
+            labelMaxSett.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            // Pannello per barra e limite
+            JPanel panelTmp = new JPanel();
+            panelTmp.setLayout(new BoxLayout(panelTmp, BoxLayout.Y_AXIS));
+            panelTmp.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+            panelTmp.add(barSettimanale);
+            panelTmp.add(Box.createVerticalStrut(10));
+            panelTmp.add(labelMaxSett);
+
+            // Pannello per spesi e rimasti
+            JPanel panelTmp2 = new JPanel();
+            panelTmp2.setLayout(new BoxLayout(panelTmp2, BoxLayout.Y_AXIS));
+            panelTmp2.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
+            panelTmp2.add(labelSpesiSett);
+            panelTmp2.add(Box.createVerticalStrut(10));
+            panelTmp2.add(labelRimastiSett);
+
+            // Layout principale
+            panelSettimanale.setLayout(new BorderLayout());
+            panelSettimanale.add(panelSupCen, BorderLayout.NORTH);
+            panelSettimanale.add(panelTmp, BorderLayout.CENTER);
+            panelSettimanale.add(panelTmp2, BorderLayout.SOUTH);
+        }
+
+        panelSettimanale.revalidate();
+        panelSettimanale.repaint();
+    }
+
 
     public BudgetFrame(){
 
@@ -98,9 +177,19 @@ public class BudgetFrame extends JFrame{
         buttonElimina = new RoundedBorderButton("Elimina", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
 
         menuModifica = new JPopupMenu();
+        menuModifica.setFocusable(false);
         panelModifica = new JPanel();
-
+        buttonConferma = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
         textModifica = new RoundedTextField(20, 30);
+        labelErrore = new JLabel();
+        labelCentrale = new JLabel("Non è presente nessun budget");
+        menuCrea = new JPopupMenu();
+        panelCrea = new JPanel();
+
+        buttonConfCrea = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
+        textMax = new RoundedTextField(20, 30);
+        panelSupCen = new JPanel();
+        aggiornaPannelloSettimanale();
 
         textModifica.setBackground(Color.decode("#D3D3D3"));
         String placeholder = "Inserisci nuovo limite";
@@ -123,60 +212,6 @@ public class BudgetFrame extends JFrame{
                 }
             }
         });
-        textModifica.setSize(200, 50);
-
-        buttonConferma = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-
-        labelErrore = new JLabel();
-        labelCentrale = new JLabel("Non è presente nessun budget");
-
-        buttonAggiungi.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(budget.controlloNumero(textModifica)==false){
-
-                    labelErrore.setText("Inserisci un valore numerico");
-                }else{
-
-                    labelErrore.setText("");
-                    double nuovoMax = Double.parseDouble(textModifica.getText());
-
-                    if(panelCen.getSelectedIndex()==0){
-
-                        budget.setMaxSett(nuovoMax);
-                    }else if(panelCen.getSelectedIndex()==1){
-
-                        budget.setMaxMen(nuovoMax);
-                    }else{
-
-                        budget.setMaxAnn(nuovoMax);
-                    }
-                }
-
-                menuCrea.setVisible(false);
-            }
-        });
-
-        buttonElimina.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                panelSettimanale.removeAll();
-                panelSettimanale.setLayout(new GridLayout(2, 1));
-                panelSettimanale.add(labelCentrale);
-                panelSettimanale.revalidate();
-                panelSettimanale.repaint();
-            }
-        });
-
-        menuCrea = new JPopupMenu();
-        panelCrea = new JPanel();
-
-        buttonConfCrea = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-        textMax = new RoundedTextField(20, 30);
 
         textMax.setBackground(Color.decode("#D3D3D3"));
         String placeholder2 = "Inserisci limite";
@@ -199,776 +234,78 @@ public class BudgetFrame extends JFrame{
                 }
             }
         });
-        textMax.setSize(200, 50);
 
-        buttonConfCrea.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(budget.controlloNumero(textMax)==false){
-
-                    labelErrore.setText("Inserisci un valore numerico");
-                }else{
-
-                    labelErrore.setText("");
-                    double nuovoMax = Double.parseDouble(textMax.getText());
-
-                    if(panelCen.getSelectedIndex()==0){
-
-                        budget.setMaxSett(nuovoMax);
-                    }else if(panelCen.getSelectedIndex()==1){
-
-                        budget.setMaxMen(nuovoMax);
-                    }else{
-
-                        budget.setMaxAnn(nuovoMax);
-                    }
-                }
+        // Bottone conferma nuovo budget
+        buttonConfCrea.addActionListener(e -> {
+            if (!budget.controlloNumero(textMax)) {
+                labelErrore.setText("Inserisci un valore numerico");
+            } else {
+                labelErrore.setText("");
+                double nuovoMax = Double.parseDouble(textMax.getText());
+                budget.setMaxSett(nuovoMax);
+                menuCrea.setVisible(false);
+                aggiornaPannelloSettimanale();
             }
         });
-
+        
+        // Pannello nuovo budget
         panelCrea.setLayout(new GridLayout(3, 1));
-
         panelCrea.add(textMax);
         panelCrea.add(labelErrore);
         panelCrea.add(buttonConfCrea);
         menuCrea.add(panelCrea);
 
         buttonAggiungi.addActionListener(e -> {
-            
             menuCrea.show(buttonAggiungi, 0, buttonAggiungi.getHeight());
+            textMax.requestFocusInWindow();  // Forza il focus
         });
 
-        panelImpostazioni.setLayout(new GridLayout(1, 2));
-        
-        panelImpostazioni.add(buttonModifica);
-        panelImpostazioni.add(buttonElimina);
-        menuImpostazioni.add(panelImpostazioni);
+        // Bottone conferma modifica
+        buttonConferma.addActionListener(e -> {
+            if (!budget.controlloNumero(textMax)) {
+                labelErrore.setText("Inserisci un valore numerico");
+            } else {
+                labelErrore.setText("");
+                double nuovoMax = Double.parseDouble(textModifica.getText());
+                budget.setMaxSett(nuovoMax);
+                menuModifica.setVisible(false);
+                aggiornaPannelloSettimanale();
+            }
+        });
 
+        // Pannello modifica
         panelModifica.setLayout(new GridLayout(3, 1));
-
         panelModifica.add(textModifica);
         panelModifica.add(labelErrore);
         panelModifica.add(buttonConferma);
         menuModifica.add(panelModifica);
 
         buttonModifica.addActionListener(e -> {
-            
             menuModifica.show(buttonModifica, 0, buttonModifica.getHeight());
+            textModifica.requestFocusInWindow();  // Forza il focus
         });
 
+        // Bottone elimina budget
+        buttonElimina.addActionListener(e -> {
+            panelSettimanale.removeAll();
+            panelSettimanale.setLayout(new GridLayout(2, 1));
+            panelSettimanale.add(labelCentrale);
+            panelSettimanale.revalidate();
+            panelSettimanale.repaint();
+        });
+
+        // Pannello impostazioni
+        panelImpostazioni.setLayout(new GridLayout(1, 2));
+        panelImpostazioni.add(buttonModifica);
+        panelImpostazioni.add(buttonElimina);
+        menuImpostazioni.add(panelImpostazioni);
+
         buttonImpostazioni.addActionListener(e -> {
-            
             menuImpostazioni.show(buttonImpostazioni, 0, buttonImpostazioni.getHeight());
         });
 
-        budget.visualizzaLimiti();
-
-        panelSupCen = new JPanel();
-
-        new Timer(500, new ActionListener(){
-            
-            int prec = 0;
-            boolean stop = false;
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(stop==false){
-
-                    if(budget.getMaxSett()==-1){
-
-                        if(prec==1){
-    
-                            stop=true;
-                        }else{
-    
-                            panelSettimanale.repaint();
-            
-                            panelSupCen.setLayout(new BorderLayout());
-                        
-                            panelSupCen.add(buttonAggiungi, BorderLayout.WEST);
-                            panelSupCen.add(buttonImpostazioni, BorderLayout.EAST);
-                
-                            buttonImpostazioni.setEnabled(false);
-                            buttonAggiungi.setEnabled(true);
-                
-                            labelCentrale.setFont(new Font("Arial", Font.BOLD, 25));
-                            labelCentrale.setAlignmentX(CENTER_ALIGNMENT);
-                            labelCentrale.setAlignmentY(CENTER_ALIGNMENT);
-                
-                            panelSettimanale.setLayout(new GridLayout(2, 1));
-                
-                            panelSettimanale.add(panelSupCen);
-                            panelSettimanale.add(labelCentrale);
-    
-                            prec=1;
-                        }
-                    }
-                    if(budget.getMaxSett()!=-1){
-                        
-                        if(prec==2){
-    
-                            stop=true;
-                        }else{
-    
-                            panelSettimanale.repaint();
-            
-                            barSettimanale = new JProgressBar();
-                        
-                            barSettimanale.setMaximum((int) Math.round(budget.getMaxSett()));
-                            
-                            new Timer(500, new ActionListener() {
-                                
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    
-                                    barSettimanale.setValue((int) Math.round(budget.getCorrenteSett()));
-                                    barSettimanale.repaint();
-                                }
-                            }).start();
-                
-                            buttonImpostazioni.setEnabled(true);
-                            buttonAggiungi.setEnabled(false);
-                
-                            panelSupCen.setLayout(new BorderLayout());
-                        
-                            panelSupCen.add(buttonAggiungi, BorderLayout.WEST);
-                            panelSupCen.add(buttonImpostazioni, BorderLayout.EAST);
-                
-                            buttonImpostazioni.setEnabled(false);
-                
-                            String spesiSett = String.valueOf(budget.getCorrenteSett());
-                            labelSpesiSett = new JLabel("Hai speso "+spesiSett+" €");
-                
-                            String rimastiSett = String.valueOf(budget.getMaxSett()-budget.getCorrenteSett());
-                            labelRimastiSett = new JLabel("Rispetto al budget settimanale sono rimasti "+rimastiSett+" €");
-                
-                            String limSett = String.valueOf(budget.getMaxSett());
-                            labelMaxSett = new JLabel("Il budget settimanale è "+limSett+" €");
-                
-                            JPanel panelTmp = new JPanel();
-                            panelTmp.add(barSettimanale);
-                            panelTmp.add(labelMaxSett);
-                
-                            JPanel panelTmp2 = new JPanel();
-                            panelTmp2.add(labelSpesiSett);
-                            panelTmp2.add(labelRimastiSett);
-                
-                            panelSettimanale.setLayout(new GridLayout(3, 1));
-                            
-                            panelSettimanale.add(panelSupCen);
-                            panelSettimanale.add(panelTmp);
-                            panelSettimanale.add(panelTmp2);
-    
-                            prec=2;
-                        }
-                    }
-                }
-            }
-        }).start();
-
         panelCen.addTab("Budget settimanale", panelSettimanale);
 
-
-
-
-        ImageIcon imageAggiungiMensile = new ImageIcon(getClass().getResource("/Immagini/Icona+Scura.png"));
-        buttonAggiungiMensile.setIcon(imageAggiungiMensile);
-
-        ImageIcon imageImpostazioniMensile = new ImageIcon(getClass().getResource("/Immagini/IconaImpostazioniScura.png"));
-        buttonImpostazioniMensile.setIcon(imageImpostazioniMensile);
-
-        buttonAggiungiMensile.setOpaque(false);
-        buttonAggiungiMensile.setContentAreaFilled(false);
-        buttonAggiungiMensile.setBorderPainted(false);
-        buttonAggiungiMensile.setFocusPainted(false);
-
-        buttonImpostazioniMensile.setOpaque(false);
-        buttonImpostazioniMensile.setContentAreaFilled(false);
-        buttonImpostazioniMensile.setBorderPainted(false);
-        buttonImpostazioniMensile.setFocusPainted(false);
-
-        menuImpostazioniMensile = new JPopupMenu();
-        panelImpostazioniMensile = new JPanel();
-
-        buttonModificaMensile = new RoundedBorderButton("Modifica", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-        buttonEliminaMensile = new RoundedBorderButton("Elimina", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-
-        menuModificaMensile = new JPopupMenu();
-        panelModificaMensile = new JPanel();
-
-        textModificaMensile = new RoundedTextField(20, 30);
-
-        textModificaMensile.setBackground(Color.decode("#D3D3D3"));
-        String placeholderMensile = "Inserisci nuovo limite";
-        textModificaMensile.setForeground(Color.GRAY);
-        textModificaMensile.setText(placeholder);
-
-        textModificaMensile.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textModificaMensile.getText().equals(placeholderMensile)) {
-                    textModificaMensile.setText("");
-                    textModificaMensile.setForeground(Color.BLACK);
-                }
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textModificaMensile.getText().isEmpty()) {
-                    textModificaMensile.setForeground(Color.GRAY);
-                    textModificaMensile.setText(placeholderMensile);
-                }
-            }
-        });
-        textModificaMensile.setSize(200, 50);
-
-        buttonConfermaMensile = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-
-        labelErrore = new JLabel();
-        labelCentrale = new JLabel("Non è presente nessun budget");
-
-        buttonAggiungiMensile.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(budget.controlloNumero(textModificaMensile)==false){
-
-                    labelErrore.setText("Inserisci un valore numerico");
-                }else{
-
-                    labelErrore.setText("");
-                    double nuovoMax = Double.parseDouble(textModificaMensile.getText());
-
-                    if(panelCen.getSelectedIndex()==0){
-
-                        budget.setMaxSett(nuovoMax);
-                    }else if(panelCen.getSelectedIndex()==1){
-
-                        budget.setMaxMen(nuovoMax);
-                    }else{
-
-                        budget.setMaxAnn(nuovoMax);
-                    }
-                }
-
-                menuCreaMensile.setVisible(false);
-            }
-        });
-
-        buttonEliminaMensile.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                panelMensile.removeAll();
-                panelMensile.setLayout(new GridLayout(2, 1));
-                panelMensile.add(labelCentrale);
-                panelMensile.revalidate();
-                panelMensile.repaint();
-            }
-        });
-
-        menuCreaMensile = new JPopupMenu();
-        panelCreaMensile = new JPanel();
-
-        buttonConfCreaMensile = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-        textMaxMensile = new RoundedTextField(20, 30);
-
-        textMaxMensile.setBackground(Color.decode("#D3D3D3"));
-        String placeholder2Mensile = "Inserisci limite";
-        textMaxMensile.setForeground(Color.GRAY);
-        textMaxMensile.setText(placeholder2Mensile);
-
-        textMaxMensile.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textMaxMensile.getText().equals(placeholder2)) {
-                    textMaxMensile.setText("");
-                    textMaxMensile.setForeground(Color.BLACK);
-                }
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textMaxMensile.getText().isEmpty()) {
-                    textMaxMensile.setForeground(Color.GRAY);
-                    textMaxMensile.setText(placeholder2Mensile);
-                }
-            }
-        });
-        textMaxMensile.setSize(200, 50);
-
-        buttonConfCreaMensile.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(budget.controlloNumero(textMaxMensile)==false){
-
-                    labelErrore.setText("Inserisci un valore numerico");
-                }else{
-
-                    labelErrore.setText("");
-                    double nuovoMax = Double.parseDouble(textMaxMensile.getText());
-
-                    if(panelCen.getSelectedIndex()==0){
-
-                        budget.setMaxSett(nuovoMax);
-                    }else if(panelCen.getSelectedIndex()==1){
-
-                        budget.setMaxMen(nuovoMax);
-                    }else{
-
-                        budget.setMaxAnn(nuovoMax);
-                    }
-                }
-            }
-        });
-
-        panelCreaMensile.setLayout(new GridLayout(3, 1));
-
-        panelCreaMensile.add(textMaxMensile);
-        panelCreaMensile.add(labelErrore);
-        panelCreaMensile.add(buttonConfCreaMensile);
-        menuCreaMensile.add(panelCreaMensile);
-
-        buttonAggiungiMensile.addActionListener(e -> {
-            
-            menuCreaMensile.show(buttonAggiungiMensile, 0, buttonAggiungiMensile.getHeight());
-        });
-
-        panelImpostazioniMensile.setLayout(new GridLayout(1, 2));
-        
-        panelImpostazioniMensile.add(buttonModificaMensile);
-        panelImpostazioniMensile.add(buttonEliminaMensile);
-        menuImpostazioniMensile.add(panelImpostazioniMensile);
-
-        panelModificaMensile.setLayout(new GridLayout(3, 1));
-
-        panelModificaMensile.add(textModificaMensile);
-        panelModificaMensile.add(labelErrore);
-        panelModificaMensile.add(buttonConfermaMensile);
-        menuModificaMensile.add(panelModificaMensile);
-
-        buttonModificaMensile.addActionListener(e -> {
-            
-            menuModificaMensile.show(buttonModificaMensile, 0, buttonModificaMensile.getHeight());
-        });
-
-        buttonImpostazioniMensile.addActionListener(e -> {
-            
-            menuImpostazioniMensile.show(buttonImpostazioniMensile, 0, buttonImpostazioniMensile.getHeight());
-        });
-
-        budget.visualizzaLimiti();
-
-        panelSupCenMensile = new JPanel();
-
-        new Timer(500, new ActionListener(){
-            
-            int prec = 0;
-            boolean stop = false;
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(stop==false){
-
-                    if(budget.getMaxMen()==-1){
-
-                        if(prec==1){
-    
-                            stop=true;
-                        }else{
-    
-                            panelMensile.repaint();
-            
-                            panelSupCenMensile.setLayout(new BorderLayout());
-                        
-                            panelSupCenMensile.add(buttonAggiungiMensile, BorderLayout.WEST);
-                            panelSupCenMensile.add(buttonImpostazioniMensile, BorderLayout.EAST);
-                
-                            buttonImpostazioniMensile.setEnabled(false);
-                            buttonAggiungiMensile.setEnabled(true);
-                
-                            labelCentrale.setFont(new Font("Arial", Font.BOLD, 25));
-                            labelCentrale.setAlignmentX(CENTER_ALIGNMENT);
-                            labelCentrale.setAlignmentY(CENTER_ALIGNMENT);
-                
-                            panelMensile.setLayout(new GridLayout(2, 1));
-                
-                            panelMensile.add(panelSupCenMensile);
-                            panelMensile.add(labelCentrale);
-    
-                            prec=1;
-                        }
-                    }
-                    if(budget.getMaxMen()!=-1){
-                        
-                        if(prec==2){
-    
-                            stop=true;
-                        }else{
-    
-                            panelMensile.repaint();
-            
-                            barMensile = new JProgressBar();
-                        
-                            barMensile.setMaximum((int) Math.round(budget.getMaxMen()));
-                            
-                            new Timer(500, new ActionListener() {
-                                
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    
-                                    barMensile.setValue((int) Math.round(budget.getCorrenteMen()));
-                                    barMensile.repaint();
-                                }
-                            }).start();
-                
-                            buttonImpostazioniMensile.setEnabled(true);
-                            buttonAggiungiMensile.setEnabled(false);
-                
-                            panelSupCenMensile.setLayout(new BorderLayout());
-                        
-                            panelSupCenMensile.add(buttonAggiungiMensile, BorderLayout.WEST);
-                            panelSupCenMensile.add(buttonImpostazioniMensile, BorderLayout.EAST);
-                
-                            buttonImpostazioniMensile.setEnabled(false);
-                
-                            String spesiMensile = String.valueOf(budget.getCorrenteMen());
-                            labelSpesiMen = new JLabel("Hai speso "+spesiMensile+" €");
-                
-                            String rimastiMensile = String.valueOf(budget.getMaxMen()-budget.getCorrenteMen());
-                            labelRimastiMen = new JLabel("Rispetto al budget settimanale sono rimasti "+rimastiMensile+" €");
-                
-                            String limMensile = String.valueOf(budget.getMaxMen());
-                            labelMaxMen = new JLabel("Il budget settimanale è "+limMensile+" €");
-                
-                            JPanel panelTmp = new JPanel();
-                            panelTmp.add(barMensile);
-                            panelTmp.add(labelMaxMen);
-                
-                            JPanel panelTmp2 = new JPanel();
-                            panelTmp2.add(labelSpesiMen);
-                            panelTmp2.add(labelRimastiMen);
-                
-                            panelMensile.setLayout(new GridLayout(3, 1));
-                            
-                            panelMensile.add(panelSupCenMensile);
-                            panelMensile.add(panelTmp);
-                            panelMensile.add(panelTmp2);
-    
-                            prec=2;
-                        }
-                    }
-                }
-            }
-        }).start();
-
-        panelCen.addTab("Budget settimanale", panelMensile);
-
-
-
-
-
-        ImageIcon imageAggiungiAnnuale = new ImageIcon(getClass().getResource("/Immagini/Icona+Scura.png"));
-        buttonAggiungiAnnuale.setIcon(imageAggiungiAnnuale);
-
-        ImageIcon imageImpostazioniAnnuale = new ImageIcon(getClass().getResource("/Immagini/IconaImpostazioniScura.png"));
-        buttonImpostazioniAnnuale.setIcon(imageImpostazioniAnnuale);
-
-        buttonAggiungiAnnuale.setOpaque(false);
-        buttonAggiungiAnnuale.setContentAreaFilled(false);
-        buttonAggiungiAnnuale.setBorderPainted(false);
-        buttonAggiungiAnnuale.setFocusPainted(false);
-
-        buttonImpostazioniAnnuale.setOpaque(false);
-        buttonImpostazioniAnnuale.setContentAreaFilled(false);
-        buttonImpostazioniAnnuale.setBorderPainted(false);
-        buttonImpostazioniAnnuale.setFocusPainted(false);
-
-        menuImpostazioniAnnuale = new JPopupMenu();
-        panelImpostazioniAnnuale = new JPanel();
-
-        buttonModificaAnnuale = new RoundedBorderButton("Modifica", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-        buttonEliminaAnnuale = new RoundedBorderButton("Elimina", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-
-        menuModificaAnnuale = new JPopupMenu();
-        panelModificaAnnuale = new JPanel();
-
-        textModificaAnnuale = new RoundedTextField(20, 30);
-
-        textModificaAnnuale.setBackground(Color.decode("#D3D3D3"));
-        String placeholderAnnuale = "Inserisci nuovo limite";
-        textModificaAnnuale.setForeground(Color.GRAY);
-        textModificaAnnuale.setText(placeholderAnnuale);
-
-        textModificaAnnuale.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textModificaAnnuale.getText().equals(placeholderAnnuale)) {
-                    textModificaAnnuale.setText("");
-                    textModificaAnnuale.setForeground(Color.BLACK);
-                }
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textModificaAnnuale.getText().isEmpty()) {
-                    textModificaAnnuale.setForeground(Color.GRAY);
-                    textModificaAnnuale.setText(placeholderAnnuale);
-                }
-            }
-        });
-        textModificaAnnuale.setSize(200, 50);
-
-        buttonConfermaAnnuale = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-
-        labelErrore = new JLabel();
-        labelCentrale = new JLabel("Non è presente nessun budget");
-
-        buttonAggiungiAnnuale.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(budget.controlloNumero(textModificaAnnuale)==false){
-
-                    labelErrore.setText("Inserisci un valore numerico");
-                }else{
-
-                    labelErrore.setText("");
-                    double nuovoMax = Double.parseDouble(textModificaAnnuale.getText());
-
-                    if(panelCen.getSelectedIndex()==0){
-
-                        budget.setMaxSett(nuovoMax);
-                    }else if(panelCen.getSelectedIndex()==1){
-
-                        budget.setMaxMen(nuovoMax);
-                    }else{
-
-                        budget.setMaxAnn(nuovoMax);
-                    }
-                }
-
-                menuCreaAnnuale.setVisible(false);
-            }
-        });
-
-        buttonEliminaAnnuale.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                panelAnnuale.removeAll();
-                panelAnnuale.setLayout(new GridLayout(2, 1));
-                panelAnnuale.add(labelCentrale);
-                panelAnnuale.revalidate();
-                panelAnnuale.repaint();
-            }
-        });
-
-        menuCreaAnnuale = new JPopupMenu();
-        panelCreaAnnuale = new JPanel();
-
-        buttonConfCreaAnnuale = new RoundedBorderButton("Conferma", Color.blue, Color.blue, Color.white, Color.cyan, Color.cyan, Color.blue, 2, 20, 20);
-        textMaxAnnuale = new RoundedTextField(20, 30);
-
-        textMaxAnnuale.setBackground(Color.decode("#D3D3D3"));
-        String placeholder2Annuale = "Inserisci limite";
-        textMaxAnnuale.setForeground(Color.GRAY);
-        textMaxAnnuale.setText(placeholder2Annuale);
-
-        textMaxAnnuale.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textMaxAnnuale.getText().equals(placeholder2Annuale)) {
-                    textMaxAnnuale.setText("");
-                    textMaxAnnuale.setForeground(Color.BLACK);
-                }
-            }
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textMaxAnnuale.getText().isEmpty()) {
-                    textMaxAnnuale.setForeground(Color.GRAY);
-                    textMaxAnnuale.setText(placeholder2Annuale);
-                }
-            }
-        });
-        textMaxAnnuale.setSize(200, 50);
-
-        buttonConfCreaAnnuale.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(budget.controlloNumero(textMaxAnnuale)==false){
-
-                    labelErrore.setText("Inserisci un valore numerico");
-                }else{
-
-                    labelErrore.setText("");
-                    double nuovoMax = Double.parseDouble(textMaxAnnuale.getText());
-
-                    if(panelCen.getSelectedIndex()==0){
-
-                        budget.setMaxSett(nuovoMax);
-                    }else if(panelCen.getSelectedIndex()==1){
-
-                        budget.setMaxMen(nuovoMax);
-                    }else{
-
-                        budget.setMaxAnn(nuovoMax);
-                    }
-                }
-            }
-        });
-
-        panelCreaAnnuale.setLayout(new GridLayout(3, 1));
-
-        panelCreaAnnuale.add(textMaxAnnuale);
-        panelCreaAnnuale.add(labelErrore);
-        panelCreaAnnuale.add(buttonConfCreaAnnuale);
-        menuCreaAnnuale.add(panelCreaAnnuale);
-
-        buttonAggiungiAnnuale.addActionListener(e -> {
-            
-            menuCreaAnnuale.show(buttonAggiungiAnnuale, 0, buttonAggiungiAnnuale.getHeight());
-        });
-
-        panelImpostazioniAnnuale.setLayout(new GridLayout(1, 2));
-        
-        panelImpostazioniAnnuale.add(buttonModificaAnnuale);
-        panelImpostazioniAnnuale.add(buttonEliminaAnnuale);
-        menuImpostazioniAnnuale.add(panelImpostazioniAnnuale);
-
-        panelModificaAnnuale.setLayout(new GridLayout(3, 1));
-
-        panelModificaAnnuale.add(textModificaAnnuale);
-        panelModificaAnnuale.add(labelErrore);
-        panelModificaAnnuale.add(buttonConfermaAnnuale);
-        menuModificaAnnuale.add(panelModificaAnnuale);
-
-        buttonModificaAnnuale.addActionListener(e -> {
-            
-            menuModificaAnnuale.show(buttonModificaAnnuale, 0, buttonModificaAnnuale.getHeight());
-        });
-
-        buttonImpostazioniAnnuale.addActionListener(e -> {
-            
-            menuImpostazioniAnnuale.show(buttonImpostazioniAnnuale, 0, buttonImpostazioniAnnuale.getHeight());
-        });
-
-        budget.visualizzaLimiti();
-
-        panelSupCenAnnuale = new JPanel();
-
-        new Timer(500, new ActionListener(){
-            
-            int prec = 0;
-            boolean stop = false;
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-
-                if(stop==false){
-
-                    if(budget.getMaxAnn()==-1){
-
-                        if(prec==1){
-    
-                            stop=true;
-                        }else{
-    
-                            panelAnnuale.repaint();
-            
-                            panelSupCenAnnuale.setLayout(new BorderLayout());
-                        
-                            panelSupCenAnnuale.add(buttonAggiungiAnnuale, BorderLayout.WEST);
-                            panelSupCenAnnuale.add(buttonImpostazioniAnnuale, BorderLayout.EAST);
-                
-                            buttonImpostazioniAnnuale.setEnabled(false);
-                            buttonAggiungiAnnuale.setEnabled(true);
-                
-                            labelCentrale.setFont(new Font("Arial", Font.BOLD, 25));
-                            labelCentrale.setAlignmentX(CENTER_ALIGNMENT);
-                            labelCentrale.setAlignmentY(CENTER_ALIGNMENT);
-                
-                            panelAnnuale.setLayout(new GridLayout(2, 1));
-                
-                            panelAnnuale.add(panelSupCenAnnuale);
-                            panelAnnuale.add(labelCentrale);
-    
-                            prec=1;
-                        }
-                    }
-                    if(budget.getMaxAnn()!=-1){
-                        
-                        if(prec==2){
-    
-                            stop=true;
-                        }else{
-    
-                            panelAnnuale.repaint();
-            
-                            barAnnuale = new JProgressBar();
-                        
-                            barAnnuale.setMaximum((int) Math.round(budget.getMaxAnn()));
-                            
-                            new Timer(500, new ActionListener() {
-                                
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    
-                                    barAnnuale.setValue((int) Math.round(budget.getCorrenteAnn()));
-                                    barAnnuale.repaint();
-                                }
-                            }).start();
-                
-                            buttonImpostazioniAnnuale.setEnabled(true);
-                            buttonAggiungiAnnuale.setEnabled(false);
-                
-                            panelSupCenAnnuale.setLayout(new BorderLayout());
-                        
-                            panelSupCenAnnuale.add(buttonAggiungiAnnuale, BorderLayout.WEST);
-                            panelSupCenAnnuale.add(buttonImpostazioniAnnuale, BorderLayout.EAST);
-                
-                            buttonImpostazioniAnnuale.setEnabled(false);
-                
-                            String spesiAnnuale = String.valueOf(budget.getCorrenteAnn());
-                            labelSpesiAnn = new JLabel("Hai speso "+spesiAnnuale+" €");
-                
-                            String rimastiAnnuale = String.valueOf(budget.getMaxAnn()-budget.getCorrenteAnn());
-                            labelRimastiAnn = new JLabel("Rispetto al budget settimanale sono rimasti "+rimastiAnnuale+" €");
-                
-                            String limAnnuale = String.valueOf(budget.getMaxAnn());
-                            labelMaxAnn = new JLabel("Il budget settimanale è "+limAnnuale+" €");
-                
-                            JPanel panelTmp = new JPanel();
-                            panelTmp.add(barAnnuale);
-                            panelTmp.add(labelMaxAnn);
-                
-                            JPanel panelTmp2 = new JPanel();
-                            panelTmp2.add(labelSpesiAnn);
-                            panelTmp2.add(labelRimastiAnn);
-                
-                            panelAnnuale.setLayout(new GridLayout(3, 1));
-                            
-                            panelAnnuale.add(panelSupCenAnnuale);
-                            panelAnnuale.add(panelTmp);
-                            panelAnnuale.add(panelTmp2);
-    
-                            prec=2;
-                        }
-                    }
-                }
-            }
-        }).start();
-
-        panelCen.addTab("Budget settimanale", panelAnnuale);
 
 
 
