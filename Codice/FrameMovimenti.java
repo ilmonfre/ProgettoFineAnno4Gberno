@@ -96,7 +96,7 @@ public class FrameMovimenti extends JFrame{
 
         Color colorButton = Color.decode("#1c2697");
         Color colorHover = Color.decode("#cbf4f4");
-        ImageIcon iconFiltra = new ImageIcon(getClass().getResource("/Immagini/IconaFiltraBianca.png"));
+        ImageIcon iconFiltra = new ImageIcon(getClass().getResource("/Immagini/IconaFiltriChiara.png"));
         buttonFiltra = new RoundedBorderButton("", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
         buttonFiltra.setIcon(iconFiltra);
         buttonFiltra.setPreferredSize(new Dimension(50, 50));
@@ -109,12 +109,12 @@ public class FrameMovimenti extends JFrame{
         buttonUscite.setFont(new Font("Arial", Font.BOLD, 20));
         buttonUscite.setPreferredSize(new Dimension(125, 50));
 
-        ImageIcon iconCerca = new ImageIcon(getClass().getResource("/Immagini/IconaCercaBianca.png"));
+        ImageIcon iconCerca = new ImageIcon(getClass().getResource("/Immagini/IconaCercaChiara.png"));
         buttonCerca = new RoundedBorderButton("", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
         buttonCerca.setIcon(iconCerca);
         buttonCerca.setPreferredSize(new Dimension(50, 50));
 
-        ImageIcon iconReset = new ImageIcon(getClass().getResource("/Immagini/IconaResetBianca.png"));
+        ImageIcon iconReset = new ImageIcon(getClass().getResource("/Immagini/IconaResetChiara.png"));
         buttonReset = new RoundedBorderButton("", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
         buttonReset.setIcon(iconReset);
         buttonReset.setPreferredSize(new Dimension(50, 50));
@@ -302,17 +302,17 @@ public class FrameMovimenti extends JFrame{
         buttonBudget = new JButton();
         buttonCambioValuta = new JButton();
 
-        imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeNera.png"));
+        imageHome = new ImageIcon(getClass().getResource("/Immagini/IconaHomeScura.png"));
         buttonHome.setIcon(imageHome);
-        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiNera.png"));
+        imageMovimenti = new ImageIcon(getClass().getResource("/Immagini/IconaMovimentiScuraPiena.png"));
         buttonMovimenti.setIcon(imageMovimenti);
-        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmi.png"));
+        imageRisparmi = new ImageIcon(getClass().getResource("/Immagini/IconaRisparmiScura.png"));
         buttonRisparmi.setIcon(imageRisparmi);
-        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamenti.png"));
+        imagePagamenti = new ImageIcon(getClass().getResource("/Immagini/IconaPagamentiScura.png"));
         buttonPagamenti.setIcon(imagePagamenti);
-        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudget.png"));
+        imageBudget = new ImageIcon(getClass().getResource("/Immagini/IconaBudgetScura.png"));
         buttonBudget.setIcon(imageBudget);
-        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValuta.png"));
+        imageCambioValuta = new ImageIcon(getClass().getResource("/Immagini/IconaCambioValutaScura.png"));
         buttonCambioValuta.setIcon(imageCambioValuta);
 
         buttonHome.addActionListener(new ActionListener(){
