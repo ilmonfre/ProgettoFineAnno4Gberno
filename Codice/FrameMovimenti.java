@@ -62,18 +62,18 @@ public class FrameMovimenti extends JFrame{
         });
 
         panelCerca = new JPanel();
-        panelCerca.setBackground(Color.decode("#CCFFFF"));
+        panelCerca.setBackground(Color.decode("#cbf4f4"));
         panelCercaSup = new JPanel();
-        panelCercaSup.setBackground(Color.decode("#CCFFFF"));
+        panelCercaSup.setBackground(Color.decode("#cbf4f4"));
         panelCercaInf = new JPanel();
-        panelCercaInf.setBackground(Color.decode("#CCFFFF"));
+        panelCercaInf.setBackground(Color.decode("#cbf4f4"));
 
         movimenti = new Movimenti(0, 0, 0, budget);
 
         textCerca = new RoundedTextField(20, 30);
-        textCerca.setBackground(Color.decode("#D3D3D3"));
+        textCerca.setBackground(Color.decode("#1c2697"));
         String placeholder = "Cerca movimento";
-        textCerca.setForeground(Color.GRAY);
+        textCerca.setForeground(Color.decode("#cbf4f4"));
         textCerca.setText(placeholder);
 
         textCerca.addFocusListener(new FocusAdapter() {
@@ -81,13 +81,13 @@ public class FrameMovimenti extends JFrame{
             public void focusGained(FocusEvent e) {
                 if (textCerca.getText().equals(placeholder)) {
                     textCerca.setText("");
-                    textCerca.setForeground(Color.BLACK);
+                    textCerca.setForeground(Color.decode("1c2697"));
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
                 if (textCerca.getText().isEmpty()) {
-                    textCerca.setForeground(Color.GRAY);
+                    textCerca.setForeground(Color.decode("#cbf4f4"));
                     textCerca.setText(placeholder);
                 }
             }
@@ -138,7 +138,7 @@ public class FrameMovimenti extends JFrame{
         });
 
         panelSlider.setLayout(new GridLayout(3, 1));
-        panelSlider.setBackground(Color.decode("#CCFFFF"));
+        panelSlider.setBackground(Color.decode("#cbf4f4"));
         panelSlider.add(labelSlider);
         panelSlider.add(sliderSoldi);
         panelSlider.add(labelValore);
@@ -184,6 +184,7 @@ public class FrameMovimenti extends JFrame{
         }
 
         labelVuoto = new JLabel("Nessun movimento trovato");
+        labelVuoto.setForeground(Color.decode("#1c2697"));
         labelVuoto.setFont(new Font("Arial", Font.BOLD, 25));
 
         buttonCerca.addActionListener(new ActionListener() {
@@ -247,7 +248,7 @@ public class FrameMovimenti extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
 
-                textCerca.setForeground(Color.GRAY);
+                textCerca.setForeground(Color.decode("#cbf4f4"));
                 textCerca.setText(placeholder);
 
                 textCerca.addFocusListener(new FocusAdapter() {
@@ -255,13 +256,13 @@ public class FrameMovimenti extends JFrame{
                     public void focusGained(FocusEvent e) {
                         if (textCerca.getText().equals(placeholder)) {
                             textCerca.setText("");
-                            textCerca.setForeground(Color.BLACK);
+                            textCerca.setForeground(Color.decode("1c2697"));
                         }
                     }
                     @Override
                     public void focusLost(FocusEvent e) {
                         if (textCerca.getText().isEmpty()) {
-                            textCerca.setForeground(Color.GRAY);
+                            textCerca.setForeground(Color.decode("#cbf4f4"));
                             textCerca.setText(placeholder);
                         }
                     }
@@ -281,7 +282,7 @@ public class FrameMovimenti extends JFrame{
             }
         });
 
-        panelRisultati.setBackground(Color.decode("#CCFFFF"));
+        panelRisultati.setBackground(Color.decode("#cbf4f4"));
         barRisultati = new JScrollPane(panelRisultati);
 
         imageMovimenti = new ImageIcon();
@@ -292,7 +293,7 @@ public class FrameMovimenti extends JFrame{
 
         panelBar = new JPanel();
         panelBar.setLayout(new GridLayout(1, 6));
-        panelBar.setBackground(Color.decode("#CCFFFF"));
+        panelBar.setBackground(Color.decode("#cbf4f4"));
 
         buttonHome = new JButton();
         buttonMovimenti = new JButton();
@@ -350,7 +351,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new CambioValutaFrame();
+                new FrameCambioValuta();
             }
         });
 

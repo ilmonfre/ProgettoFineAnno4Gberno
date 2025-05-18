@@ -58,13 +58,15 @@ public class Apertura extends JFrame {
         font = new Font("Serif", Font.BOLD, 24);
         
         buttonAccedi = new JButton("Accedi");
+        buttonAccedi.setForeground(Color.decode("#cbf4f4"));
         buttonRegistrati = new JButton("Registrati");
+        buttonRegistrati.setForeground(Color.decode("#cbf4f4"));
 
         buttonAccedi.setFont(font);
         buttonRegistrati.setFont(font);
 
-        buttonAccedi.setBackground(Color.decode("#5299D5"));
-        buttonRegistrati.setBackground(Color.decode("#5299D5"));
+        buttonAccedi.setBackground(Color.decode("#1c2697"));
+        buttonRegistrati.setBackground(Color.decode("#1c2697"));
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -101,12 +103,21 @@ public class Apertura extends JFrame {
         add(panelImage);
         add(panelScelta);
 
-        panelImage.setBackground(Color.decode("#f0ffff"));
-        panelScelta.setBackground(Color.decode("#f0ffff"));
+        panelImage.setBackground(Color.decode("#cbf4f4"));
+        panelScelta.setBackground(Color.decode("#cbf4f4"));
 
         setSize(new Dimension(500, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
+
+    // public static void main(String[] args) {
+    //     SwingUtilities.invokeLater(new Runnable() {
+    //         @Override
+    //         public void run() {
+    //             new Apertura();
+    //         }
+    //     });
+    // }
 
 }

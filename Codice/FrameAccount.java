@@ -36,6 +36,7 @@ public class FrameAccount {
         // top panel
         topPanel = new JPanel();
         topLabel = new JLabel("Il tuo account!");
+        topLabel.setForeground(Color.decode("#1c2697"));
         fontIniziale = new Font("Serif", Font.BOLD, 28);
         topLabel.setFont(fontIniziale);
         topPanel.add(topLabel);
@@ -51,33 +52,43 @@ public class FrameAccount {
         panel1 = new JPanel(new GridLayout(11, 2, 10, 20));
 
         lblNomeTitolare = new JLabel("Nome: " + utente.getNome());
+        lblNomeTitolare.setForeground(Color.decode("#1c2697"));
         lblNomeTitolare.setFont(fontMid);
 
         lblCognomeTitolare = new JLabel("Cognome: " + utente.getCognome());
+        lblCognomeTitolare.setForeground(Color.decode("#1c2697"));
         lblCognomeTitolare.setFont(fontMid);
 
         lblCodFis = new JLabel("Codice fiscale: " + utente.getCodFis());
+        lblCodFis.setForeground(Color.decode("#1c2697"));
         lblCodFis.setFont(fontMid);
         
         lblNtel = new JLabel("Numero di telefono: " + utente.getnTel());
+        lblNtel.setForeground(Color.decode("#1c2697"));
         lblNtel.setFont(fontMid);
 
         lblDataNascita = new JLabel("Data di nascita: " + utente.getDataNascita());
+        lblDataNascita.setForeground(Color.decode("#1c2697"));
         lblDataNascita.setFont(fontMid);
 
         lblLuogoNascita = new JLabel("Luogo di nascita: " + utente.getLuogoNascita());
+        lblLuogoNascita.setForeground(Color.decode("#1c2697"));
         lblLuogoNascita.setFont(fontMid);
 
         lblIndirizzo = new JLabel("Indirizzo di residenza: " + utente.getIndirizzo());
+        lblIndirizzo.setForeground(Color.decode("#1c2697"));
         lblIndirizzo.setFont(fontMid);
 
         lblCitta = new JLabel("Citta di residenza: " + utente.getCitta());
+        lblCitta.setForeground(Color.decode("#1c2697"));
         lblCitta.setFont(fontMid);
 
         lblEmail = new JLabel("Email: " + utente.getEmail());
+        lblEmail.setForeground(Color.decode("#1c2697"));
         lblEmail.setFont(fontMid);
 
         lblPassword = new JLabel("Password: " + utente.getPassword());
+        lblPassword.setForeground(Color.decode("#1c2697"));
         lblPassword.setFont(fontMid);
         
         panel1.add(lblNomeTitolare);
@@ -95,7 +106,8 @@ public class FrameAccount {
         bottomPanel = new JPanel();
 
         btn = new JButton("Dati della carta");
-        btn.setBackground(Color.decode("#5299D5"));
+        btn.setBackground(Color.decode("#1c2697"));
+        btn.setForeground(Color.decode("#cbf4f4"));
         Dimension d = new Dimension(200, 35);
         btn.setPreferredSize(d);     
 
@@ -120,15 +132,14 @@ public class FrameAccount {
         });
 
 
-        panel1.setBackground(Color.decode("#f0ffff"));
-        topPanel.setBackground(Color.decode("#f0ffff"));
-        midPanel.setBackground(Color.decode("#f0ffff"));
-        bottomPanel.setBackground(Color.decode("#f0ffff"));
+        panel1.setBackground(Color.decode("#cbf4f4"));
+        topPanel.setBackground(Color.decode("#cbf4f4"));
+        midPanel.setBackground(Color.decode("#cbf4f4"));
+        bottomPanel.setBackground(Color.decode("#cbf4f4"));
 
 
         frame.setSize(600, 600);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
 }

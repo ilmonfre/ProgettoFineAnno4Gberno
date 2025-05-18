@@ -41,6 +41,7 @@ public class FrameAccedi {
       // top panel
       topPanel = new JPanel();
       topLabel = new JLabel("Accedi al tuo account!");
+      topLabel.setForeground(Color.decode("#1c2697"));
       fontIniziale = new Font("Serif", Font.BOLD, 28);
       topLabel.setFont(fontIniziale);
       topPanel.add(topLabel);
@@ -55,15 +56,18 @@ public class FrameAccedi {
       midPanel.setBorder(BorderFactory.createEmptyBorder(30, 20, 50, 20));
       panel1 = new JPanel(new GridLayout(3,1,10 ,20));
       lblEmail = new JLabel("Email: ");
+      lblEmail.setForeground(Color.decode("#1c2697"));
       lblEmail.setFont(fontMid);
       txtEmail = new JTextField(20);
       txtEmail.setHorizontalAlignment((int) SwingConstants.CENTER);
       
       lblPass = new JLabel("Password: ");
+      lblPass.setForeground(Color.decode("#1c2697"));
       lblPass.setFont(fontMid);
       pass = new JPasswordField(20);
       pass.setHorizontalAlignment((int) SwingConstants.CENTER);
       lblPass2 = new JLabel("Mostra password: ");
+      lblPass2.setForeground(Color.decode("#1c2697"));
       btnPass = new JButton("👁");
       btnPass.setPreferredSize(new Dimension(3,2));
       btnPass.setBackground(Color.LIGHT_GRAY);
@@ -93,7 +97,8 @@ public class FrameAccedi {
 
       panelBtn.setBorder(BorderFactory.createEmptyBorder(60, 20, 50, 20));
       btn = new JButton("Avanti");
-      btn.setBackground(Color.decode("#5299D5"));
+      btn.setBackground(Color.decode("#1c2697"));
+      btn.setForeground(Color.decode("#cbf4f4"));
       btn.setPreferredSize(new Dimension(150, 30));
 
       fontBtn = new Font("Segoe UI", Font.BOLD, 14);
@@ -102,7 +107,9 @@ public class FrameAccedi {
       panel2 = new JPanel();
 
       lblReg = new JLabel("Non hai ancora un account?");
+      lblReg.setForeground(Color.decode("#1c2697"));
       btnReg = new JButton("Registrati");
+      btnReg.setForeground(Color.decode("#1c2697"));
       
       btnReg.setHorizontalAlignment(JButton.CENTER);
       btnReg.setBorderPainted(false);
@@ -171,15 +178,24 @@ public class FrameAccedi {
       });
 
 
-      topPanel.setBackground(Color.decode("#f0ffff"));
-      midPanel.setBackground(Color.decode("#f0ffff"));
-      panel1.setBackground(Color.decode("#f0ffff"));
-      panelBtn.setBackground(Color.decode("#f0ffff"));
-      panel2.setBackground(Color.decode("#f0ffff"));
+      topPanel.setBackground(Color.decode("#cbf4f4"));
+      midPanel.setBackground(Color.decode("#cbf4f4"));
+      panel1.setBackground(Color.decode("#cbf4f4"));
+      panelBtn.setBackground(Color.decode("#cbf4f4"));
+      panel2.setBackground(Color.decode("#cbf4f4"));
 
 
       frame.setSize(500, 550);
       frame.setVisible(true);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
+
+   // public static void main(String[] args) {
+   //    SwingUtilities.invokeLater(new Runnable() {
+   //       @Override
+   //       public void run() {
+   //          new FrameAccedi();
+   //       }
+   //    });
+   // }
 }

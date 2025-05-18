@@ -33,6 +33,7 @@ public class FrameDatiCarta {
         // top panel
         topPanel = new JPanel();
         topLabel = new JLabel("La tua carta!");
+        topLabel.setForeground(Color.decode("#1c2697"));
         fontIniziale = new Font("Serif", Font.BOLD, 28);
         topLabel.setFont(fontIniziale);
         topPanel.add(topLabel);
@@ -48,18 +49,23 @@ public class FrameDatiCarta {
         panel = new JPanel(new GridLayout(6, 0, 10, 20));
 
         lblIban = new JLabel("Iban: " + FrameAccount.utente.getIBAN());
+        lblIban.setForeground(Color.decode("#1c2697"));
         lblIban.setFont(fontMid);
 
         lblNcarta = new JLabel("Numero della carta: " + FrameAccount.utente.getnCarta());
+        lblNcarta.setForeground(Color.decode("#1c2697"));
         lblNcarta.setFont(fontMid);
 
         lblDataScadenza = new JLabel("Data di scadenza: " + FrameAccount.utente.getDataScadenza());
+        lblDataScadenza.setForeground(Color.decode("#1c2697"));
         lblDataScadenza.setFont(fontMid);
 
         lblcvv = new JLabel("CVV: " + FrameAccount.utente.getCvv());
+        lblcvv.setForeground(Color.decode("#1c2697"));
         lblcvv.setFont(fontMid);
 
         lblpin = new JLabel("PIN: " + FrameAccount.utente.getPin());
+        lblpin.setForeground(Color.decode("#1c2697"));
         lblpin.setFont(fontMid);
 
         panel.add(lblIban);
@@ -72,9 +78,9 @@ public class FrameDatiCarta {
 
         frame.add(midPanel, BorderLayout.CENTER);
 
-        topPanel.setBackground(Color.decode("#f0ffff"));
-        midPanel.setBackground(Color.decode("#f0ffff"));
-        panel.setBackground(Color.decode("#f0ffff"));
+        topPanel.setBackground(Color.decode("#cbf4f4"));
+        midPanel.setBackground(Color.decode("#cbf4f4"));
+        panel.setBackground(Color.decode("#cbf4f4"));
 
         frame.setSize(600, 600);
         frame.setVisible(true);
