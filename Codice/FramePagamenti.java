@@ -144,11 +144,19 @@ public class FramePagamenti {
             }
         });
 
+        buttonPagamenti.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                frame.dispose();
+                new FramePagamenti();
+            }
+        });
+
         buttonCambioValuta.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                //new CambioValutaFrame();
+                new FrameCambioValuta();
             }
         });
 
@@ -249,18 +257,18 @@ public class FramePagamenti {
         btnBonifico.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new FrameBonifico();
             }
         });
 
         btnScambioDenaro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                new FrameScambioDenaro();
             }
         });
 
-
+        panelCentrale.setBackground(Color.decode("#cbf4f4"));
 
 
         // Aggiunta dei pannelli al frame
