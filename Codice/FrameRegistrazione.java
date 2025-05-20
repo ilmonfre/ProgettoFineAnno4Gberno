@@ -42,6 +42,7 @@ class FrameRegistrazione{
         // top panel
         topPanel = new JPanel();
         topLabel = new JLabel("Crea un nuovo account!");
+        topLabel.setForeground(Color.decode("#1c2697"));
         fontIniziale = new Font("Serif", Font.BOLD, 28);
         topLabel.setFont(fontIniziale);
         topPanel.add(topLabel);
@@ -57,25 +58,29 @@ class FrameRegistrazione{
         panel1 = new JPanel(new GridLayout(5, 1, 10, 20));
 
         lblNome = new JLabel("Nome: ");
+        lblNome.setForeground(Color.decode("#1c2697"));
         lblNome.setFont(fontMid);
         txtNome = new JTextField(20);
         txtNome.setHorizontalAlignment((int) SwingConstants.CENTER);
 
         lblCognome = new JLabel("Cognome: ");
+        lblCognome.setForeground(Color.decode("#1c2697"));
         lblCognome.setFont(fontMid);
         txtCognome = new JTextField(20);
         txtCognome.setHorizontalAlignment((int) SwingConstants.CENTER);
 
         lblCodFis = new JLabel("Codice fiscale: ");
+        lblCodFis.setForeground(Color.decode("#1c2697"));
         lblCodFis.setFont(fontMid);
         txtCodFis = new JTextField(20);
         txtCodFis.setHorizontalAlignment((int) SwingConstants.CENTER);
 
         lblNtel = new JLabel("Numero di telefono: ");
+        lblNtel.setForeground(Color.decode("#1c2697"));
         lblNtel.setFont(fontMid);
         txtNTel = new JTextField(20);
         txtNTel.setHorizontalAlignment((int) SwingConstants.CENTER);
-  
+
         panel1.add(lblNome); 
         panel1.add(txtNome);            
         panel1.add(lblCognome);
@@ -92,7 +97,8 @@ class FrameRegistrazione{
 
         panelBtn.setBorder(BorderFactory.createEmptyBorder(60, 20, 50, 20));
         btn = new JButton("Avanti");
-        btn.setBackground(Color.decode("#5299D5"));
+        btn.setForeground(Color.decode("#cbf4f4"));
+        btn.setBackground(Color.decode("#1c2697"));
         btn.setPreferredSize(new Dimension(200, 30));
 
         fontBtn = new Font("Segoe UI", Font.BOLD, 14);
@@ -101,7 +107,10 @@ class FrameRegistrazione{
         panel2 = new JPanel();
 
         lblAccedi = new JLabel("Hai già un account?");
+        lblAccedi.setForeground(Color.decode("#1c2697"));
         btnAccedi = new JButton("Accedi");
+        btnAccedi.setForeground(Color.decode("#cbf4f4"));
+        btnAccedi.setBackground(Color.decode("#1c2697"));
         
         btnAccedi.setHorizontalAlignment(JButton.CENTER);
         btnAccedi.setBorderPainted(false);
@@ -124,7 +133,7 @@ class FrameRegistrazione{
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setPreferredSize(new Dimension(450, 15));
-        progressBar.setForeground(Color.decode("#5299D5"));
+        progressBar.setForeground(Color.decode("#1c2697"));
         progressBar.setValue(33);
         progressBar.setStringPainted(false);
 
@@ -137,7 +146,7 @@ class FrameRegistrazione{
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-              
+            
                 String m = "\n";
 
                 if (txtNome.getText().isEmpty() || txtCognome.getText().isEmpty() || txtCodFis.getText().isEmpty() || txtNTel.getText().isEmpty()) {
@@ -166,7 +175,7 @@ class FrameRegistrazione{
                 m += txtCognome.getText() + " ; ";
                 m += txtCodFis.getText() + " ; ";
                 m += txtNTel.getText() + " ; ";
-               
+
 
                 try (FileWriter writer = new FileWriter("save.csv", true)){
                     writer.write(m);
@@ -174,7 +183,7 @@ class FrameRegistrazione{
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                             
+
                 frame.setVisible(false);
 
                 try {
@@ -199,12 +208,12 @@ class FrameRegistrazione{
         });
 
 
-        topPanel.setBackground(Color.decode("#f0ffff"));
-        midPanel.setBackground(Color.decode("#f0ffff"));
-        panel1.setBackground(Color.decode("#f0ffff"));
-        panelBtn.setBackground(Color.decode("#f0ffff"));
-        panel2.setBackground(Color.decode("#f0ffff"));
-        bottomPanel.setBackground(Color.decode("#f0ffff"));
+        topPanel.setBackground(Color.decode("#cbf4f4"));
+        midPanel.setBackground(Color.decode("#cbf4f4"));
+        panel1.setBackground(Color.decode("#cbf4f4"));
+        panelBtn.setBackground(Color.decode("#cbf4f4"));
+        panel2.setBackground(Color.decode("#cbf4f4"));
+        bottomPanel.setBackground(Color.decode("#cbf4f4"));
 
 
         frame.setSize(500, 550);
@@ -213,5 +222,11 @@ class FrameRegistrazione{
     
     }
 
-
+    // public static void main(String[] args) {
+    //     try {
+    //         new FrameRegistrazione();
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 }

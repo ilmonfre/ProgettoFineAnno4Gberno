@@ -493,7 +493,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new PagamentiFrame();
+                new FramePagamenti();
             }
         });
 

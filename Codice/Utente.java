@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.util.List;
 
 public class Utente {
 
@@ -142,5 +144,13 @@ public class Utente {
     }
     public void setPin(String pin) {
         this.pin = pin;
+    }
+
+    public void decrementaSaldo(double importo) {
+        importo+=importo;
+    }
+
+    public void incrementaSaldo(double importo) {
+        
     }
 }

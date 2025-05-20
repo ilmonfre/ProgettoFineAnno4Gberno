@@ -51,6 +51,7 @@ public class FrameRegistrazione2 {
         // top panel
         topPanel = new JPanel();
         topLabel = new JLabel("Crea un nuovo account!");
+        topLabel.setForeground(Color.decode("#1c2697"));
         topLabel.setFont(new Font("Serif", Font.BOLD, 28));
         topPanel.add(topLabel);
 
@@ -66,6 +67,7 @@ public class FrameRegistrazione2 {
         panel1 = new JPanel(new GridLayout(4, 1, 10, 20));
 
         lblData = new JLabel("Data di nascita: ");
+        lblData.setForeground(Color.decode("#1c2697"));
         lblData.setFont(fontMid);
         txtData = new JTextField(20);
         txtData.setHorizontalAlignment((int) SwingConstants.CENTER);
@@ -92,11 +94,13 @@ public class FrameRegistrazione2 {
         });
         
         lblLuogo = new JLabel("Luogo di nascita (comune): ");
+        lblLuogo.setForeground(Color.decode("#1c2697"));
         lblLuogo.setFont(fontMid);
         txtLuogo = new JTextField(20);
         txtLuogo.setHorizontalAlignment((int) SwingConstants.CENTER);
 
         lblIndirizzo = new JLabel("Indirizzo di residenza: ");
+        lblIndirizzo.setForeground(Color.decode("#1c2697"));
         lblIndirizzo.setFont(fontMid);
         txtIndirizzo = new JTextField( 20);
         txtIndirizzo.setHorizontalAlignment((int) SwingConstants.CENTER);
@@ -123,6 +127,7 @@ public class FrameRegistrazione2 {
         });
 
         lblCitta = new JLabel("Città di residenza: ");
+        lblCitta.setForeground(Color.decode("#1c2697"));
         lblCitta.setFont(fontMid);
         txtCitta = new JTextField(20);
         txtCitta.setHorizontalAlignment((int) SwingConstants.CENTER);
@@ -144,11 +149,13 @@ public class FrameRegistrazione2 {
         panelBtn.setBorder(BorderFactory.createEmptyBorder(60, 20, 50, 20));
 
         btn = new JButton("Avanti");
-        btn.setBackground(Color.decode("#5299D5"));
+        btn.setBackground(Color.decode("#1c2697"));
+        btn.setForeground(Color.decode("#cbf4f4"));
         Dimension d = new Dimension(200, 35);
         btn.setPreferredSize(d);
 
         btnIndietro = new JButton("Indietro");
+        btnIndietro.setForeground(Color.decode("#1c2697"));
         btnIndietro.setBackground(Color.LIGHT_GRAY);
         btnIndietro.setPreferredSize(d);
 
@@ -169,7 +176,7 @@ public class FrameRegistrazione2 {
 
         progressBar = new JProgressBar(0, 100);
         progressBar.setPreferredSize(new Dimension(450, 15));
-        progressBar.setForeground(Color.decode("#5299D5"));
+        progressBar.setForeground(Color.decode("#1c2697"));
         progressBar.setValue(66);
         progressBar.setStringPainted(false);
 
@@ -293,16 +300,24 @@ public class FrameRegistrazione2 {
             }
         });
 
-        topPanel.setBackground(Color.decode("#f0ffff"));
-        midPanel.setBackground(Color.decode("#f0ffff"));
-        panel1.setBackground(Color.decode("#f0ffff"));
-        panelBtn.setBackground(Color.decode("#f0ffff"));
-        bottomPanel.setBackground(Color.decode("#f0ffff"));
+        topPanel.setBackground(Color.decode("#cbf4f4"));
+        midPanel.setBackground(Color.decode("#cbf4f4"));
+        panel1.setBackground(Color.decode("#cbf4f4"));
+        panelBtn.setBackground(Color.decode("#cbf4f4"));
+        bottomPanel.setBackground(Color.decode("#cbf4f4"));
 
         frame.setSize(500, 550);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
+
+    // public static void main(String[] args) {
+    //     try {
+    //         new FrameRegistrazione2(new JFrame());
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
     
 }
