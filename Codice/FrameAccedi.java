@@ -24,7 +24,7 @@ public class FrameAccedi {
    Font fontIniziale, fontMid, fontBtn;
 
 
-   public FrameAccedi(){
+   public FrameAccedi(Movimenti movimenti){
 
       frame = new JFrame();
       frame.setTitle("Zaphyra Bank - Log in");
@@ -156,7 +156,7 @@ public class FrameAccedi {
 
             if (found) {
                   frame.dispose();
-                  new HomeFrame(new Movimenti(0, 0, 100, 3, budget));
+                  new HomeFrame(movimenti);
             } else {
                   JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
             }

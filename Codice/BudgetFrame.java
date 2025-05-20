@@ -51,7 +51,6 @@ public class BudgetFrame extends JFrame {
 
     Color dark, light;
 
-    Budget budget = new Budget(-1, -1, -1, 0, 0, 0);
     Tema tema = new Tema(0);
 
     private void centraFrame(JFrame frame) {
@@ -76,7 +75,7 @@ public class BudgetFrame extends JFrame {
         buttonAggiungi.setMargin(new Insets(0, 0, 0, 0));
         buttonImpostazioni.setMargin(new Insets(0, 0, 0, 0));
 
-        if (budget.getMaxSett() == -1) {
+        if (movimenti.budget.getMaxSett() == -1) {
             buttonImpostazioni.setEnabled(false);
             buttonAggiungi.setEnabled(true);
             labelCentrale.setFont(new Font("Arial", Font.BOLD, 25));
@@ -91,13 +90,13 @@ public class BudgetFrame extends JFrame {
             buttonAggiungi.setEnabled(false);
 
             barSettimanale = new JProgressBar();
-            barSettimanale.setMaximum((int) Math.round(budget.getMaxSett()));
-            barSettimanale.setValue((int) Math.round(budget.getCorrenteSett()));
+            barSettimanale.setMaximum((int) Math.round(movimenti.budget.getMaxSett()));
+            barSettimanale.setValue((int) Math.round(movimenti.budget.getCorrenteSett()));
             barSettimanale.setPreferredSize(new Dimension(250, 30));
 
-            labelSpesiSett = new JLabel("Hai speso " + String.format("%.2f", budget.getCorrenteSett()) + " €");
-            labelRimastiSett = new JLabel("Rispetto al budget settimanale sono rimasti " + String.format("%.2f", budget.getMaxSett() - budget.getCorrenteSett()) + " €");
-            labelMaxSett = new JLabel("Il budget settimanale è " + String.format("%.2f", budget.getMaxSett()) + " €");
+            labelSpesiSett = new JLabel("Hai speso " + String.format("%.2f", movimenti.budget.getCorrenteSett()) + " €");
+            labelRimastiSett = new JLabel("Rispetto al budget settimanale sono rimasti " + String.format("%.2f", movimenti.budget.getMaxSett() - movimenti.budget.getCorrenteSett()) + " €");
+            labelMaxSett = new JLabel("Il budget settimanale è " + String.format("%.2f", movimenti.budget.getMaxSett()) + " €");
 
             labelSpesiSett.setFont(new Font("Arial", Font.PLAIN, 18));
             labelRimastiSett.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -142,7 +141,7 @@ public class BudgetFrame extends JFrame {
         buttonAggiungiMensile.setMargin(new Insets(0, 0, 0, 0));
         buttonImpostazioniMensile.setMargin(new Insets(0, 0, 0, 0));
 
-        if (budget.getMaxMen() == -1) {
+        if (movimenti.budget.getMaxMen() == -1) {
             buttonImpostazioniMensile.setEnabled(false);
             buttonAggiungiMensile.setEnabled(true);
             labelCentraleMensile.setFont(new Font("Arial", Font.BOLD, 25));
@@ -157,13 +156,13 @@ public class BudgetFrame extends JFrame {
             buttonAggiungiMensile.setEnabled(false);
 
             barMensile = new JProgressBar();
-            barMensile.setMaximum((int) Math.round(budget.getMaxMen()));
-            barMensile.setValue((int) Math.round(budget.getCorrenteMen()));
+            barMensile.setMaximum((int) Math.round(movimenti.budget.getMaxMen()));
+            barMensile.setValue((int) Math.round(movimenti.budget.getCorrenteMen()));
             barMensile.setPreferredSize(new Dimension(250, 30));
 
-            labelSpesiMens = new JLabel("Hai speso " + String.format("%.2f", budget.getCorrenteMen()) + " €");
-            labelRimastiMens = new JLabel("Rispetto al budget mensile sono rimasti " + String.format("%.2f", budget.getMaxMen() - budget.getCorrenteMen()) + " €");
-            labelMaxMens = new JLabel("Il budget mensile è " + String.format("%.2f", budget.getMaxMen()) + " €");
+            labelSpesiMens = new JLabel("Hai speso " + String.format("%.2f", movimenti.budget.getCorrenteMen()) + " €");
+            labelRimastiMens = new JLabel("Rispetto al budget mensile sono rimasti " + String.format("%.2f", movimenti.budget.getMaxMen() - movimenti.budget.getCorrenteMen()) + " €");
+            labelMaxMens = new JLabel("Il budget mensile è " + String.format("%.2f", movimenti.budget.getMaxMen()) + " €");
 
             labelSpesiMens.setFont(new Font("Arial", Font.PLAIN, 18));
             labelRimastiMens.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -208,7 +207,7 @@ public class BudgetFrame extends JFrame {
         buttonAggiungiAnnuale.setMargin(new Insets(0, 0, 0, 0));
         buttonImpostazioniAnnuale.setMargin(new Insets(0, 0, 0, 0));
 
-        if (budget.getMaxAnn() == -1) {
+        if (movimenti.budget.getMaxAnn() == -1) {
             buttonImpostazioniAnnuale.setEnabled(false);
             buttonAggiungiAnnuale.setEnabled(true);
             labelCentraleAnnuale.setFont(new Font("Arial", Font.BOLD, 25));
@@ -225,13 +224,13 @@ public class BudgetFrame extends JFrame {
             buttonAggiungiAnnuale.setEnabled(false);
 
             barAnnuale = new JProgressBar();
-            barAnnuale.setMaximum((int) Math.round(budget.getMaxAnn()));
-            barAnnuale.setValue((int) Math.round(budget.getCorrenteAnn()));
+            barAnnuale.setMaximum((int) Math.round(movimenti.budget.getMaxAnn()));
+            barAnnuale.setValue((int) Math.round(movimenti.budget.getCorrenteAnn()));
             barAnnuale.setPreferredSize(new Dimension(250, 30));
 
-            labelSpesiAnn = new JLabel("Hai speso " + String.format("%.2f", budget.getCorrenteAnn()) + " €");
-            labelRimastiAnn = new JLabel("Rispetto al budget annuale sono rimasti " + String.format("%.2f", budget.getMaxAnn() - budget.getCorrenteAnn()) + " €");
-            labelMaxAnn = new JLabel("Il budget annuale è " + String.format("%.2f", budget.getMaxAnn()) + " €");
+            labelSpesiAnn = new JLabel("Hai speso " + String.format("%.2f", movimenti.budget.getCorrenteAnn()) + " €");
+            labelRimastiAnn = new JLabel("Rispetto al budget annuale sono rimasti " + String.format("%.2f", movimenti.budget.getMaxAnn() - movimenti.budget.getCorrenteAnn()) + " €");
+            labelMaxAnn = new JLabel("Il budget annuale è " + String.format("%.2f", movimenti.budget.getMaxAnn()) + " €");
 
             labelSpesiAnn.setFont(new Font("Arial", Font.PLAIN, 18));
             labelRimastiAnn.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -261,7 +260,6 @@ public class BudgetFrame extends JFrame {
         panelAnnuale.repaint();
     }
     
-    Budget budget1;
     Movimenti movimenti;
     public BudgetFrame(Movimenti movimenti) {
         this.movimenti = movimenti;
@@ -467,13 +465,13 @@ public class BudgetFrame extends JFrame {
 
         buttonConfCrea.addActionListener(e -> {
 
-            if (!budget.controlloNumero(textMax)) {
+            if (!movimenti.budget.controlloNumero(textMax)) {
                 JOptionPane.showMessageDialog(frameCrea, "Inserisci un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else if (textMax.getText().equals("")) {
                 JOptionPane.showMessageDialog(frameCrea, "Il campo non può essere vuoto!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 double nuovoMax = Double.parseDouble(textMax.getText());
-                budget.setMaxSett(nuovoMax);
+                movimenti.budget.setMaxSett(nuovoMax);
                 aggiornaPannelloSettimanale();
                 frameCrea.dispose();
             }
@@ -533,13 +531,13 @@ public class BudgetFrame extends JFrame {
 
         buttonConferma.addActionListener(e -> {
 
-            if (!budget.controlloNumero(textModifica)) {
+            if (!movimenti.budget.controlloNumero(textModifica)) {
                 JOptionPane.showMessageDialog(frameModifica, "Inserisci un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else if (textModifica.getText().equals("")) {
                 JOptionPane.showMessageDialog(frameModifica, "Il campo non può essere vuoto!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 double nuovoMax = Double.parseDouble(textModifica.getText());
-                budget.setMaxSett(nuovoMax);
+                movimenti.budget.setMaxSett(nuovoMax);
                 aggiornaPannelloSettimanale();
                 frameModifica.dispose();
             }
@@ -603,7 +601,7 @@ public class BudgetFrame extends JFrame {
 
         buttonSi.addActionListener(e -> {
             frameImpostazioni.dispose();
-            budget.setMaxSett(-1);
+            movimenti.budget.setMaxSett(-1);
             aggiornaPannelloSettimanale();
             frameElimina.dispose();
         });
@@ -783,13 +781,13 @@ public class BudgetFrame extends JFrame {
 
         buttonConfCreaMensile.addActionListener(e -> {
 
-            if (!budget.controlloNumero(textMaxMensile)) {
+            if (!movimenti.budget.controlloNumero(textMaxMensile)) {
                 JOptionPane.showMessageDialog(frameCreaMensile, "Inserisci un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else if (textMaxMensile.getText().equals("")) {
                 JOptionPane.showMessageDialog(frameCreaMensile, "Il campo non può essere vuoto!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 double nuovoMax = Double.parseDouble(textMaxMensile.getText());
-                budget.setMaxMen(nuovoMax);
+                movimenti.budget.setMaxMen(nuovoMax);
                 aggiornaPannelloMensile();
                 frameCreaMensile.dispose();
             }
@@ -852,13 +850,13 @@ public class BudgetFrame extends JFrame {
 
         buttonConfermaMensile.addActionListener(e -> {
 
-            if (!budget.controlloNumero(textModificaMensile)) {
+            if (!movimenti.budget.controlloNumero(textModificaMensile)) {
                 JOptionPane.showMessageDialog(frameModificaMensile, "Inserisci un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else if (textModificaMensile.getText().equals("")) {
                 JOptionPane.showMessageDialog(frameModificaMensile, "Il campo non può essere vuoto!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 double nuovoMax = Double.parseDouble(textModificaMensile.getText());
-                budget.setMaxMen(nuovoMax);
+                movimenti.budget.setMaxMen(nuovoMax);
                 aggiornaPannelloMensile();
                 frameModificaMensile.dispose();
             }
@@ -921,7 +919,7 @@ public class BudgetFrame extends JFrame {
 
         buttonSiMensile.addActionListener(e -> {
             frameImpostazioniMensile.dispose();
-            budget.setMaxMen(-1);
+            movimenti.budget.setMaxMen(-1);
             aggiornaPannelloMensile();
             frameEliminaMensile.dispose();
         });
@@ -1106,13 +1104,13 @@ public class BudgetFrame extends JFrame {
 
         buttonConfCreaAnnuale.addActionListener(e -> {
 
-            if (!budget.controlloNumero(textMaxAnnuale)) {
+            if (!movimenti.budget.controlloNumero(textMaxAnnuale)) {
                 JOptionPane.showMessageDialog(frameCreaAnnuale, "Inserisci un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else if (textMaxAnnuale.getText().equals("")) {
                 JOptionPane.showMessageDialog(frameCreaAnnuale, "Il campo non può essere vuoto!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 double nuovoMax = Double.parseDouble(textMaxAnnuale.getText());
-                budget.setMaxAnn(nuovoMax);
+                movimenti.budget.setMaxAnn(nuovoMax);
                 aggiornaPannelloAnnuale();
                 frameCreaAnnuale.dispose();
             }
@@ -1173,13 +1171,13 @@ public class BudgetFrame extends JFrame {
 
         buttonConfermaAnnuale.addActionListener(e -> {
 
-            if (!budget.controlloNumero(textModificaAnnuale)) {
+            if (!movimenti.budget.controlloNumero(textModificaAnnuale)) {
                 JOptionPane.showMessageDialog(frameModificaAnnuale, "Inserisci un numero!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else if (textModificaAnnuale.getText().equals("")) {
                 JOptionPane.showMessageDialog(frameModificaAnnuale, "Il campo non può essere vuoto!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 double nuovoMax = Double.parseDouble(textModificaAnnuale.getText());
-                budget.setMaxAnn(nuovoMax);
+                movimenti.budget.setMaxAnn(nuovoMax);
                 aggiornaPannelloAnnuale();
                 frameModificaAnnuale.dispose();
             }
@@ -1242,7 +1240,7 @@ public class BudgetFrame extends JFrame {
 
         buttonSiAnnuale.addActionListener(e -> {
             frameImpostazioniAnnuale.dispose();
-            budget.setMaxAnn(-1);
+            movimenti.budget.setMaxAnn(-1);
             aggiornaPannelloAnnuale();
             frameEliminaAnnuale.dispose();
         });

@@ -18,6 +18,7 @@ public class FrameMovimenti extends JFrame{
     JPanel panelSlider;
     JLabel labelSlider, labelValore, labelVuoto;
     JButton buttonTema;
+    ButtonGroup groupFiltri;
 
     JPanel panelRisultati;
     JScrollPane barRisultati;
@@ -109,6 +110,10 @@ public class FrameMovimenti extends JFrame{
         buttonReset = new RoundedBorderButton("", colorButton, Color.white, colorButton, color3, color3, colorHover ,2, 20, 20);
         buttonReset.setIcon(iconReset);
         buttonReset.setPreferredSize(new Dimension(50, 50));
+
+        groupFiltri = new ButtonGroup();
+        groupFiltri.add(buttonEntrate);
+        groupFiltri.add(buttonUscite);
 
         int costoMax = movimenti.trovaCostoso();
         sliderSoldi = new JSlider(JSlider.HORIZONTAL, 0, costoMax, 0);
