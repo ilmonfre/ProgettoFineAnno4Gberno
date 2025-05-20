@@ -151,7 +151,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            //new PagamentiFrame();
+            new FramePagamenti();
          }
       });
 
@@ -171,7 +171,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            //new CambioValutaFrame();
+            new FrameCambioValuta();
          }
       });
 
