@@ -111,11 +111,6 @@ public class FrameAccount {
         Dimension d = new Dimension(200, 35);
         btn.setPreferredSize(d);     
 
-        btn.setOpaque(false);
-        btn.setContentAreaFilled(false);
-        btn.setBorderPainted(false);
-        btn.setFocusPainted(false);
-
         bottomPanel.add(btn);
 
         frame.add(bottomPanel, BorderLayout.SOUTH);

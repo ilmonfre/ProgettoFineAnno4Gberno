@@ -70,7 +70,7 @@ public class FrameCambioValuta extends JFrame {
         labelImporto.setHorizontalAlignment(SwingConstants.CENTER);
         labelImporto.setForeground(Color.decode("#1c2697"));
 
-        inputField = new JTextField();
+        inputField = new RoundedTextField(20, 30);
         inputField.setFont(new Font("Arial", Font.BOLD, 25));
         inputField.setHorizontalAlignment(SwingConstants.CENTER);
         inputField.setBackground(Color.WHITE);
@@ -81,7 +81,7 @@ public class FrameCambioValuta extends JFrame {
         labelRisultato.setHorizontalAlignment(SwingConstants.CENTER);
         labelRisultato.setForeground(Color.decode("#1c2697"));
 
-        outputField = new JTextField();
+        outputField = new RoundedTextField(20, 30);
         outputField.setFont(new Font("Arial", Font.BOLD, 25));
         outputField.setHorizontalAlignment(SwingConstants.CENTER);
         outputField.setBackground(Color.WHITE);

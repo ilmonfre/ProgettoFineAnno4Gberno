@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class HomeFrame extends JFrame{
 
-    int tema=0; // 0 = chiaro 1 = scuro
+    Tema tema = new Tema(0);
 
     Budget budget;
     //Movimenti movimenti = new Movimenti(0, 0, 100, 0, budget);
@@ -493,7 +493,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new PagamentiFrame();
+                new FramePagamenti();
             }
         });
 
@@ -575,9 +575,9 @@ public class HomeFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e){
 
-                if(tema==0){
+                if(tema.getTema()==0){
 
-                    tema=1;
+                    tema.setTema(1);
                     // Icone menu
                     buttonHome.repaint();
                     buttonHome.revalidate();
@@ -601,7 +601,7 @@ public class HomeFrame extends JFrame{
 
                 }else{
 
-                    tema=0;
+                    tema.setTema(0);
                     // Icone menu
                     buttonHome.repaint();
                     buttonHome.revalidate();
@@ -624,7 +624,7 @@ public class HomeFrame extends JFrame{
                     buttonBudget.setIcon(iconaBudgetScura);
                 }
 
-                if (tema==1) {
+                if (tema.getTema()==1) {
 
                     buttonTema.setIcon(imageSole);
 

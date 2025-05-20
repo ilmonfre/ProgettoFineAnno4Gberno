@@ -321,7 +321,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new HomeFrame();
+                new HomeFrame();
             }
         });
 
@@ -331,7 +331,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new PagamentiFrame();
+                new FramePagamenti();
             }
         });
 
@@ -361,7 +361,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new BudgetFrame();
+                new BudgetFrame();
             }
         });
 
@@ -410,7 +410,7 @@ public class FrameMovimenti extends JFrame{
         add(barRisultati, BorderLayout.CENTER);
         add(panelBar, BorderLayout.SOUTH);
 
-        setSize(1000, 1000);
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
