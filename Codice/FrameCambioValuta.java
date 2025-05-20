@@ -150,11 +150,11 @@ public class FrameCambioValuta extends JFrame {
         });
         buttonMovimenti.addActionListener(e -> {
             dispose();
-            // new MovimentiFrame();
+            new FrameMovimenti();
         });
         buttonPagamenti.addActionListener(e -> {
             dispose();
-            // new PagamentiFrame();
+            new FramePagamenti();
         });
         buttonRisparmi.addActionListener(e -> {
             dispose();
@@ -162,7 +162,7 @@ public class FrameCambioValuta extends JFrame {
         });
         buttonBudget.addActionListener(e -> {
             dispose();
-            // new BudgetFrame();
+            new BudgetFrame();
         });
 
         // Layout principale
