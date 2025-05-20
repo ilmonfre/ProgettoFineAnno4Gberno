@@ -1,13 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.SwingUtilities;
 
 public class BudgetFrame extends JFrame {
 
-    JPanel panelSup, panelBudget;
+    JPanel panelSup, panelBudget, panelBar;
     JButton buttonSettimanale, buttonMensile, buttonAnnuale, buttonTema;
+    ImageIcon imageSole, imageLuna;
 
     JTabbedPane panelCen;
+    
     JFrame frameCrea, frameImpostazioni, frameModifica, frameElimina;
     JPanel panelCrea, panelImpostazioni, panelModifica, panelElimina;
     JPanel panelSettimanale, panelMensile, panelAnnuale, panelSupCen;
@@ -33,7 +36,30 @@ public class BudgetFrame extends JFrame {
     RoundedTextField textModificaAnnuale, textMaxAnnuale;
     JLabel labelCentraleAnnuale, labelSpesiAnn, labelRimastiAnn, labelMaxAnn;
 
+    JButton buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta, buttonHome;
+    ImageIcon iconaAggiungiChiara, iconaImpostazioniChiara, iconaHomeChiara, iconaMovimentiChiara, iconaPagamentiChiara, iconaRisparmiChiara, iconaCambioValutaChiara, iconaBudgetChiara;
+    ImageIcon iconaAggiungiScura, iconaImpostazioniScura, iconaHomeScura, iconaMovimentiScura, iconaPagamentiScura, iconaRisparmiScura, iconaCambioValutaScura, iconaBudgetScura;
+
+    JPanel panelTextTmp, panelVuotoTmp, panelButtonTmp, panelTextModifica, panelVuotoModificaTmp, panelButtonModificaTmp, panelTmpElimina, panelButtonImpostazioniTmp;
+    JLabel labelTmp,labelModificaTmp, labelEliminaTmp;
+
+    JPanel panelTextMensileTmp, panelVuotoMensileTmp, panelButtonMensileTmp, panelTextModificaMensile, panelVuotoModificaMensileTmp, panelButtonModificaMensileTmp, panelTmpEliminaMensile, panelButtonImpostazioniMensileTmp;
+    JLabel labelMensileTmp,labelModificaMensileTmp, labelEliminaMensileTmp;
+
+    JPanel panelTextAnnualeTmp, panelVuotoAnnualeTmp, panelButtonAnnualeTmp, panelTextModificaAnnuale, panelVuotoModificaAnnualeTmp, panelButtonModificaAnnualeTmp, panelTmpEliminaAnnuale, panelButtonImpostazioniAnnualeTmp;
+    JLabel labelAnnualeTmp,labelModificaAnnualeTmp, labelEliminaAnnualeTmp;
+
+    Color dark, light;
+
     Budget budget = new Budget(-1, -1, -1, 0, 0, 0);
+    Tema tema = new Tema(0);
+
+    private void centraFrame(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - frame.getWidth()) / 2;
+        int y = (screenSize.height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+    }
 
     public void aggiornaPannelloSettimanale() {
         panelSettimanale.removeAll();
@@ -99,13 +125,6 @@ public class BudgetFrame extends JFrame {
 
         panelSettimanale.revalidate();
         panelSettimanale.repaint();
-    }
-
-    private void centraFrame(JFrame frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x, y);
     }
     
     public void aggiornaPannelloMensile() {
@@ -239,13 +258,25 @@ public class BudgetFrame extends JFrame {
         panelAnnuale.revalidate();
         panelAnnuale.repaint();
     }
-
+    
     public BudgetFrame() {
 
         setTitle("Zaphyra Bank - Budget");
 
         Color dark = Color.decode("#1c2697");
         Color light = Color.decode("#cbf4f4");
+
+        String basePath = "/Immagini/";
+        
+        // Icone tema scuro
+        iconaAggiungiScura = new ImageIcon(getClass().getResource(basePath + "Icona+Chiara.png"));
+        iconaImpostazioniScura = new ImageIcon(getClass().getResource(basePath + "IconaImpostazioniChiara.png"));
+        iconaHomeScura = new ImageIcon(getClass().getResource(basePath + "IconaHomeScura.png"));
+        iconaMovimentiScura = new ImageIcon(getClass().getResource(basePath + "IconaMovimentiScura.png"));
+        iconaPagamentiScura = new ImageIcon(getClass().getResource(basePath + "IconaPagamentiScura.png"));
+        iconaRisparmiScura = new ImageIcon(getClass().getResource(basePath + "IconaRisparmiScura.png"));
+        iconaCambioValutaScura = new ImageIcon(getClass().getResource(basePath + "IconaCambioValutaScura.png"));
+        iconaBudgetScura = new ImageIcon(getClass().getResource(basePath + "IconaBudgetScuraPiena.png"));
 
         panelSup = new JPanel();
 
@@ -275,7 +306,20 @@ public class BudgetFrame extends JFrame {
         panelBudget.add(buttonMensile);
         panelBudget.add(buttonAnnuale);
 
+        imageSole = new ImageIcon(getClass().getResource("/Immagini/IconaSole.png"));
+        imageLuna = new ImageIcon(getClass().getResource("/Immagini/IconaLuna.png"));
+
         buttonTema = new JButton();
+
+        buttonTema.setIcon(imageLuna);
+
+        buttonTema.setOpaque(false);
+        buttonTema.setContentAreaFilled(false);
+        buttonTema.setBorderPainted(false);
+        buttonTema.setFocusPainted(false);
+
+        panelSup.setLayout(new BorderLayout());
+        panelSup.add(buttonTema, BorderLayout.EAST);
 
         // Pannello centrale
         panelCen = new JTabbedPane(JTabbedPane.TOP);
@@ -431,16 +475,16 @@ public class BudgetFrame extends JFrame {
             });
         });
 
-        JPanel panelTextTmp = new JPanel();
+        panelTextTmp = new JPanel();
         textMax.setPreferredSize(new Dimension(200, 40));
         panelTextTmp.add(textMax);
 
-        JLabel labelTmp = new JLabel("");
-        JPanel panelVuotoTmp = new JPanel();
+        labelTmp = new JLabel("");
+        panelVuotoTmp = new JPanel();
         labelTmp.setPreferredSize(new Dimension(200, 10));
         panelVuotoTmp.add(labelTmp);
 
-        JPanel panelButtonTmp = new JPanel();
+        panelButtonTmp = new JPanel();
         buttonConfCrea.setPreferredSize(new Dimension(200, 40));
         panelButtonTmp.add(buttonConfCrea);
 
@@ -492,16 +536,16 @@ public class BudgetFrame extends JFrame {
             });
         });
 
-        JPanel panelTextModifica = new JPanel();
+        panelTextModifica = new JPanel();
         textModifica.setPreferredSize(new Dimension(200, 40));
         panelTextModifica.add(textModifica);
 
-        JLabel labelModificaTmp = new JLabel("");
-        JPanel panelVuotoModificaTmp = new JPanel();
+        labelModificaTmp = new JLabel("");
+        panelVuotoModificaTmp = new JPanel();
         labelModificaTmp.setPreferredSize(new Dimension(200, 10));
         panelVuotoModificaTmp.add(labelModificaTmp);
 
-        JPanel panelButtonModificaTmp = new JPanel();
+        panelButtonModificaTmp = new JPanel();
         buttonConferma.setPreferredSize(new Dimension(200, 40));
         panelButtonModificaTmp.add(buttonConferma);
 
@@ -530,14 +574,14 @@ public class BudgetFrame extends JFrame {
             frameElimina.dispose();
         });
 
-        JPanel panelTmpElimina = new JPanel();
+        panelTmpElimina = new JPanel();
         buttonSi.setPreferredSize(new Dimension(200, 40));
         buttonNo.setPreferredSize(new Dimension(200, 40));
         panelTmpElimina.setLayout(new GridLayout(2, 1));
         panelTmpElimina.add(buttonSi);
         panelTmpElimina.add(buttonNo);
 
-        JLabel labelEliminaTmp = new JLabel("<html>Sei sicuro di voler<br>eliminare questo budget?</html>");
+        labelEliminaTmp = new JLabel("<html>Sei sicuro di voler<br>eliminare questo budget?</html>");
         labelEliminaTmp.setHorizontalAlignment(SwingConstants.CENTER);
 
         panelElimina.setLayout(new GridLayout(2, 1));
@@ -552,7 +596,7 @@ public class BudgetFrame extends JFrame {
             frameImpostazioni.dispose();
         });
 
-        JPanel panelButtonImpostazioniTmp = new JPanel();
+        panelButtonImpostazioniTmp = new JPanel();
         panelButtonImpostazioniTmp.setLayout(new GridLayout(2, 1, 0, 10));
         buttonModifica.setPreferredSize(new Dimension(200, 40));
         buttonElimina.setPreferredSize(new Dimension(200, 40));
@@ -719,16 +763,16 @@ public class BudgetFrame extends JFrame {
             });
         });
 
-        JPanel panelTextMensileTmp = new JPanel();
+        panelTextMensileTmp = new JPanel();
         textMaxMensile.setPreferredSize(new Dimension(200, 40));
         panelTextMensileTmp.add(textMaxMensile);
 
-        JLabel labelMensileTmp = new JLabel("");
-        JPanel panelVuotoMensileTmp = new JPanel();
+        labelMensileTmp = new JLabel("");
+        panelVuotoMensileTmp = new JPanel();
         labelMensileTmp.setPreferredSize(new Dimension(200, 10));
         panelVuotoMensileTmp.add(labelMensileTmp);
 
-        JPanel panelButtonMensileTmp = new JPanel();
+        panelButtonMensileTmp = new JPanel();
         buttonConfCreaMensile.setPreferredSize(new Dimension(200, 40));
         panelButtonMensileTmp.add(buttonConfCreaMensile);
 
@@ -780,16 +824,16 @@ public class BudgetFrame extends JFrame {
             });
         });
 
-        JPanel panelTextModificaMensile = new JPanel();
+        panelTextModificaMensile = new JPanel();
         textModificaMensile.setPreferredSize(new Dimension(200, 40));
         panelTextModificaMensile.add(textModificaMensile);
 
-        JLabel labelModificaMensileTmp = new JLabel("");
-        JPanel panelVuotoModificaMensileTmp = new JPanel();
+        labelModificaMensileTmp = new JLabel("");
+        panelVuotoModificaMensileTmp = new JPanel();
         labelModificaMensileTmp.setPreferredSize(new Dimension(200, 10));
         panelVuotoModificaMensileTmp.add(labelModificaMensileTmp);
 
-        JPanel panelButtonModificaMensileTmp = new JPanel();
+        panelButtonModificaMensileTmp = new JPanel();
         buttonConfermaMensile.setPreferredSize(new Dimension(200, 40));
         panelButtonModificaMensileTmp.add(buttonConfermaMensile);
 
@@ -818,14 +862,14 @@ public class BudgetFrame extends JFrame {
             frameEliminaMensile.dispose();
         });
 
-        JPanel panelTmpEliminaMensile = new JPanel();
+        panelTmpEliminaMensile = new JPanel();
         buttonSiMensile.setPreferredSize(new Dimension(200, 40));
         buttonNoMensile.setPreferredSize(new Dimension(200, 40));
         panelTmpEliminaMensile.setLayout(new GridLayout(2, 1));
         panelTmpEliminaMensile.add(buttonSiMensile);
         panelTmpEliminaMensile.add(buttonNoMensile);
 
-        JLabel labelEliminaMensileTmp = new JLabel("<html>Sei sicuro di voler<br>eliminare questo budget?</html>");
+        labelEliminaMensileTmp = new JLabel("<html>Sei sicuro di voler<br>eliminare questo budget?</html>");
         labelEliminaMensileTmp.setHorizontalAlignment(SwingConstants.CENTER);
 
         panelEliminaMensile.setLayout(new GridLayout(2, 1));
@@ -840,7 +884,7 @@ public class BudgetFrame extends JFrame {
             frameImpostazioniMensile.dispose();
         });
 
-        JPanel panelButtonImpostazioniMensileTmp = new JPanel();
+        panelButtonImpostazioniMensileTmp = new JPanel();
         panelButtonImpostazioniMensileTmp.setLayout(new GridLayout(2, 1, 0, 10));
         buttonModificaMensile.setPreferredSize(new Dimension(200, 40));
         buttonEliminaMensile.setPreferredSize(new Dimension(200, 40));
@@ -1006,16 +1050,16 @@ public class BudgetFrame extends JFrame {
             });
         });
 
-        JPanel panelTextAnnualeTmp = new JPanel();
+        panelTextAnnualeTmp = new JPanel();
         textMaxAnnuale.setPreferredSize(new Dimension(200, 40));
         panelTextAnnualeTmp.add(textMaxAnnuale);
 
-        JLabel labelAnnualeTmp = new JLabel("");
-        JPanel panelVuotoAnnualeTmp = new JPanel();
+        labelAnnualeTmp = new JLabel("");
+        panelVuotoAnnualeTmp = new JPanel();
         labelAnnualeTmp.setPreferredSize(new Dimension(200, 10));
         panelVuotoAnnualeTmp.add(labelAnnualeTmp);
 
-        JPanel panelButtonAnnualeTmp = new JPanel();
+        panelButtonAnnualeTmp = new JPanel();
         buttonConfCreaAnnuale.setPreferredSize(new Dimension(200, 40));
         panelButtonAnnualeTmp.add(buttonConfCreaAnnuale);
 
@@ -1067,16 +1111,16 @@ public class BudgetFrame extends JFrame {
             });
         });
 
-        JPanel panelTextModificaAnnuale = new JPanel();
+        panelTextModificaAnnuale = new JPanel();
         textModificaAnnuale.setPreferredSize(new Dimension(200, 40));
         panelTextModificaAnnuale.add(textModificaAnnuale);
 
-        JLabel labelModificaAnnualeTmp = new JLabel("");
-        JPanel panelVuotoModificaAnnualeTmp = new JPanel();
+        labelModificaAnnualeTmp = new JLabel("");
+        panelVuotoModificaAnnualeTmp = new JPanel();
         labelModificaAnnualeTmp.setPreferredSize(new Dimension(200, 10));
         panelVuotoModificaAnnualeTmp.add(labelModificaAnnualeTmp);
 
-        JPanel panelButtonModificaAnnualeTmp = new JPanel();
+        panelButtonModificaAnnualeTmp = new JPanel();
         buttonConfermaAnnuale.setPreferredSize(new Dimension(200, 40));
         panelButtonModificaAnnualeTmp.add(buttonConfermaAnnuale);
 
@@ -1105,14 +1149,14 @@ public class BudgetFrame extends JFrame {
             frameEliminaAnnuale.dispose();
         });
 
-        JPanel panelTmpEliminaAnnuale = new JPanel();
+        panelTmpEliminaAnnuale = new JPanel();
         buttonSiAnnuale.setPreferredSize(new Dimension(200, 40));
         buttonNoAnnuale.setPreferredSize(new Dimension(200, 40));
         panelTmpEliminaAnnuale.setLayout(new GridLayout(2, 1));
         panelTmpEliminaAnnuale.add(buttonSiAnnuale);
         panelTmpEliminaAnnuale.add(buttonNoAnnuale);
 
-        JLabel labelEliminaAnnualeTmp = new JLabel("<html>Sei sicuro di voler<br>eliminare questo budget?</html>");
+        labelEliminaAnnualeTmp = new JLabel("<html>Sei sicuro di voler<br>eliminare questo budget?</html>");
         labelEliminaAnnualeTmp.setHorizontalAlignment(SwingConstants.CENTER);
 
         panelEliminaAnnuale.setLayout(new GridLayout(2, 1));
@@ -1127,7 +1171,7 @@ public class BudgetFrame extends JFrame {
             frameImpostazioniAnnuale.dispose();
         });
 
-        JPanel panelButtonImpostazioniAnnualeTmp = new JPanel();
+        panelButtonImpostazioniAnnualeTmp = new JPanel();
         panelButtonImpostazioniAnnualeTmp.setLayout(new GridLayout(2, 1, 0, 10));
         buttonModificaAnnuale.setPreferredSize(new Dimension(200, 40));
         buttonEliminaAnnuale.setPreferredSize(new Dimension(200, 40));
@@ -1146,10 +1190,114 @@ public class BudgetFrame extends JFrame {
 
         // Fino pannello annuale
 
+        buttonHome = new JButton();
+        buttonMovimenti = new JButton();
+        buttonPagamenti = new JButton();
+        buttonRisparmi = new JButton();
+        buttonCambioValuta = new JButton();
+        buttonBudget = new JButton();
+
+        buttonHome.setOpaque(false);
+        buttonHome.setContentAreaFilled(false);
+        buttonHome.setBorderPainted(false);
+        buttonHome.setFocusPainted(false);
+
+        buttonMovimenti.setOpaque(false);
+        buttonMovimenti.setContentAreaFilled(false);
+        buttonMovimenti.setBorderPainted(false);
+        buttonMovimenti.setFocusPainted(false);
+
+        buttonPagamenti.setOpaque(false);
+        buttonPagamenti.setContentAreaFilled(false);
+        buttonPagamenti.setBorderPainted(false);
+        buttonPagamenti.setFocusPainted(false);
+
+        buttonRisparmi.setOpaque(false);
+        buttonRisparmi.setContentAreaFilled(false);
+        buttonRisparmi.setBorderPainted(false);
+        buttonRisparmi.setFocusPainted(false);
+
+        buttonCambioValuta.setOpaque(false);
+        buttonCambioValuta.setContentAreaFilled(false);
+        buttonCambioValuta.setBorderPainted(false);
+        buttonCambioValuta.setFocusPainted(false);
+
+        buttonBudget.setOpaque(false);
+        buttonBudget.setContentAreaFilled(false);
+        buttonBudget.setBorderPainted(false);
+        buttonBudget.setFocusPainted(false);
+
+        buttonHome.setIcon(iconaHomeScura);
+        buttonMovimenti.setIcon(iconaMovimentiScura);
+        buttonPagamenti.setIcon(iconaPagamentiScura);
+        buttonRisparmi.setIcon(iconaRisparmiScura);
+        buttonCambioValuta.setIcon(iconaCambioValutaScura);
+        buttonBudget.setIcon(iconaBudgetScura);
+
+        buttonHome.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                new HomeFrame();
+            }
+        });
+
+        buttonMovimenti.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                new FrameMovimenti();
+            }
+        });
+
+        buttonPagamenti.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                //new FramePagamenti();
+            }
+        });
+
+        buttonRisparmi.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                new FrameRisparmi();
+            }
+        });
+
+        buttonCambioValuta.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+
+                dispose();
+                new FrameCambioValuta();
+            }
+        });
+
+        panelBar = new JPanel();
+
+        panelBar.setLayout(new GridLayout(1, 6));
+        panelBar.add(buttonHome);
+        panelBar.add(buttonMovimenti);
+        panelBar.add(buttonPagamenti);
+        panelBar.add(buttonRisparmi);
+        panelBar.add(buttonCambioValuta);
+        panelBar.add(buttonBudget);
+
         setLayout(new BorderLayout());
-        add(panelSup, BorderLayout.NORTH);
         add(panelBudget, BorderLayout.NORTH);
         add(panelCen, BorderLayout.CENTER);
+        add(panelBar, BorderLayout.SOUTH);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
