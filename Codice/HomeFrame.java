@@ -9,7 +9,7 @@ public class HomeFrame extends JFrame{
     Tema tema = new Tema(0);
 
     Budget budget;
-    Movimenti movimenti = new Movimenti(0, 0, 0, budget);
+    //Movimenti movimenti = new Movimenti(0, 0, 100, 0, budget);
 
     TitledBorder titoloDisponibilita, titoloRadar, titoloEntrate, titoloUscite, titoloMovimenti;
 
@@ -29,7 +29,7 @@ public class HomeFrame extends JFrame{
 
     ImageIcon iconaHomeChiara, iconaMovimentiChiara, iconaPagamentiChiara, iconaRisparmiChiara, iconaCambioValutaChiara, iconaBudgetChiara, iconaHomeScura, iconaMovimentiScura, iconaPagamentiScura, iconaRisparmiScura, iconaCambioValutaScura, iconaBudgetScura;
 
-    public HomeFrame(){
+    public HomeFrame(Movimenti movimenti){
 
         setTitle("Zaphyra Bank - Home");
 
@@ -503,7 +503,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameRisparmi();
+                new FrameRisparmi(movimenti);
             }
         });
 
