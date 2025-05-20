@@ -20,7 +20,11 @@ public class FrameCambioValuta extends JFrame {
 
     private JButton buttonHome, buttonMovimenti, buttonPagamenti, buttonRisparmi, buttonBudget, buttonCambioValuta;
 
-    public FrameCambioValuta() {
+
+    Budget budget;
+    Movimenti movimenti;
+    public FrameCambioValuta(Movimenti movimenti) {
+        this.movimenti = movimenti;
         setTitle("Cambio Valuta");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setFocusable(true);
@@ -142,7 +146,7 @@ public class FrameCambioValuta extends JFrame {
         // Azioni pulsanti barra inferiore (da personalizzare)
         buttonHome.addActionListener(e -> {
             dispose();
-            new HomeFrame();
+            new HomeFrame(movimenti);
         });
         buttonMovimenti.addActionListener(e -> {
             dispose();
