@@ -3,7 +3,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class FrameRisparmi {
-   public FrameRisparmi() {
+   Budget budget;
+   Movimenti movimenti;
+   public FrameRisparmi(Movimenti movimenti) {
+      this.movimenti = movimenti;
       // Creazione del frame
       JFrame frameRisparmi = new JFrame("Zaphyra Bank - Risparmi");
       frameRisparmi.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -39,6 +42,8 @@ public class FrameRisparmi {
       RoundedTextField textFieldConto = new RoundedTextField(20, 30); // Valore iniziale del conto
       // textFieldRisparmi.setText("0 €");
       // textFieldConto.setText("1000 €"); // Valore iniziale del conto
+      textFieldConto.setText(movimenti.getSoldiConto() + " €");
+      textFieldRisparmi.setText(movimenti.getSoldiRisparmi() + " €");
       barraSuperiore.add(btnPlus, BorderLayout.WEST);
       barraSuperiore.add(btnImage, BorderLayout.EAST);
       labelRisparmii.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,7 +146,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new FrameMovimenti();
+            new FrameMovimenti(movimenti);
          }
       });
 
@@ -151,7 +156,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            //new PagamentiFrame();
+            new FramePagamenti(movimenti);
          }
       });
 
@@ -161,7 +166,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new HomeFrame();
+            new HomeFrame(movimenti);
          }
       });
 
@@ -171,7 +176,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            //new CambioValutaFrame();
+            new FrameCambioValuta(movimenti);
          }
       });
 
@@ -181,7 +186,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new BudgetFrame();
+            new BudgetFrame(movimenti);
          }
       });
 
@@ -329,6 +334,8 @@ public class FrameRisparmi {
          textFieldRisparmi.setText(nuovoValoreRisparmi + " €");
          textFieldConto.setText(nuovoValoreConto + " €");
          JOptionPane.showMessageDialog(frameImporto, "Importo aggiunto: " + importo + " €");
+         movimenti.setSoldiConto(nuovoValoreConto);
+         movimenti.setSoldiRisparmi(nuovoValoreRisparmi);
          frameImporto.dispose(); // Chiude il frame dopo la conferma
          } catch (NumberFormatException ex) {
          JFrame frameErrore = new JFrame("Errore");
@@ -344,10 +351,6 @@ public class FrameRisparmi {
 
       frameRisparmi.setVisible(true);
       frameRisparmi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   }
-
-   public static void main(String[] args) {
-      new FrameRisparmi();
    }
 }
 

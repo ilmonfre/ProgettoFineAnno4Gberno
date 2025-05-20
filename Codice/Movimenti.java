@@ -12,10 +12,11 @@ public class Movimenti {
     private double totaleEntrate;
     private double totaleUscite;
     private double soldiConto;
+    private double soldiRisparmi;
 
     Budget budget;
 
-    public Movimenti(double totaleEntrate, double totaleUscite, double soldiConto, Budget budget){
+    public Movimenti(double totaleEntrate, double totaleUscite, double soldiConto, double soldiRisparmi, Budget budget){
 
         movimentiList = new ArrayList<>();
         entrateList = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Movimenti {
         this.totaleEntrate=totaleEntrate;
         this.totaleUscite=totaleUscite;
         this.soldiConto=soldiConto;
+        this.soldiRisparmi=soldiRisparmi;
         this.budget=budget;
     }
 
@@ -56,6 +58,14 @@ public class Movimenti {
 
     public void setSoldiConto(double soldiConto) {
         this.soldiConto = soldiConto;
+    }
+
+    public double getSoldiRisparmi() {
+        return soldiRisparmi;
+    }
+
+    public void setSoldiRisparmi(double soldiRisparmi) {
+        this.soldiRisparmi = soldiRisparmi;
     }
 
     public boolean nuovaEntrata(double costo, LocalDate data, String tipo, String categoria, String utente){

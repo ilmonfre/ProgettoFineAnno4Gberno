@@ -5,10 +5,13 @@ import java.awt.event.*;
 public class FramePagamenti {
 
     JFrame frame;
-    RoundedBorderButton btnBonifico, btnScambioDenaro; 
+    RoundedBorderButton btnBonifico, btnScambioDenaro, btnRicarica; 
 
 
-    FramePagamenti(){
+    Budget budget;
+    Movimenti movimenti;
+    FramePagamenti(Movimenti movimenti){
+        this.movimenti = movimenti;
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Pagamenti");
 
@@ -23,8 +26,7 @@ public class FramePagamenti {
         barraSuperiore.setLayout(new BorderLayout());
         barraSuperiore.setPreferredSize(new Dimension(500, 50));
         barraSuperiore.setBackground(Color.decode("#cbf4f4"));
-  
-      
+
         // Pulsante immagine a destra
         JButton btnImage = new JButton(imageLuna);
         btnImage.setBorderPainted(false);
@@ -47,7 +49,7 @@ public class FramePagamenti {
         JPanel panelCentrale = new JPanel();
         panelCentrale.setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridLayout(2,2, 10, 10));
+        JPanel panel = new JPanel(new GridLayout(3,2, 10, 10));
 
         Color colorButton = Color.decode("#1c2697");
         Color colorHover = Color.decode("#cbf4f4");
@@ -66,10 +68,19 @@ public class FramePagamenti {
         btnScambioDenaro = new RoundedBorderButton("Scambio Denaro", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
         btnScambioDenaro.setForeground(Color.decode("#cbf4f4"));
 
+        JLabel lblRicarica = new JLabel("Ricarica conto: ");
+        lblRicarica.setFont(new Font("Arial", Font.BOLD, 25));
+        lblRicarica.setHorizontalAlignment(SwingConstants.CENTER);
+        lblRicarica.setForeground(Color.decode("#1c2697"));
+        btnRicarica = new RoundedBorderButton("Ricarica", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
+        btnRicarica.setForeground(Color.decode("#cbf4f4"));
+
         panel.add(lblBonifico, BorderLayout.CENTER);
         panel.add(btnBonifico, BorderLayout.CENTER);
         panel.add(lblScambioDenaro, BorderLayout.CENTER);
         panel.add(btnScambioDenaro, BorderLayout.CENTER);
+        panel.add(lblRicarica, BorderLayout.CENTER);
+        panel.add(btnRicarica, BorderLayout.CENTER);
 
         panelCentrale.add(panel);
 
@@ -124,7 +135,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FrameMovimenti();
+                new FrameMovimenti(movimenti);
             }
         });
 
@@ -132,7 +143,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FrameRisparmi();
+                new FrameRisparmi(movimenti);
             }
         });
 
@@ -140,7 +151,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new HomeFrame();
+                new HomeFrame(movimenti);
             }
         });
 
@@ -148,7 +159,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FramePagamenti();
+                new FramePagamenti(movimenti);
             }
         });
 
@@ -156,7 +167,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FrameCambioValuta();
+                new FrameCambioValuta(movimenti);
             }
         });
 
@@ -164,7 +175,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new BudgetFrame();
+                new BudgetFrame(movimenti);
             }
         });
 
@@ -207,7 +218,7 @@ public class FramePagamenti {
         panelBar.setBackground(Color.WHITE);
 
         btnImage.addActionListener(e -> {
-            // Chiaro
+            // chiaro
             if (btnImage.getIcon().equals(imageLuna)) {
                 btnImage.setIcon(imageSole);
                 barraSuperiore.setBackground(Color.decode("#1c2697"));
@@ -218,7 +229,8 @@ public class FramePagamenti {
                 btnBonifico.setForeground(Color.decode("#cbf4f4"));
                 btnScambioDenaro.setForeground(Color.decode("#cbf4f4"));
 
-                panelCentrale.setBackground(Color.decode("#1c2697"));
+                panelCentrale.setBackground(Color.decode("#cbf4f4"));
+
                 panelBar.setBackground(Color.decode("#2f48d0"));
                 buttonHome.setIcon(imageHomeChiara);
                 buttonMovimenti.setIcon(imageMovimentiChiara);
@@ -226,7 +238,7 @@ public class FramePagamenti {
                 buttonPagamenti.setIcon(imagePagamentiChiara);
                 buttonBudget.setIcon(imageBudgetChiara);
                 buttonCambioValuta.setIcon(imageCambioValutaChiara);
-            //Scuro
+            // scuro
             } else {
                 btnImage.setIcon(imageLuna);
                 barraSuperiore.setBackground(Color.decode("#cbf4f4"));
@@ -268,7 +280,12 @@ public class FramePagamenti {
             }
         });
 
-        panelCentrale.setBackground(Color.decode("#cbf4f4"));
+        btnRicarica.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FrameRicaricaConto();
+            }
+        });
 
 
         // Aggiunta dei pannelli al frame
@@ -281,7 +298,7 @@ public class FramePagamenti {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-   }
+    }
         
 }
 

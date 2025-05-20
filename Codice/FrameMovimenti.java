@@ -30,7 +30,8 @@ public class FrameMovimenti extends JFrame{
     Movimenti movimenti;
     Budget budget;
 
-    public FrameMovimenti(){
+    public FrameMovimenti(Movimenti movimenti){
+        this.movimenti = movimenti;
 
         imageSole = new ImageIcon();
         imageLuna = new ImageIcon();
@@ -68,7 +69,6 @@ public class FrameMovimenti extends JFrame{
         panelCercaInf = new JPanel();
         panelCercaInf.setBackground(Color.decode("#cbf4f4"));
 
-        movimenti = new Movimenti(0, 0, 0, budget);
 
         textCerca = new RoundedTextField(20, 30);
         textCerca.setBackground(Color.decode("#1c2697"));
@@ -321,7 +321,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new HomeFrame();
+                new HomeFrame(movimenti);
             }
         });
 
@@ -331,7 +331,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FramePagamenti();
+                new FramePagamenti(movimenti);
             }
         });
 
@@ -341,7 +341,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameRisparmi();
+                new FrameRisparmi(movimenti);
             }
         });
 
@@ -351,7 +351,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameCambioValuta();
+                new FrameCambioValuta(movimenti);
             }
         });
 
@@ -361,7 +361,7 @@ public class FrameMovimenti extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new BudgetFrame();
+                new BudgetFrame(movimenti);
             }
         });
 

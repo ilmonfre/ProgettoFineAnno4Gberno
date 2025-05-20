@@ -109,8 +109,8 @@ class FrameRegistrazione{
         lblAccedi = new JLabel("Hai già un account?");
         lblAccedi.setForeground(Color.decode("#1c2697"));
         btnAccedi = new JButton("Accedi");
-        btnAccedi.setForeground(Color.decode("#cbf4f4"));
-        btnAccedi.setBackground(Color.decode("#1c2697"));
+        btnAccedi.setForeground(Color.decode("#1c2697"));
+        btnAccedi.setBackground(Color.decode("#cbf4f4"));
         
         btnAccedi.setHorizontalAlignment(JButton.CENTER);
         btnAccedi.setBorderPainted(false);
