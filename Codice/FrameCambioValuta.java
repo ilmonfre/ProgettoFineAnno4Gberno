@@ -150,19 +150,19 @@ public class FrameCambioValuta extends JFrame {
         });
         buttonMovimenti.addActionListener(e -> {
             dispose();
-            new FrameMovimenti();
+            new FrameMovimenti(movimenti);
         });
         buttonPagamenti.addActionListener(e -> {
             dispose();
-            new FramePagamenti();
+            new FramePagamenti(movimenti);
         });
         buttonRisparmi.addActionListener(e -> {
             dispose();
-            new FrameRisparmi();
+            new FrameRisparmi(movimenti);
         });
         buttonBudget.addActionListener(e -> {
             dispose();
-            new BudgetFrame();
+            new BudgetFrame(movimenti);
         });
 
         // Layout principale

@@ -483,7 +483,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameMovimenti();
+                new FrameMovimenti(movimenti);
             }
         });
 
@@ -493,7 +493,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FramePagamenti();
+                new FramePagamenti(movimenti);
             }
         });
 
@@ -513,7 +513,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameCambioValuta();
+                new FrameCambioValuta(movimenti);
             }
         });
 
@@ -523,7 +523,7 @@ public class HomeFrame extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new BudgetFrame();
+                new BudgetFrame(movimenti);
             }
         });
 

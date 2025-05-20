@@ -8,7 +8,10 @@ public class FramePagamenti {
     RoundedBorderButton btnBonifico, btnScambioDenaro, btnRicarica; 
 
 
-    FramePagamenti(){
+    Budget budget;
+    Movimenti movimenti;
+    FramePagamenti(Movimenti movimenti){
+        this.movimenti = movimenti;
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Pagamenti");
 
@@ -23,8 +26,7 @@ public class FramePagamenti {
         barraSuperiore.setLayout(new BorderLayout());
         barraSuperiore.setPreferredSize(new Dimension(500, 50));
         barraSuperiore.setBackground(Color.decode("#cbf4f4"));
-  
-      
+
         // Pulsante immagine a destra
         JButton btnImage = new JButton(imageLuna);
         btnImage.setBorderPainted(false);
@@ -133,7 +135,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FrameMovimenti();
+                new FrameMovimenti(movimenti);
             }
         });
 
@@ -141,7 +143,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FrameRisparmi();
+                new FrameRisparmi(movimenti);
             }
         });
 
@@ -149,7 +151,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new HomeFrame();
+                new HomeFrame(movimenti);
             }
         });
 
@@ -157,7 +159,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FramePagamenti();
+                new FramePagamenti(movimenti);
             }
         });
 
@@ -165,7 +167,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new FrameCambioValuta();
+                new FrameCambioValuta(movimenti);
             }
         });
 
@@ -173,7 +175,7 @@ public class FramePagamenti {
             @Override
             public void actionPerformed(ActionEvent e){
                 frame.dispose();
-                new BudgetFrame();
+                new BudgetFrame(movimenti);
             }
         });
 
@@ -296,11 +298,7 @@ public class FramePagamenti {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-   }
-
-   public static void main(String[] args) {
-     new FramePagamenti();
-   }
+    }
         
 }
 

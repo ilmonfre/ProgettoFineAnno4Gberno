@@ -259,7 +259,10 @@ public class BudgetFrame extends JFrame {
         panelAnnuale.repaint();
     }
     
-    public BudgetFrame() {
+    Budget budget1;
+    Movimenti movimenti;
+    public BudgetFrame(Movimenti movimenti) {
+        this.movimenti = movimenti;
 
         setTitle("Zaphyra Bank - Budget");
 
@@ -1240,7 +1243,7 @@ public class BudgetFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new HomeFrame();
+                new HomeFrame(movimenti);
             }
         });
 
@@ -1250,7 +1253,7 @@ public class BudgetFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameMovimenti();
+                new FrameMovimenti(movimenti);
             }
         });
 
@@ -1260,7 +1263,7 @@ public class BudgetFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                //new FramePagamenti();
+                new FramePagamenti(movimenti);
             }
         });
 
@@ -1270,7 +1273,7 @@ public class BudgetFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameRisparmi();
+                new FrameRisparmi(movimenti);
             }
         });
 
@@ -1280,7 +1283,7 @@ public class BudgetFrame extends JFrame {
             public void actionPerformed(ActionEvent e){
 
                 dispose();
-                new FrameCambioValuta();
+                new FrameCambioValuta(movimenti);
             }
         });
 

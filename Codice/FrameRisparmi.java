@@ -146,7 +146,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new FrameMovimenti();
+            new FrameMovimenti(movimenti);
          }
       });
 
@@ -156,7 +156,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new FramePagamenti();
+            new FramePagamenti(movimenti);
          }
       });
 
@@ -176,7 +176,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new FrameCambioValuta();
+            new FrameCambioValuta(movimenti);
          }
       });
 
@@ -186,7 +186,7 @@ public class FrameRisparmi {
          public void actionPerformed(ActionEvent e){
 
             frameRisparmi.dispose();
-            new BudgetFrame();
+            new BudgetFrame(movimenti);
          }
       });
 
