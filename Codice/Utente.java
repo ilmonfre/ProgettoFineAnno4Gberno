@@ -20,6 +20,8 @@ public class Utente {
     private String pin;
     private String dataScadenza;
 
+    private double saldo;
+
     Utente(String[] fields){
         nome = fields[0];
         cognome = fields[1];
@@ -37,6 +39,8 @@ public class Utente {
         dataScadenza = fields[12];
         cvv = fields[13];
         pin = fields[14];
+
+        //saldo = Double.parseDouble(fields[15]);
         
     }
 
@@ -146,11 +150,21 @@ public class Utente {
         this.pin = pin;
     }
 
+    // saldo
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     public void decrementaSaldo(double importo) {
-        importo+=importo;
+        if(saldo >= importo){
+            saldo-=importo;
+        }
     }
 
     public void incrementaSaldo(double importo) {
-        
+        saldo+=importo;
     }
 }
