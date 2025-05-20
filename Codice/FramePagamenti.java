@@ -41,6 +41,7 @@ public class FramePagamenti {
         lblPagamenti.setHorizontalAlignment(SwingConstants.CENTER);
         lblPagamenti.setFont(new Font("Arial", Font.BOLD, 30));
         lblPagamenti.setForeground(Color.decode("#1c2697"));
+        lblPagamenti.setBackground(Color.decode("#cbf4f4"));
         barraSuperiore.add(lblPagamenti, BorderLayout.CENTER);
 
         frame.add(barraSuperiore, BorderLayout.NORTH);
@@ -48,31 +49,33 @@ public class FramePagamenti {
         // pannello centrale
         JPanel panelCentrale = new JPanel();
         panelCentrale.setLayout(new BorderLayout());
+        panelCentrale.setBackground(Color.decode("#cbf4f4"));
 
         JPanel panel = new JPanel(new GridLayout(3,2, 10, 10));
 
         Color colorButton = Color.decode("#1c2697");
-        Color colorHover = Color.decode("#cbf4f4");
+        Color colorScritta = Color.decode("#cbf4f4");
+        Color color3 = Color.decode("#2f48d0");
 
         JLabel lblBonifico = new JLabel("Bonifico: ");
         lblBonifico.setFont(new Font("Arial", Font.BOLD, 25));
         lblBonifico.setHorizontalAlignment(SwingConstants.CENTER);
         lblBonifico.setForeground(Color.decode("#1c2697"));
-        btnBonifico = new RoundedBorderButton("Bonifico", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
+        btnBonifico = new RoundedBorderButton("Bonifico", colorButton, Color.white, colorButton, color3, color3, colorScritta ,2, 20, 20);
         btnBonifico.setForeground(Color.decode("#cbf4f4"));
 
         JLabel lblScambioDenaro = new JLabel("Scambio Denaro: ");
         lblScambioDenaro.setFont(new Font("Arial", Font.BOLD, 25));
         lblScambioDenaro.setHorizontalAlignment(SwingConstants.CENTER);
         lblScambioDenaro.setForeground(Color.decode("#1c2697"));
-        btnScambioDenaro = new RoundedBorderButton("Scambio Denaro", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
+        btnScambioDenaro = new RoundedBorderButton("Scambio Denaro", colorButton, Color.white, colorButton, color3, color3, colorScritta ,2, 20, 20);
         btnScambioDenaro.setForeground(Color.decode("#cbf4f4"));
 
         JLabel lblRicarica = new JLabel("Ricarica conto: ");
         lblRicarica.setFont(new Font("Arial", Font.BOLD, 25));
         lblRicarica.setHorizontalAlignment(SwingConstants.CENTER);
         lblRicarica.setForeground(Color.decode("#1c2697"));
-        btnRicarica = new RoundedBorderButton("Ricarica", colorButton, colorButton, Color.white, colorHover, colorHover, Color.white ,2, 20, 20);
+        btnRicarica = new RoundedBorderButton("Ricarica", colorButton, Color.white, colorButton, color3, color3, colorScritta ,2, 20, 20);
         btnRicarica.setForeground(Color.decode("#cbf4f4"));
 
         panel.add(lblBonifico, BorderLayout.CENTER);
@@ -81,10 +84,12 @@ public class FramePagamenti {
         panel.add(btnScambioDenaro, BorderLayout.CENTER);
         panel.add(lblRicarica, BorderLayout.CENTER);
         panel.add(btnRicarica, BorderLayout.CENTER);
+        panel.setBackground(Color.decode("#cbf4f4"));
 
         panelCentrale.add(panel);
 
         frame.add(panelCentrale);
+        frame.setBackground(Color.decode("#cbf4f4"));
 
 
         // pannello inferiore
@@ -97,7 +102,6 @@ public class FramePagamenti {
     
         panelBar = new JPanel();
         panelBar.setLayout(new GridLayout(1, 6));
-        panelBar.setBackground(Color.decode("#cbf4f4"));
 
         buttonHome = new JButton();
         buttonMovimenti = new JButton();
@@ -222,15 +226,19 @@ public class FramePagamenti {
             if (btnImage.getIcon().equals(imageLuna)) {
                 btnImage.setIcon(imageSole);
                 barraSuperiore.setBackground(Color.decode("#1c2697"));
-
                 lblPagamenti.setForeground(Color.decode("#cbf4f4"));
-
-                btnScambioDenaro.setForeground(Color.decode("#cbf4f4"));
-                btnBonifico.setForeground(Color.decode("#cbf4f4"));
-                btnScambioDenaro.setForeground(Color.decode("#cbf4f4"));
-
-                panelCentrale.setBackground(Color.decode("#cbf4f4"));
-
+                lblBonifico.setForeground(Color.decode("#cbf4f4"));
+                lblScambioDenaro.setForeground(Color.decode("#cbf4f4"));
+                lblRicarica.setForeground(Color.decode("#cbf4f4"));
+                panel.setBackground(Color.decode("#1c2697"));
+                frame.setBackground(Color.decode("#1c2697"));
+                // btnScambioDenaro.setForeground(Color.decode("#cbf4f4"));
+                // btnScambioDenaro.setBackground(Color.decode("#2f48d0"));
+                // btnRicarica.setForeground(Color.decode("#cbf4f4"));
+                // btnRicarica.setBackground(Color.decode("#2f48d0"));
+                // btnBonifico.setForeground(Color.decode("#cbf4f4"));
+                // btnBonifico.setBackground(Color.decode("#2f48d0"));
+                panelCentrale.setBackground(Color.decode("#1c2697"));
                 panelBar.setBackground(Color.decode("#2f48d0"));
                 buttonHome.setIcon(imageHomeChiara);
                 buttonMovimenti.setIcon(imageMovimentiChiara);
@@ -242,16 +250,18 @@ public class FramePagamenti {
             } else {
                 btnImage.setIcon(imageLuna);
                 barraSuperiore.setBackground(Color.decode("#cbf4f4"));
-
                 lblPagamenti.setForeground(Color.decode("#1c2697"));
-                btnScambioDenaro.setForeground(Color.decode("#1c2697"));
-                btnBonifico.setForeground(Color.decode("#1c2697"));
-                btnScambioDenaro.setForeground(Color.decode("#1c2697"));
-
-                textFieldRisparmi.setBackground(Color.WHITE);
-                textFieldRisparmi.setForeground(Color.decode("#1c2697"));
-                textFieldConto.setBackground(Color.WHITE);
-                textFieldConto.setForeground(Color.decode("#1c2697"));
+                lblBonifico.setForeground(Color.decode("#1c2697"));
+                lblScambioDenaro.setForeground(Color.decode("#1c2697"));
+                lblRicarica.setForeground(Color.decode("#1c2697"));
+                panel.setBackground(Color.decode("#cbf4f4"));
+                frame.setBackground(Color.decode("#cbf4f4"));
+                // btnScambioDenaro.setForeground(Color.decode("#1c2697"));
+                // btnScambioDenaro.setBackground(Color.WHITE);
+                // btnRicarica.setForeground(Color.decode("#1c2697"));
+                // btnRicarica.setBackground(Color.WHITE);
+                // btnBonifico.setForeground(Color.decode("#1c2697"));
+                // btnBonifico.setBackground(Color.WHITE);
                 panelCentrale.setBackground(Color.decode("#cbf4f4"));
                 panelBar.setBackground(Color.WHITE);
                 buttonHome.setIcon(imageHome);
@@ -299,7 +309,6 @@ public class FramePagamenti {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
-        
 }
 
 

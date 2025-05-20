@@ -455,7 +455,7 @@ public class HomeFrame extends JFrame{
 
         panelBar = new JPanel();
         panelBar.setLayout(new GridLayout(1, 6));
-        panelBar.setBackground(Color.decode("#cbf4f4"));
+        panelBar.setBackground(Color.white);
 
         buttonHome = new JButton();
         buttonMovimenti = new JButton();
@@ -645,7 +645,7 @@ public class HomeFrame extends JFrame{
                     panelInternoSecondo.setBackground(lightFg);
                     panelTerzo.setBackground(lightFg);
                     panelInternoTerzo.setBackground(lightFg);
-                    panelBar.setBackground(lightFg);
+                    panelBar.setBackground(Color.decode("#2f48d0"));
 
                     buttonAccount.setForeground(darkBg);
                     buttonTema.setForeground(darkBg);
@@ -710,7 +710,7 @@ public class HomeFrame extends JFrame{
                     panelInternoSecondo.setBackground(lightFg);
                     panelTerzo.setBackground(lightFg);
                     panelInternoTerzo.setBackground(lightFg);
-                    panelBar.setBackground(lightFg);
+                    panelBar.setBackground(Color.white);
 
                     buttonAccount.setForeground(darkBg);
                     buttonTema.setForeground(darkBg);

@@ -25,7 +25,8 @@ public class FrameCambioValuta extends JFrame {
     Movimenti movimenti;
     public FrameCambioValuta(Movimenti movimenti) {
         this.movimenti = movimenti;
-        setTitle("Cambio Valuta");
+        setTitle("Zaphyra Bank - Cambio Valuta");
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setFocusable(true);
         requestFocusInWindow();
