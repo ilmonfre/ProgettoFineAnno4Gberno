@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class FramePagamenti {
 
     JFrame frame;
-    RoundedBorderButton btnBonifico, btnScambioDenaro, btnRicarica; 
+    RoundedBorderButton btnBonifico, btnScambioDenaro, btnRicarica;
 
 
     Budget budget;
@@ -276,14 +276,14 @@ public class FramePagamenti {
         btnScambioDenaro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FrameScambioDenaro();
+                new FrameScambioDenaro(movimenti);
             }
         });
 
         btnRicarica.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new FrameRicaricaConto();
+                new FrameRicaricaConto(movimenti);
             }
         });
 
@@ -297,9 +297,7 @@ public class FramePagamenti {
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // Massimizza la finestra
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
     }
-        
 }
 
 

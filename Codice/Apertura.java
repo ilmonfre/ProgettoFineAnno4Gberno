@@ -15,7 +15,7 @@ public class Apertura extends JFrame {
 
     Font font;
 
-    public Apertura() {
+    public Apertura(Movimenti movimenti) {
 
         setLayout(new GridLayout(2, 1));
 
@@ -80,7 +80,7 @@ public class Apertura extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new FrameAccedi();
+                new FrameAccedi(movimenti);
             }
         });
 

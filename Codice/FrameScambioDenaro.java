@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
+import java.time.LocalDate;
 
 public class FrameScambioDenaro {
     
@@ -10,8 +10,8 @@ public class FrameScambioDenaro {
     JLabel topLabel;
 
     JPanel panel1, btnPanel;
-    JLabel lblNcartam, lblNcartad, lblCVV, lblImporto;
-    JTextField txtNcartam, txtNcartad,  txtCVV, txtImporto;
+    JLabel lblNcartam, lblNcartad, lblCVV, lblImporto, lblCategoria, lblTipo, lblErrore;
+    JTextField txtNcartam, txtNcartad,  txtCVV, txtImporto, txtCategoria, txtTipo;
 
     JButton btn;
 
@@ -19,7 +19,7 @@ public class FrameScambioDenaro {
 
     //static Utente utente;
 
-    FrameScambioDenaro(){
+    FrameScambioDenaro(Movimenti movimenti){
 
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Scambio Denaro");
@@ -50,7 +50,7 @@ public class FrameScambioDenaro {
         fontMid = new Font("Segoe UI", Font.PLAIN, 14);
         midPanel.setBorder(BorderFactory.createEmptyBorder(15, 40, 50, 20));
 
-        panel1 = new JPanel(new GridLayout(4, 1, 20, 40));
+        panel1 = new JPanel(new GridLayout(6, 1, 20, 40));
 
         lblNcartam = new JLabel("Numero di carta del destinatario: ");
         lblNcartam.setForeground(Color.decode("#1c2697"));
@@ -70,8 +70,17 @@ public class FrameScambioDenaro {
         lblImporto = new JLabel("Inserire l'importo: ");
         lblImporto.setForeground(Color.decode("#1c2697"));
         lblImporto.setFont(fontMid);
-        txtImporto = new JTextField("€  ");
-        txtImporto.setColumns(10);
+        txtImporto = new JTextField(10);
+
+        lblTipo = new JLabel("Tipo: ");
+        lblTipo.setForeground(Color.decode("#1c2697"));
+        lblTipo.setFont(fontMid);
+        txtTipo = new JTextField(10);
+
+        lblCategoria = new JLabel("Categoria: ");
+        lblCategoria.setForeground(Color.decode("#1c2697"));
+        lblCategoria.setFont(fontMid);
+        txtCategoria = new JTextField(10);
 
         panel1.add(lblNcartam);
         panel1.add(txtNcartam);
@@ -81,6 +90,10 @@ public class FrameScambioDenaro {
         panel1.add(txtCVV);
         panel1.add(lblImporto);
         panel1.add(txtImporto);
+        panel1.add(lblTipo);
+        panel1.add(txtTipo);
+        panel1.add(lblCategoria);
+        panel1.add(txtCategoria);
 
         // panel per un bottone
         bottomPanel = new JPanel();
@@ -89,38 +102,41 @@ public class FrameScambioDenaro {
         btn.setBackground(Color.decode("#1c2697"));
         btn.setForeground(Color.decode("#cbf4f4"));
         Dimension d = new Dimension(200, 35);
-        btn.setPreferredSize(d);     
+        btn.setPreferredSize(d);
 
+        lblErrore = new JLabel();
+
+        bottomPanel.add(lblErrore);
         bottomPanel.add(btn);
 
         frame.add(bottomPanel, BorderLayout.SOUTH);
 
-        midPanel.add(panel1); 
+        midPanel.add(panel1);
         frame.add(midPanel, BorderLayout.CENTER);
 
         btn.addActionListener(new ActionListener (){
             @Override
             public void actionPerformed (ActionEvent e){
-                
+
+                double costo = Double.parseDouble(txtImporto.getText());
+                if(movimenti.nuovaUscita(costo, LocalDate.now(), txtTipo.getText(), txtCategoria.getText(), txtNcartad.getText())==false || costo>movimenti.getSoldiConto() || movimenti.budget.controllaSettimanale(costo) == false || movimenti.budget.controllaMensile(costo) == false || movimenti.budget.controllaAnnuale(costo) == false){
+
+                    lblErrore.setText("Si è verificato un errore");
+                }else{
+
+                    lblErrore.setText("");
+                }
+                frame.dispose();
             }
         });
-
 
         panel1.setBackground(Color.decode("#cbf4f4"));
         topPanel.setBackground(Color.decode("#cbf4f4"));
         midPanel.setBackground(Color.decode("#cbf4f4"));
         bottomPanel.setBackground(Color.decode("#cbf4f4"));
 
-
         frame.setSize(600, 600);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
-
-    public static void main(String[] args) {
-        new FrameScambioDenaro();
-    }
 }
-
-

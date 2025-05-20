@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class FrameRicaricaConto {
     
@@ -11,7 +12,7 @@ public class FrameRicaricaConto {
     JLabel topLabel;
 
     JPanel panel1, btnPanel;
-    JLabel lblIBAN, lblPin, lblImporto, lblCausale;
+    JLabel lblIBAN, lblPin, lblImporto, lblCausale, lblErrore;
     JTextField txtIBAN, txtPin, txtImporto;
     JTextArea txtCausale;
 
@@ -21,7 +22,7 @@ public class FrameRicaricaConto {
 
     //static Utente utente;
 
-    FrameRicaricaConto(){
+    FrameRicaricaConto(Movimenti movimenti){
 
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Ricarica conto");
@@ -67,8 +68,7 @@ public class FrameRicaricaConto {
         lblImporto = new JLabel("Inserire l'importo: ");
         lblImporto.setForeground(Color.decode("#1c2697"));
         lblImporto.setFont(fontMid);
-        txtImporto = new JTextField("€  ");
-        txtImporto.setColumns(10);
+        txtImporto = new JTextField(10);
 
         lblCausale = new JLabel("Inserire causale: ");
         lblCausale.setForeground(Color.decode("#1c2697"));
@@ -93,8 +93,10 @@ public class FrameRicaricaConto {
         btn.setBackground(Color.decode("#1c2697"));
         btn.setForeground(Color.decode("#cbf4f4"));
         Dimension d = new Dimension(200, 35);
-        btn.setPreferredSize(d);     
+        btn.setPreferredSize(d);
+        lblErrore = new JLabel();
 
+        bottomPanel.add(lblErrore);
         bottomPanel.add(btn);
 
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -106,6 +108,15 @@ public class FrameRicaricaConto {
             @Override
             public void actionPerformed (ActionEvent e){
                 
+                double costo = Double.parseDouble(txtImporto.getText());
+                if(movimenti.nuovaEntrata(costo, LocalDate.now(), "Ricarica conto", "Ricarica conto", txtIBAN.getText())==false){
+
+                    lblErrore.setText("Si è verificato un errore");
+                }else{
+
+                    lblErrore.setText("");
+                }
+                frame.dispose();
             }
         });
 
