@@ -10,6 +10,7 @@ public class FrameAccedi {
    JPanel topPanel, midPanel;
    JLabel topLabel;
 
+   Budget budget;
 
    JPanel panel1, panelBtn, panel2;
    JLabel lblEmail, lblPass, lblPass2;
@@ -155,7 +156,7 @@ public class FrameAccedi {
 
             if (found) {
                   frame.dispose();
-                  new HomeFrame();
+                  new HomeFrame(new Movimenti(0, 0, 100, 3, budget));
             } else {
                   JOptionPane.showMessageDialog(null, "Email o password errati", "Errore", JOptionPane.ERROR_MESSAGE);
             }
