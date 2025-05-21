@@ -22,8 +22,10 @@ class FrameRegistrazione{
 
     final FileWriter file; 
 
-    FrameRegistrazione() throws IOException {
+    Movimenti movimenti;
 
+    FrameRegistrazione(Movimenti movimenti) throws IOException {
+        this.movimenti = movimenti;
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Sign up");
         frame.setLayout(new BorderLayout());
@@ -187,7 +189,7 @@ class FrameRegistrazione{
                 frame.setVisible(false);
 
                 try {
-                    new FrameRegistrazione2(frame);
+                    new FrameRegistrazione2(frame, movimenti);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -202,7 +204,7 @@ class FrameRegistrazione{
             public void actionPerformed(ActionEvent e) {
                 
                 frame.dispose();
-                new FrameAccedi();
+                new FrameAccedi(movimenti);
                 
             }
         });

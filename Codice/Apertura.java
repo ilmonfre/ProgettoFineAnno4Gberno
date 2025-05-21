@@ -90,7 +90,7 @@ public class Apertura extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 try {
-                    new FrameRegistrazione();
+                    new FrameRegistrazione(movimenti);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

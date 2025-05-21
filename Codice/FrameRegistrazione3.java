@@ -24,9 +24,11 @@ public class FrameRegistrazione3 {
     Font fontIniziale, fontMid, fontBtn;
 
     final FileWriter file; 
+    Movimenti movimenti;
 
-    FrameRegistrazione3 (JFrame previousFrame) throws IOException{
+    FrameRegistrazione3 (JFrame previousFrame, Movimenti movimenti) throws IOException{
         this.previousFrame = previousFrame;
+        this.movimenti = movimenti;
 
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Sign up");
@@ -189,7 +191,7 @@ public class FrameRegistrazione3 {
                 GeneraDatiCarta gen = new GeneraDatiCarta();
                 gen.salvaSulFile();
                 
-                new Apertura();
+                new Apertura(movimenti);
                 
                 GeneraDatiCarta dati = new GeneraDatiCarta();
                 

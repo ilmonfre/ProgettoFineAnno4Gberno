@@ -171,7 +171,7 @@ public class FrameAccedi {
 
                frame.dispose();
                try {
-                  new FrameRegistrazione();
+                  new FrameRegistrazione(movimenti);
                } catch (IOException e1) {
                   e1.printStackTrace();
                }

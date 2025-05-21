@@ -29,9 +29,11 @@ public class FrameRegistrazione2 {
 
     final FileWriter file;
 
+    Movimenti movimenti;
 
-    FrameRegistrazione2 (JFrame previousFrame) throws IOException{
+    FrameRegistrazione2 (JFrame previousFrame, Movimenti movimenti) throws IOException{
         this.previousFrame=previousFrame;
+        this.movimenti = movimenti;
 
         frame = new JFrame();
         frame.setTitle("Zaphyra Bank - Sign up");
@@ -283,7 +285,7 @@ public class FrameRegistrazione2 {
                 frame.setVisible(false);
 
                 try {
-                    new FrameRegistrazione3(frame);
+                    new FrameRegistrazione3(frame, movimenti);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
